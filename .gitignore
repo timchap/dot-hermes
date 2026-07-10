@@ -1,0 +1,48 @@
+# Cache files
+cache/
+*.db-wal
+*.db-shm
+*_cache.json
+channel_directory.json
+provider_models_cache.json
+ollama_cloud_models_cache.json
+models_dev_cache.json
+
+# State & session files
+state.db
+session/
+sessions/
+
+# Logs
+logs/
+*.log
+
+# Gateway & lock files
+gateway.lock
+gateway.pid
+gateway_state.json
+gateway/
+
+# Auth
+auth.json
+auth.lock
+
+# Node modules
+node/
+
+# Kanban
+kanban/
+kanban.db
+kanban.db.*
+
+# History & temp
+.hermes_history
+.env
+.env.*
+.SCRATCH*
+*.bak.*
+update_check
+skills_prompt_snapshot.json
+
+# Verification
+verification_evidence.db
