@@ -1,0 +1,83 @@
+{
+  "jobs": [
+    {
+      "id": "34c1ca0610de",
+      "name": "llm-tools-daily-scout",
+      "prompt": "You are a Local LLM and Hermes Agent community scout. Search the web for any promising new tools, models, or updates from the last 24\u201348 hours that are relevant to this user's setup. The user runs:\n\n- **Hermes Agent** on a Raspberry Pi (always-on agent host)\n- **Local LLM inference** on a Framework Desktop (AMD Ryzen AI MAX+ 395 / Strix Halo / gfx1151 / 128 GB unified RAM / 1 TB + 2 TB NVMe)\n- **Ollama** and/or **Lemonade Server** with Vulkan/ROCm backends for AMD GPU acceleration\n- **llama.cpp** via community ROCm toolboxes\n- **Tailscale** for internal networking between Pi and Framework\n\nCheck these sources:\n1. **Reddit**: r/LocalLLaMA, r/hermesagent, r/LocalLLM, r/Ollama \u2014 look for new tools, model releases, guides, or tips\n2. **HuggingFace**: new models (especially efficient ones that fit Strix Halo's VRAM constraints \u2014 think under 70GB FP16 or quantized variants), trending models, GGUF releases\n3. **GitHub**: new repos or significant updates related to LLM inference on AMD ROCm/Vulkan, Strix Halo support, Hermes Agent skills/tools\n4. **Hermes Agent**: new skills released via the skills hub, new features, or important updates\n\nFor each finding, briefly summarize: what it is, why it matters to this specific setup, and a link. Be concise \u2014 no fluff. If nothing notable was found, say so clearly. Do NOT hallucinate or make up results.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": "custom",
+      "model_snapshot": "Qwen3.6-35B-A3B-MTP-GGUF",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 6 * * *",
+        "display": "0 6 * * *"
+      },
+      "schedule_display": "0 6 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-07-11T02:59:36.238620+02:00",
+      "next_run_at": "2026-07-11T06:00:00+02:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "f41d2a7cd5d7",
+      "name": "session-audit-nightly",
+      "prompt": "You are a security and documentation compliance auditor for a homelab. Review all Hermes Agent sessions from the last 24 hours and do two things:\n\n## 1. Security Risk Assessment\nLook for any actions performed in sessions from the past day that might pose security risks:\n- Commands executed that could have affected system security (firewall changes, user/permission modifications, installing untrusted packages, exposing services)\n- External API keys or credentials being written to files in unexpected locations\n- Accessing external services or endpoints without clear justification\n- Any operations that modified infrastructure in ways that could be exploited\n- Subagent delegations that performed broad filesystem or network operations\n\nFlag anything concerning with specific details. If everything looks clean, say so.\n\n## 2. Documentation Compliance Check\nRead the homelab documentation at ~/homelab/ (README.md, docs/architecture.md, docs/hermes.md, docs/llm-strix-halo.md, docs/hardware.md, and any other relevant docs). Check if any sessions from the past day involved:\n- New automation scripts or configurations created\n- Software installs, package changes, or dependency updates\n- Environment changes (networking, firewall, services, Docker, Ansible)\n- New skills, plugins, or Hermes configuration changes\n- Hardware changes or BIOS/kernel parameter modifications\n\nFor each such change, verify that:\n- The corresponding doc in ~/homelab/docs/ has been updated to reflect the change\n- The ~/homelab/ git repo has been committed and pushed (check git status at ~/homelab/)\n\nIf documentation is missing or the repo hasn't been committed/pushed, report what's missing. If everything is in order, say so.\n\nBe thorough but concise. Report findings clearly in two sections: \"Security Risks\" and \"Documentation Gaps\".",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": "custom",
+      "model_snapshot": "Qwen3.6-35B-A3B-MTP-GGUF",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 4 * * *",
+        "display": "0 4 * * *"
+      },
+      "schedule_display": "0 4 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-07-11T02:59:37.305589+02:00",
+      "next_run_at": "2026-07-11T04:00:00+02:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    }
+  ],
+  "updated_at": "2026-07-11T02:59:37.338907+02:00"
+}
