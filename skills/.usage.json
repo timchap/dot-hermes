@@ -133,27 +133,27 @@
     "archived_at": null,
     "created_at": "2026-07-11T16:50:20.670144+00:00",
     "created_by": "agent",
-    "last_patched_at": "2026-07-11T16:51:16.095428+00:00",
-    "last_used_at": null,
-    "last_viewed_at": null,
-    "patch_count": 1,
+    "last_patched_at": "2026-07-11T17:58:54.418156+00:00",
+    "last_used_at": "2026-07-11T17:57:59.099876+00:00",
+    "last_viewed_at": "2026-07-11T17:57:59.085205+00:00",
+    "patch_count": 3,
     "pinned": false,
     "state": "active",
-    "use_count": 0,
-    "view_count": 0
+    "use_count": 2,
+    "view_count": 2
   },
   "opencode": {
     "archived_at": null,
     "created_at": "2026-07-10T23:57:55.994192+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-07-11T17:19:39.844902+00:00",
-    "last_viewed_at": "2026-07-11T17:19:39.837484+00:00",
+    "last_used_at": "2026-07-11T17:56:51.263461+00:00",
+    "last_viewed_at": "2026-07-11T17:56:51.251113+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 11,
-    "view_count": 8
+    "use_count": 12,
+    "view_count": 9
   },
   "p5js": {
     "archived_at": null,

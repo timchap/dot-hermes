@@ -118,6 +118,32 @@ hermes mcp configure NAME       # Toggle tool selection
 
 A server config must have either `command` OR `url`, not both.
 
+## OAuth Isolation via Proxy (high-trust-agent pattern)
+
+When an MCP server requires long-lived credentials you don't want the agent host itself to hold
+(e.g. Gmail OAuth client secret + refresh token, or any credential where a prompt-injection/agent
+compromise should not be able to exfiltrate it), don't put the credential directly in Hermes'
+`mcp_servers` config. Instead, build a small pass-through proxy:
+
+1. Deploy the proxy as its own service (own host/container/VM) — physically or at least
+   privilege-separated from the Hermes host.
+2. The proxy holds the OAuth client id/secret/refresh token and manages the access-token
+   refresh cycle itself (refresh_token → short-lived access_token via the provider's `/token`
+   endpoint, cached in memory, refreshed before expiry).
+3. The proxy exposes the **exact same MCP JSON-RPC API shape** as the real upstream server —
+   forward `initialize`, `ping`, `tools/list`, `tools/call` etc. verbatim, attaching
+   `Authorization: Bearer <access_token>` to the upstream call. Zero protocol translation needed
+   on the Hermes side — point `mcp_servers.<name>.url` at the proxy instead of the real endpoint.
+4. Optionally require its own inbound shared-secret (`Authorization: Bearer <proxy_secret>`)
+   distinct from the upstream OAuth secret — Hermes can safely hold this since compromising it
+   only grants API access, not the ability to mint fresh OAuth tokens or read the refresh token.
+5. Network-isolate the proxy: bind only where the agent host can reach it (Tailscale/LAN), never
+   expose it publicly.
+
+This pattern generalizes beyond Gmail to any MCP integration with sensitive long-lived credentials
+(Google Workspace APIs, other OAuth-gated SaaS MCP servers). See `references/google-gmail-mcp.md`
+for the Gmail-specific endpoint/scope details this pattern was first applied to.
+
 ## References
 
 - `references/google-gmail-mcp.md` — Google's official Gmail MCP server setup (OAuth, scopes, API enablement)
