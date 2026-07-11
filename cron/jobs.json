@@ -123,8 +123,10 @@
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
-      "workdir": null
+      "workdir": null,
+      "profile": null,
+      "toast_notifications": true
     }
   ],
-  "updated_at": "2026-07-11T16:53:01.999181+02:00"
+  "updated_at": "2026-07-11T16:54:54.931446+02:00"
 }
