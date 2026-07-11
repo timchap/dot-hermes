@@ -211,9 +211,11 @@ Success criteria:
 
 ## Rules
 
-1. Prefer `opencode run` for one-shot automation — it's simpler and doesn't need pty.
-2. Use interactive background mode only when iteration is needed.
-3. Always scope OpenCode sessions to a single repo/workdir.
-4. For long tasks, provide progress updates from `process` logs.
-5. Report concrete outcomes (files changed, tests, remaining risks).
-6. Exit interactive sessions with Ctrl+C or kill, never `/exit`.
+1. **User invokes this skill = use OpenCode.** If the user asks you to do something *with* this skill loaded, use OpenCode for the task regardless of scope. Do not bypass it because the task feels "too small" — the user's explicit invocation is a signal to delegate.
+2. If you need to explain why OpenCode isn't suitable (e.g. it's not installed, auth is broken, task is outside a codebase), say so explicitly and ask if the user wants you to proceed anyway or do it directly.
+3. Prefer `opencode run` for one-shot automation — it's simpler and doesn't need pty.
+4. Use interactive background mode only when iteration is needed.
+5. Always scope OpenCode sessions to a single repo/workdir.
+6. For long tasks, provide progress updates from `process` logs.
+7. Report concrete outcomes (files changed, tests, remaining risks).
+8. Exit interactive sessions with Ctrl+C or kill, never `/exit`.

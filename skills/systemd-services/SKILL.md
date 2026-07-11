@@ -162,3 +162,4 @@ After creating a service:
 - `templates/systemd-service-unit.md` — boilerplate unit file
 - `templates/watcher-service.sh` — inotify-based file watcher with flock debounce
 - `references/root-git-deadlock.md` — debug case study: root+safe.directory deadlock
+- `references/inotify-watch-exclusion.md` — three-part pattern to exclude files from both inotifywait watching and git tracking

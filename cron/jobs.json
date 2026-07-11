@@ -3,9 +3,11 @@
     {
       "id": "34c1ca0610de",
       "name": "llm-tools-daily-scout",
-      "prompt": "You are a Local LLM and Hermes Agent community scout. Search the web for any promising new tools, models, or updates from the last 24\u201348 hours that are relevant to this user's setup. The user runs:\n\n- **Hermes Agent** on a Raspberry Pi (always-on agent host)\n- **Local LLM inference** on a Framework Desktop (AMD Ryzen AI MAX+ 395 / Strix Halo / gfx1151 / 128 GB unified RAM / 1 TB + 2 TB NVMe)\n- **Ollama** and/or **Lemonade Server** with Vulkan/ROCm backends for AMD GPU acceleration\n- **llama.cpp** via community ROCm toolboxes\n- **Tailscale** for internal networking between Pi and Framework\n\nCheck these sources:\n1. **Reddit**: r/LocalLLaMA, r/hermesagent, r/LocalLLM, r/Ollama \u2014 look for new tools, model releases, guides, or tips\n2. **HuggingFace**: new models (especially efficient ones that fit Strix Halo's VRAM constraints \u2014 think under 70GB FP16 or quantized variants), trending models, GGUF releases\n3. **GitHub**: new repos or significant updates related to LLM inference on AMD ROCm/Vulkan, Strix Halo support, Hermes Agent skills/tools\n4. **Hermes Agent**: new skills released via the skills hub, new features, or important updates\n\nFor each finding, briefly summarize: what it is, why it matters to this specific setup, and a link. Be concise \u2014 no fluff. If nothing notable was found, say so clearly. Do NOT hallucinate or make up results.",
-      "skills": [],
-      "skill": null,
+      "prompt": "You are a Local LLM and Hermes Agent community scout. You are running as a scheduled cron job. Your final response will be automatically delivered to the user \u2014 do NOT use send_message. If there is genuinely nothing new to report, respond with exactly \"[SILENT]\" and nothing more.\n\nFollow the llm-digest-cron skill workflow exactly. Key steps:\n1. Read the last 7 days of digest files from ~/homelab/docs/digests/llm-digest-*.md. Note any recommendations already made.\n2. Search the web (Reddit, HuggingFace, GitHub, news) for LLM developments from the last 24-48 hours.\n3. Filter for relevance to this setup: Hermes on Pi, Strix Halo / gfx1151 / 128 GB RAM, Ollama, Lemonade Server, llama.cpp (ROCm/Vulkan), Tailscale.\n4. Write a new digest to ~/homelab/docs/digests/llm-digest-YYYY-MM-DD.md with sections: Digest, Recommendations (Critical / Useful to evaluate / Watch), User Feedback.\n5. Commit and push to ~/homelab/.\n6. Deliver a brief summary of findings.\n\nUser's setup:\n- **Hermes Agent** on Raspberry Pi (agent host, always on)\n- **Framework Desktop** (AMD Ryzen AI MAX+ 395 / Strix Halo / gfx1151 / 128 GB unified RAM / 1 TB + 2 TB NVMe)\n- **Ollama** and **Lemonade Server** with Vulkan/ROCm backends\n- **llama.cpp** via community ROCm toolboxes\n- **Tailscale** for internal networking",
+      "skills": [
+        "llm-digest-cron"
+      ],
+      "skill": "llm-digest-cron",
       "model": null,
       "provider": null,
       "provider_snapshot": "custom",
@@ -22,7 +24,7 @@
       "schedule_display": "0 6 * * *",
       "repeat": {
         "times": null,
-        "completed": 1
+        "completed": 2
       },
       "enabled": true,
       "state": "scheduled",
@@ -30,7 +32,7 @@
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:36.238620+02:00",
       "next_run_at": "2026-07-12T06:00:00+02:00",
-      "last_run_at": "2026-07-11T06:02:01.751482+02:00",
+      "last_run_at": "2026-07-11T13:39:48.370009+02:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -81,5 +83,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-07-11T06:02:01.752190+02:00"
+  "updated_at": "2026-07-11T13:39:48.370589+02:00"
 }
