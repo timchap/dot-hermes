@@ -19,6 +19,12 @@ agent:
     hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every question
       is AMAZING and we're gonna CRUSH IT together! This is gonna be LEGENDARY! ARE
       YOU READY?! LET'S DO THIS! 💪😤🚀
+mcp_servers:
+  gmail-proxy:
+    url: "http://framework:8090/mcp/v1"
+    headers:
+      Authorization: "Bearer {{GMAIL_PROXY_SHARED_SECRET}}"
+    timeout: 60
 terminal:
   backend: local
   cwd: .
@@ -116,6 +122,7 @@ secrets:
     env:
       OPENROUTER_API_KEY: op://Hermes Readable/Openrouter API key/password
       DISCORD_BOT_TOKEN: op://Hermes Readable/Hermes Discord Token/password
+      GMAIL_PROXY_SHARED_SECRET: op://Hermes Readable/Hermes Gmail Proxy Shared Secret/password
 _config_version: 33
 provider_routing:
   only:

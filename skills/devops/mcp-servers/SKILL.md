@@ -30,9 +30,45 @@ mcp_servers:
   http_server:
     url: "https://my-server.example.com/mcp"  # HTTP transport
     headers:
-      Authorization: "Bearer sk-..."
-    timeout: 180
+      Authorization: "Bearer sk-..."           # or inject a 1Password secret:
+    timeout: 180                              #   Authorization: "Bearer {{MY_SECRET}}"
 ```
+
+### Injecting 1Password Secrets into MCP Headers
+
+Use the `{{VAR}}` substitution syntax in `mcp_servers.<name>.headers.*` values.
+The variable must be injected via the `secrets.onepassword.env` section:
+
+```yaml
+mcp_servers:
+  my-proxy:
+    url: "http://proxy-host:8080/mcp"
+    headers:
+      Authorization: "Bearer {{MY_PROXY_SECRET}}"
+    timeout: 60
+
+secrets:
+  onepassword:
+    enabled: true
+    env:
+      MY_PROXY_SECRET: op://<vault>/<item title>/password   # or op://<item-id>/reveal
+```
+
+At connection time Hermes resolves `{{MY_PROXY_SECRET}}` from the injected env var.
+This keeps secrets out of config.yaml (though the config file itself still has the `{{VAR}}` placeholder).
+
+### Writing to config.yaml
+
+Hermes **blocks direct `patch`/`write_file` edits to `~/.hermes/config.yaml`** — it is security-sensitive.
+To add or modify MCP servers:
+- **CLI (preferred):** `hermes mcp add <name> --url <endpoint>` (interactive prompts for auth).
+- **Editor:** `hermes config edit` opens config.yaml in the configured editor.
+- **Programmatic:** If the security block is lifted or you are editing via a script, the `{{VAR}}` syntax works in any `headers` field as shown above.
+
+### CLI Pitfall
+
+`hermes mcp add NAME --url <endpoint> --auth header` prompts for the API key interactively and may fail to persist the header in non-TTY sessions.
+If the interactive prompt hangs or the connection test fails mid-way, **do not force-save** — instead use `hermes config edit` or the `{{VAR}}` pattern shown above.
 
 Tools appear as `mcp_{server_name}_{tool_name}` (hyphens/dots → underscores).
 
