@@ -149,6 +149,37 @@ hermes mcp configure NAME       # Toggle tool selection
 | "Failed to connect" | Check command/path/package; increase `connect_timeout` |
 | Tools not appearing | Verify `mcp_servers` (not `mcp`), check tool naming prefix |
 | Connection dropping | Client retries 5× with backoff (1s→60s). Check server health. |
+| Timeout → 405 → 401 auth mismatch | See "Debugging HTTP proxy auth" below |
+
+### Debugging HTTP proxy auth failures
+
+When an HTTP MCP server times out (especially proxies like `gmail-proxy`), use raw `curl` to diagnose the actual failure:
+
+1. **Test reachability:** `curl -s -o /dev/null -w "%{http_code}" --connect-timeout 5 http://<host>:<port>/mcp/v1`
+   - `000` or `UNREACHABLE` → network/proxy is down, Tailscale ACL issue, or port not exposed
+   - `405` → proxy is alive but doesn't accept GET (expected — MCP uses POST)
+   - `200`/`401`/`403` → proxy is reachable, problem is auth or request format
+
+2. **Test POST with JSON-RPC:**
+   ```bash
+   curl -s -X POST http://<host>:<port>/mcp/v1 \
+     -H "Content-Type: application/json" \
+     -d '{"jsonrpc":"2.0","id":1,"method":"ping"}' \
+     -w "\n%{http_code}"
+   ```
+   - `401` with `{"detail":"Invalid proxy shared secret"}` → proxy is alive but the `{{SECRET_REF}}` in config doesn't match
+   - `401` with no JSON body → auth header format wrong or missing
+   - `403` → IP/network authorization denied
+   - `404` → endpoint path wrong (check URL in config vs actual)
+
+3. **Test with correct auth:** Add `-H "Authorization: Bearer <secret>"` to reproduce what Hermes sends.
+
+4. **Check 1Password secret resolution:** If using `{{VAR}}` syntax, verify the secret is actually resolving (the `1Password: applied N secrets` output on test confirms injection).
+
+**Common root causes:**
+- Tailscale ACLs missing port in `dst` rules (the proxy is unreachable until the ACL is applied and syncs)
+- Shared secret rotated on the proxy side but not updated in 1Password (or vice versa)
+- Wrong URL path (e.g., `/mcp` vs `/mcp/v1` — MCP servers often require the version suffix)
 
 ## Supported Transport Types
 
