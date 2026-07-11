@@ -5,8 +5,6 @@
 #
 # Debounces: waits 1 minute after last change before committing.
 # Stages both modified tracked files AND new untracked files in skills/ and cron/.
-#
-# Uses flock(1) for robust commit locking.
 
 set -euo pipefail
 
@@ -53,7 +51,6 @@ fi
 echo $$ > "$LOCK_FILE"
 echo $$ > "$PID_FILE"
 log "Config watcher started (PID $$)"
-log "Debounce interval: ${DEBOUNCE_SECONDS}s; tracks new files in skills/ and cron/"
 
 # Mark that a change was detected — debounce loop polls this file
 mark_change() {
