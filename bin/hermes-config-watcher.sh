@@ -134,8 +134,6 @@ debounce_loop() {
                 rm -f "$DEBOUNCE_TRIGGER" 2>/dev/null || true
                 do_commit &
             else
-                # Reset timestamp so the 1-minute window starts fresh
-                touch "$DEBOUNCE_TRIGGER" 2>/dev/null || true
                 log "Debounce pending: ${elapsed}s / ${DEBOUNCE_SECONDS}s"
                 sleep 5
             fi
@@ -154,7 +152,7 @@ DEBOUNCE_PID=$!
 
 # inotifywait feeds change events; debounce_loop handles the 1-min timer
 inotifywait -m -r \
-    --exclude '(node_modules|\.git|cache|logs|\.hermes_history|\.env|state\.db|gateway|kanban|sessions)' \
+    --exclude '(node_modules|\.git|cache|logs|\.hermes_history|\.env|state\.db|gateway|kanban|sessions|\.config-watcher\.debounce)' \
     -e modify,create,delete,close_write,moved_to \
     "$WATCH_DIR" \
     2>/dev/null \

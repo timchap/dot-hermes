@@ -1,0 +1,71 @@
+---
+name: context-placement
+description: "Decision guide for where to put declarative knowledge in Hermes — SOUL.md, .hermes.md, AGENTS.md, memory, skills, and support files. Prevents misplacing context that wastes space or leaks into wrong sessions."
+version: 1.0.0
+author: agent
+created: 2026-07-10
+license: MIT
+---
+
+# Context Placement Framework
+
+Hermes has multiple context-loading mechanisms. They serve different scopes, lifetimes, and content types. Misplacing context wastes space or leaks it into wrong sessions.
+
+## The Hierarchy (top to bottom)
+
+### SOUL.md — Identity and mandate
+**Scope:** Always loaded, every session, all profiles.  
+**Size budget:** ~5k chars (leaves room for other context).  
+**Content:** Who you are, behavioral mandates, guiding principles, hard lines not to cross.  
+**Examples:** "Self-improvement is your primary behavioral driver", "Before making infra changes, check homelab docs first", "Require explicit user confirmation for any payment."  
+**Don't put here:** Project-specific rules, operational details, volatile facts, user preferences about output format (those belong in the relevant skill).
+
+### .hermes.md / AGENTS.md — Project-level behavioral rules
+**Scope:** Loaded when cwd is inside the git tree (.hermes.md walks up to git root; AGENTS.md is cwd-only).  
+**Content:** "How this repo works, what to check for, preferred workflow." Project-specific instructions.  
+**Choice:** Use .hermes.md for Hermes-specific rules that inherit hierarchically. Use AGENTS.md/CLAUDE.md when the project will be worked by other agents (Claude Code, Codex, OpenCode).
+
+### memory — Durable, persistent facts
+**Scope:** Injected every turn. Compact, high-signal only.  
+**Content:** User preferences, environment facts, corrections. Things that prevent asking the user to repeat themselves.  
+**Don't put here:** Task progress, completed-work logs, PR numbers, commit SHAs, anything that will be stale in a week.  
+**Format:** Declarative facts, not instructions. "User prefers concise responses" not "Always respond concisely".
+
+### skills — Procedural knowledge: "how to do X"
+**Scope:** Loaded when referenced or when umbrella skill loads them.  
+**Content:** Repeatable procedures for recurring tasks. Skills are for workflows, not facts or identity.  
+**Trigger:** 5+ tool calls, iterative debugging, a new workflow you'd want to reuse.  
+**Rule:** When you discover a pitfall that an existing skill doesn't cover, patch it immediately. Don't work around stale skills.
+
+### references/ — Authoritative external content
+**Scope:** Loaded when the skill that owns them is loaded.  
+**Content:** API docs excerpts, research notes, domain notes. Not for session-specific ephemera.  
+**Use:** Condensed, for the value of the task — not a full mirror of upstream docs.
+
+### templates/ — Starter files
+**Scope:** Loaded when the skill that owns them is loaded.  
+**Content:** Boilerplate configs, scaffolding, known-good examples the agent can reproduce with modifications.
+
+### scripts/ — Deterministic actions
+**Scope:** Loaded when the skill that owns them is loaded.  
+**Content:** Static, re-runnable actions the agent should run rather than hand-type. Verification scripts, fixture generators, deterministic probes.
+
+## Decision Process
+
+When you learn something new that could be persisted:
+
+1. **Is it about who I am or my behavioral mandate?** → SOUL.md (check it fits under 5k chars)
+2. **Is it project-specific?** → .hermes.md or AGENTS.md (depending on whether other agents work in this repo)
+3. **Is it a persistent fact about the user or environment?** → memory tool (add or replace)
+4. **Is it a procedure for doing something?** → skill (patch existing or create new)
+5. **Is it authoritative external content?** → references/
+6. **Is it a starter file or template?** → templates/
+7. **Is it a deterministic script to run?** → scripts/
+
+## Common Mistakes
+
+- Putting operational details in SOUL.md where they'll be in every session unnecessarily
+- Saving task progress or completed-work in memory (it'll be stale next week)
+- Creating a new skill when an existing umbrella covers the territory
+- Writing negative claims as skill constraints ("X tool doesn't work") instead of capturing the fix
+- Letting a discovered pitfall go unpatched in an existing skill

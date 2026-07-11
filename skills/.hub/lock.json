@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "installed": {
+    "opencode": {
+      "source": "skills.sh",
+      "identifier": "skills-sh/nousresearch/hermes-agent/opencode",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:fe18d0120141c4c7",
+      "install_path": "opencode",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "installed_at": "2026-07-10T23:41:42.479881+00:00",
+      "updated_at": "2026-07-10T23:41:42.479898+00:00"
+    }
+  }
+}
