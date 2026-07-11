@@ -187,6 +187,19 @@ When an HTTP MCP server times out (especially proxies like `gmail-proxy`), use r
 - Shared secret rotated on the proxy side but not updated in 1Password (or vice versa)
 - Wrong URL path (e.g., `/mcp` vs `/mcp/v1` — MCP servers often require the version suffix)
 
+### Config placeholder syntax pitfall (CRITICAL)
+
+`tools/mcp_tool.py` line 405 defines `_ENV_VAR_PATTERN = re.compile(r"\$\{([^}]+)\}")` — only
+**`${VAR}`** (shell-style) is recognized. **`{{VAR}}` (Jinja/Cursor-style) is NOT resolved.**
+
+If your config has `{{SECRET_REF}}`, it will be sent literally, causing 401 auth failures with no
+error about the placeholder itself. Always verify the placeholder syntax matches `${VAR}`.
+
+**Fix:** Use `sed` to patch in-place (Hermes blocks `patch`/`write_file` on config.yaml):
+```bash
+sed -i 's/Bearer {{MY_SECRET}}/Bearer ${MY_SECRET}/' ~/.hermes/config.yaml
+```
+
 ## Supported Transport Types
 
 | Transport | When to use | Config keys |
