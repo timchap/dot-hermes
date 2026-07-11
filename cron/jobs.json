@@ -126,7 +126,46 @@
       "workdir": null,
       "profile": null,
       "toast_notifications": true
+    },
+    {
+      "id": "02920c979504",
+      "name": "Weekly skill quality review",
+      "prompt": "You are tasked with a weekly quality review of all Hermes Agent skills installed on this system. Follow this process carefully:\n\n1. **Discover all skills**: List every SKILL.md under `~/.hermes/skills/`. Read each one fully.\n\n2. **Apply the following quality checks** (source: the `hermes-agent-skill-authoring` skill):\n   - **Frontmatter compliance**: Starts with `---` at byte 0, valid YAML frontmatter, `name` and `description` fields present, description \u22641024 chars, name \u226464 chars lowercase-hyphens, closing `---` with body after it.\n   - **Structure**: Has `# Title` \u2192 `## Overview` \u2192 `## When to Use` \u2192 actionable body \u2192 `## Common Pitfalls` \u2192 `## Verification Checklist`.\n   - **Writing quality**:\n     - No no-op prose (\"be thorough,\" \"use best practices\") \u2014 these don't change agent behavior.\n     - Each ordered step has a checkable completion criterion.\n     - No duplication across skills or within a single skill.\n     - Description is trigger-focused (\"Use when ...\") not generic.\n     - Information hierarchy respected \u2014 always-needed steps in SKILL.md, bulk references in linked files.\n     - Sediment check: old rules replaced, not layered on top of each other.\n     - File size: aim for 8-15k chars, split into references/ if pushing past 20k.\n   - **Peer matching**: Compare tone, structure, and detail level with sibling skills in the same category.\n   - **Cross-references**: Check that `related_skills` references actually exist in-repo or user-local.\n\n3. **For each skill, report**:\n   - Skill path and name\n   - Status: PASS or needs changes\n   - Any specific issues found with line references\n\n4. **Make changes**: If issues are found, apply them with `patch` or `write_file`. Be surgical \u2014 fix the exact problem. Do NOT rewrite skills that are fine. After patching, read the patched file back to confirm the change applied correctly.\n\n5. **Final summary**: Report how many skills were reviewed, how many needed changes, and what was changed.\n\nIMPORTANT: Read every skill fully before making any changes. Work through them one at a time in category order. If a skill has multiple issues, fix them all in one patch/edit pass.",
+      "skills": [],
+      "skill": null,
+      "model": "anthropic/claude-sonnet-4",
+      "provider": "openrouter",
+      "provider_snapshot": null,
+      "model_snapshot": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * 1",
+        "display": "0 9 * * 1"
+      },
+      "schedule_display": "0 9 * * 1",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-07-11T17:09:20.248156+02:00",
+      "next_run_at": "2026-07-13T09:00:00+02:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
     }
   ],
-  "updated_at": "2026-07-11T16:56:13.310169+02:00"
+  "updated_at": "2026-07-11T17:09:28.436520+02:00"
 }
