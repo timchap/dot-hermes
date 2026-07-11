@@ -159,11 +159,11 @@ inotifywait -m -r \
     | while IFS=' ' read -r directory event file; do
         # Filter out transient/auxiliary files that should not trigger commits:
         # - SQLite auxiliary files (*.db-shm, *.db-wal, *.db-journal)
-        # - Cache files (*.cache.json, *_cache.json)
+        # - Cache files (*.cache.json, *_cache.json, *.cache.*)
         # - Temp files (*.tmp.*)
         # - Lock files (*lock*)
         case "$file" in
-            *-shm|-wal|-journal|*.cache*|*.tmp*|*lock*)
+            *-shm|*-wal|*-journal|*.cache*|*.tmp*|*lock*)
                 continue
                 ;;
         esac
