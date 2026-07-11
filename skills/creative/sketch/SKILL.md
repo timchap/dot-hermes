@@ -1,14 +1,13 @@
 ---
 name: sketch
-description: "Throwaway HTML mockups: 2-3 design variants to compare."
+description: Use when the user wants to see disposable HTML mockup variants (2-3) to compare design directions before committing to one — not shippable code, but interactive throwaway prototypes.
 version: 1.0.0
-author: Hermes Agent (adapted from gsd-build/get-shit-done)
+author: Hermes Agent
 license: MIT
-platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [sketch, mockup, design, ui, prototype, html, variants, exploration, wireframe, comparison]
-    related_skills: [spike, claude-design, popular-web-designs, excalidraw]
+    related_skills: [claude-design, popular-web-designs, excalidraw, spike]
 ---
 
 # Sketch

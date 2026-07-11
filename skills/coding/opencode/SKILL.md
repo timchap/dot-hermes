@@ -1,13 +1,13 @@
 ---
 name: opencode
-description: "Delegate coding to OpenCode CLI (features, PR review)."
+description: Use when delegating coding tasks to OpenCode CLI for autonomous code implementation, refactoring, or PR review with model tier auto-selection.
 version: 1.3.0
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
 metadata:
   hermes:
-    tags: [Coding-Agent, OpenCode, Autonomous, Refactoring, Code-Review]
+    tags: [opencode, coding, autonomous, refactoring, code-review, openrouter]
     related_skills: [claude-code, codex, hermes-agent]
 ---
 

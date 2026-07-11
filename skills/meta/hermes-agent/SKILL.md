@@ -1,6 +1,6 @@
 ---
 name: hermes-agent
-description: "Configure, extend, or contribute to Hermes Agent."
+description: Use when configuring, extending, or troubleshooting Hermes Agent itself — CLI commands, config, providers, tools, skills, gateways, and architecture.
 version: 2.3.0
 author: Hermes Agent + Teknium
 license: MIT

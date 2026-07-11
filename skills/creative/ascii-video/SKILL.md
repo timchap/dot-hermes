@@ -1,7 +1,13 @@
 ---
 name: ascii-video
-description: "ASCII video: convert video/audio to colored ASCII MP4/GIF."
-platforms: [linux, macos, windows]
+description: Use when creating ASCII video or text art animation — converting video/audio/images into colored ASCII character MP4/GIF, audio-reactive visualizers, or generative ASCII art animations.
+version: 1.0.0
+author: Hermes Agent
+license: MIT
+metadata:
+  hermes:
+    tags: [ascii, video, animation, generative-art, terminal, visualizer, mp4, gif]
+    related_skills: [ascii-art, manim-video, p5js]
 ---
 
 # ASCII Video Production Pipeline

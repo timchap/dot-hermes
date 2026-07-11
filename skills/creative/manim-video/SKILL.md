@@ -1,8 +1,13 @@
 ---
 name: manim-video
-description: "Manim CE animations: 3Blue1Brown math/algo videos."
+description: Use when creating animated explainers, math animations, or algorithm walkthroughs in 3Blue1Brown style using Manim Community Edition.
 version: 1.0.0
-platforms: [linux, macos, windows]
+author: Hermes Agent
+license: MIT
+metadata:
+  hermes:
+    tags: [manim, animation, math, 3blue1brown, explainer, educational, algorithm, geometry]
+    related_skills: [ascii-video, p5js, claude-design]
 ---
 
 # Manim Video Production Pipeline

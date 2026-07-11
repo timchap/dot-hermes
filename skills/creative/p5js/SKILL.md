@@ -1,8 +1,9 @@
 ---
 name: p5js
-description: "p5.js sketches: gen art, shaders, interactive, 3D."
+description: Use when creating interactive creative coding, generative art, data visualizations, or shader effects with p5.js in the browser.
 version: 1.0.0
-platforms: [linux, macos, windows]
+author: Hermes Agent
+license: MIT
 metadata:
   hermes:
     tags: [creative-coding, generative-art, p5js, canvas, interactive, visualization, webgl, shaders, animation]

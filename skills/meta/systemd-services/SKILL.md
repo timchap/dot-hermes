@@ -1,9 +1,6 @@
 ---
 name: systemd-services
-description: >
-  Create, manage, and debug systemd services for background daemons on Linux hosts.
-  Covers unit files, logging, lifecycle, common pitfalls (root+git safe.directory,
-  lock files, pipefail, subshell traps).
+description: Use when creating, managing, or debugging systemd services for background daemons on Linux — writing unit files, handling permissions, and diagnosing common pitfalls.
 version: 1.1.0
 author: Hermes Agent
 license: MIT

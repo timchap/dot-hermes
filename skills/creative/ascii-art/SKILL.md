@@ -1,16 +1,14 @@
 ---
 name: ascii-art
-description: "ASCII art: pyfiglet, cowsay, boxes, image-to-ascii."
+description: Use when creating ASCII art — text banners with pyfiglet/asciified API, cowsay message art, decorative boxes, toilet colored text art, image-to-ASCII conversion, or searching pre-made ASCII art.
 version: 4.0.0
 author: 0xbyt4, Hermes Agent
 license: MIT
-dependencies: []
 platforms: [linux, macos, windows]
 metadata:
   hermes:
-    tags: [ASCII, Art, Banners, Creative, Unicode, Text-Art, pyfiglet, figlet, cowsay, boxes]
-    related_skills: [excalidraw]
-
+    tags: [ascii, art, banners, creative, unicode, text-art, pyfiglet, figlet, cowsay, boxes]
+    related_skills: [ascii-video, excalidraw, claude-design]
 ---
 
 # ASCII Art Skill

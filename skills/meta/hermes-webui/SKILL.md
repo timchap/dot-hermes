@@ -1,9 +1,6 @@
 ---
 name: hermes-webui
-description: >
-  Install, configure, and maintain Hermes WebUI on Linux. Covers cloning, Python
-  venv setup, .env configuration, systemd service creation, password auth, and
-  Tailscale/remote access. Pitfalls captured from real installations.
+description: Use when installing, configuring, or maintaining the Hermes WebUI on Linux — cloning, venv setup, systemd service, password auth, and Tailscale access.
 version: 1.0.0
 author: Hermes Agent
 license: MIT

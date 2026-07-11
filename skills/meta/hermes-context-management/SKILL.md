@@ -1,10 +1,13 @@
 ---
-name: context-placement
-description: "Decision guide for where to put declarative knowledge in Hermes — SOUL.md, .hermes.md, AGENTS.md, memory, skills, and support files. Prevents misplacing context that wastes space or leaks into wrong sessions."
+name: hermes-context-management
+description: Use when deciding where to persist declarative knowledge in Hermes — SOUL.md, .hermes.md, AGENTS.md, memory, skills, references, templates, or scripts.
 version: 1.0.0
 author: agent
-created: 2026-07-10
 license: MIT
+metadata:
+  hermes:
+    tags: [context, placement, organization, soul, memory, skills, metadata]
+    related_skills: [hermes-agent]
 ---
 
 # Context Placement Framework

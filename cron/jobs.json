@@ -130,7 +130,7 @@
     {
       "id": "02920c979504",
       "name": "Weekly skill quality review",
-      "prompt": "You are tasked with a weekly quality review of all Hermes Agent skills installed on this system. Follow this process carefully:\n\n1. **Discover all skills**: List every SKILL.md under `~/.hermes/skills/`. Read each one fully.\n\n2. **Apply quality checks**: Review the skill\u2019s compliance with guidance from the hermes-agent-skill-authoring skill.\n\n3. **For each skill, report**:\n   - Skill path and name\n   - Status: PASS or needs changes\n   - Any specific issues found with line references\n\n4. **Make changes**: If issues are found, apply them with `patch` or `write_file`. Be surgical \u2014 fix the exact problem. Do NOT rewrite skills that are fine. After patching, read the patched file back to confirm the change applied correctly.\n\n5. **Final summary**: Report how many skills were reviewed, how many needed changes, and what was changed.\n\nIMPORTANT: Read every skill fully before making any changes. Work through them one at a time in category order. If a skill has multiple issues, fix them all in one patch/edit pass.",
+      "prompt": "You are tasked with a weekly quality review of all Hermes Agent skills installed on this system. Follow this process carefully:\n\n1. **Discover all skills**: List every SKILL.md under `~/.hermes/skills/`. Read each one fully. Also read the higher-level DESCRIPTION.md files.\n\n2. **Apply quality checks**: Review the skill\u2019s compliance with best practices from the hermes-agent-skill-authoring skill. Determine if the skill should be moved to a more suitable location in the hierarchy. Ensure that the DESCRIPTION.md accurately encompasses the child skill sets.\n\n3. **For each skill, report**:\n   - Skill path and name\n   - Status: PASS or needs changes\n   - Any specific issues found with line references\n\n4. **Make changes**: If issues are found, apply them with `patch` or `write_file`. Be surgical \u2014 fix the exact problem. Do NOT rewrite skills that are fine. After patching, read the patched file back to confirm the change applied correctly.\n\n5. **Final summary**: Report how many skills were reviewed, how many needed changes, and what was changed.\n\nIMPORTANT: Read every skill fully before making any changes. Work through them one at a time in category order. If a skill has multiple issues, fix them all in one patch/edit pass.",
       "skills": [
         "hermes-agent-skill-authoring"
       ],
@@ -151,7 +151,7 @@
       "schedule_display": "0 9 * * 1",
       "repeat": {
         "times": null,
-        "completed": 0
+        "completed": 1
       },
       "enabled": true,
       "state": "scheduled",
@@ -159,8 +159,8 @@
       "paused_reason": null,
       "created_at": "2026-07-11T17:09:20.248156+02:00",
       "next_run_at": "2026-07-13T09:00:00+02:00",
-      "last_run_at": null,
-      "last_status": null,
+      "last_run_at": "2026-07-11T17:19:10.566878+02:00",
+      "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
       "deliver": "local",
@@ -168,8 +168,9 @@
       "enabled_toolsets": null,
       "workdir": null,
       "profile": null,
-      "toast_notifications": true
+      "toast_notifications": true,
+      "fire_claim": null
     }
   ],
-  "updated_at": "2026-07-11T17:12:31.564653+02:00"
+  "updated_at": "2026-07-11T17:19:10.567355+02:00"
 }

@@ -1,6 +1,6 @@
 ---
 name: design-md
-description: Author/validate/export Google's DESIGN.md token spec files.
+description: Use when authoring, validating, or exporting Google's DESIGN.md design token spec files — including WCAG contrast checking, Tailwind/DTCG export, and version diffing.
 version: 1.0.0
 author: Hermes Agent
 license: MIT
