@@ -41,7 +41,7 @@ Tools appear as `mcp_{server_name}_{tool_name}` (hyphens/dots → underscores).
 1. **MCP SDK**: `pip install mcp` — without this, MCP support is silently disabled.
 2. **Node.js**: Required for `npx`-based servers.
 3. **uv**: Required for `uvx`-based servers.
-4. **Restart Hermes**: MCP changes require a restart (no hot-reload).
+4. **Config location**: `~/.hermes/config.yaml` under the `mcp_servers` key.
 
 ## Stdio Transport
 
@@ -97,6 +97,12 @@ hermes mcp remove NAME          # Remove server
 hermes mcp test NAME            # Test connection
 hermes mcp configure NAME       # Toggle tool selection
 ```
+
+**Adding via CLI:** `hermes mcp add <name> --url <endpoint> [--auth {oauth,header}]` — writes to `~/.hermes/config.yaml` under `mcp_servers.<name>`. For header-based auth, pass `--auth header` and add the secret via `--env` for stdio or `headers` in config for HTTP.
+
+**Reloading:** Use the `/reload-mcp` slash command to reload MCP servers without restarting Hermes. No full restart needed.
+
+**Config location:** `~/.hermes/config.yaml` under the `mcp_servers` key. No separate `mcp_servers.yaml` file.
 
 ## Troubleshooting
 
