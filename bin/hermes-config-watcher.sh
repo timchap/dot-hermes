@@ -63,9 +63,9 @@ log "Config watcher started (PID $$)"
 do_commit() {
     cd "$HERMES_DIR"
     
-    # Get list of modified tracked files
+    # Get list of modified tracked files (exclude untracked ?? files)
     local changed_lines
-    changed_lines=$(git status --porcelain 2>/dev/null | grep -E '^M ' || true)
+    changed_lines=$(git status --porcelain 2>/dev/null | grep -v '^??' || true)
     
     if [ -z "$changed_lines" ]; then
         log "No tracked file changes to commit"
