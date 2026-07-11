@@ -1,11 +1,11 @@
 #!/bin/bash
 # hermes-config-watcher.sh
 # Watches tracked files in ~/.hermes for changes and auto-commits + pushes.
-# Designed to run in the background as a systemd service.
+# Runs as a systemd service.
 #
-# Logic: on any file change, fires a commit. A lock file ensures
-# only one commit runs at a time, naturally coalescing rapid changes.
-# Lock files are placed outside the watched tree to avoid self-triggering.
+# Uses flock(1) for robust locking — the first commit gets exclusive access
+# to /tmp/.hermes-commit.lock. Rapid-fire events are naturally coalesced.
+# Lock files in /tmp won't trigger inotify events on WATCH_DIR.
 
 set -euo pipefail
 
@@ -14,8 +14,7 @@ PID_FILE="$HERMES_DIR/.config-watcher.pid"
 LOG_FILE="$HERMES_DIR/logs/config-watcher.log"
 LOCK_FILE="$HERMES_DIR/.config-watcher.lock"
 WATCH_DIR="$HERMES_DIR"
-# Lock file for commit coordination — placed outside watched tree
-COMMIT_LOCK="/tmp/.hermes-config-writer.lock"
+COMMIT_LOCK="/tmp/.hermes-commit.lock"
 
 # Logging helper
 log() {
@@ -27,16 +26,12 @@ log() {
 cleanup() {
     log "Shutting down (PID $$)"
     rm -f "$PID_FILE" "$LOCK_FILE"
-    # Also try to kill any leftover commit subshells
     pkill -P $$ 2>/dev/null || true
 }
 
-# Only run cleanup once
 cleanup_done=0
 cleanup_once() {
-    if [ "$cleanup_done" -eq 1 ]; then
-        return
-    fi
+    [ "$cleanup_done" -eq 1 ] && return
     cleanup_done=1
     cleanup
     exit 0
@@ -59,54 +54,43 @@ echo $$ > "$LOCK_FILE"
 echo $$ > "$PID_FILE"
 log "Config watcher started (PID $$)"
 
-# Commit and push collected changes.
-# Uses a lock file in /tmp to avoid concurrent commits.
-# Lock files in /tmp won't trigger inotify events on WATCH_DIR.
+# Commit and push. Uses flock to ensure only one commit runs at a time.
 do_commit() {
-    # Check for concurrent commit (debounce)
-    if [ -f "$COMMIT_LOCK" ]; then
-        log "Commit already in progress, skipping"
-        return
-    fi
+    (
+        # flock: try to acquire lock, wait up to 5s, skip if unavailable
+        if ! flock -w 5 200; then
+            log "Could not acquire lock (another commit in progress)"
+            return 1
+        fi
 
-    cd "$HERMES_DIR"
+        cd "$HERMES_DIR"
 
-    # Acquire lock
-    echo $$ > "$COMMIT_LOCK"
-    local locked=1
+        local changed_lines
+        changed_lines=$(git status --porcelain 2>/dev/null | grep -v '^??' || true)
 
-    # Get all tracked changes (modified + staged, exclude untracked ??)
-    local changed_lines
-    changed_lines=$(git status --porcelain 2>/dev/null | grep -v '^??' || true)
+        if [ -z "$changed_lines" ]; then
+            log "No tracked file changes to commit"
+            return 0
+        fi
 
-    if [ -z "$changed_lines" ]; then
-        log "No tracked file changes to commit"
-    else
         local file_count
         file_count=$(echo "$changed_lines" | wc -l)
-
         log "Staging $file_count file(s)"
 
         git add -u 2>/dev/null || true
 
-        local commit_msg="Auto-commit: ${file_count} file(s) changed"
+        if git commit -m "Auto-commit: ${file_count} file(s) changed" 2>/dev/null; then
+            log "Committed ${file_count} file(s)"
 
-        if git commit -m "$commit_msg" 2>/dev/null; then
-            log "Committed $file_count file(s)"
-
-            # Push to origin (best-effort)
             if git push origin main 2>/dev/null; then
                 log "Pushed to origin/main"
             else
-                log "Push failed (exit code $?): $(git push origin main 2>&1 | tail -1)"
+                log "Push failed: $(git push origin main 2>&1 | tail -1)"
             fi
         else
-            log "Nothing to commit (already up to date)"
+            log "Nothing to commit"
         fi
-    fi
-
-    # Release lock
-    rm -f "$COMMIT_LOCK"
+    ) 200>"$COMMIT_LOCK"
 }
 
 # Start watching
