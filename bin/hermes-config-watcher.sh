@@ -15,7 +15,9 @@ LOCK_FILE="$HERMES_DIR/.config-watcher.lock"
 WATCH_DIR="$HERMES_DIR"
 COMMIT_LOCK="/tmp/.hermes-commit.lock"
 DEBOUNCE_TRIGGER="$HERMES_DIR/.config-watcher.debounce"
-DEBOUNCE_SECONDS=60  # wait this long after last change before committing
+DEBOUNCE_SECONDS=60    # wait this long after last change before committing
+MAX_DEBOUNCE_SECONDS=300  # force commit after this long even if changes keep arriving
+FIRST_CHANGE_FILE="$HERMES_DIR/.config-watcher.first-change"
 
 log() {
     local msg="[$(date '+%Y-%m-%d %H:%M:%S')] $*"
@@ -24,7 +26,7 @@ log() {
 
 cleanup() {
     log "Shutting down (PID $$)"
-    rm -f "$PID_FILE" "$LOCK_FILE"
+    rm -f "$PID_FILE" "$LOCK_FILE" "$FIRST_CHANGE_FILE"
     pkill -P $$ 2>/dev/null || true
 }
 
@@ -54,6 +56,10 @@ log "Config watcher started (PID $$)"
 
 # Mark that a change was detected — debounce loop polls this file
 mark_change() {
+    # Record time of first change (don't update if already exists)
+    if [ ! -f "$FIRST_CHANGE_FILE" ]; then
+        touch "$FIRST_CHANGE_FILE" 2>/dev/null || true
+    fi
     touch "$DEBOUNCE_TRIGGER" 2>/dev/null || true
 }
 
@@ -126,15 +132,22 @@ debounce_loop() {
         if [ -f "$DEBOUNCE_TRIGGER" ]; then
             local last_change
             last_change=$(stat -c %Y "$DEBOUNCE_TRIGGER" 2>/dev/null || echo 0)
+            local first_change
+            first_change=$(stat -c %Y "$FIRST_CHANGE_FILE" 2>/dev/null || echo "$last_change")
             local now
             now=$(date +%s)
             local elapsed=$((now - last_change))
-            if [ "$elapsed" -ge "$DEBOUNCE_SECONDS" ]; then
-                log "Debounce fired: ${elapsed}s since last change (threshold: ${DEBOUNCE_SECONDS}s)"
-                rm -f "$DEBOUNCE_TRIGGER" 2>/dev/null || true
+            local total_wait=$((now - first_change))
+            if [ "$elapsed" -ge "$DEBOUNCE_SECONDS" ] || [ "$total_wait" -ge "$MAX_DEBOUNCE_SECONDS" ]; then
+                if [ "$total_wait" -ge "$MAX_DEBOUNCE_SECONDS" ]; then
+                    log "Max debounce cap reached: ${total_wait}s since first change (forced commit)"
+                else
+                    log "Debounce fired: ${elapsed}s since last change (threshold: ${DEBOUNCE_SECONDS}s)"
+                fi
+                rm -f "$DEBOUNCE_TRIGGER" "$FIRST_CHANGE_FILE" 2>/dev/null || true
                 do_commit &
             else
-                log "Debounce pending: ${elapsed}s / ${DEBOUNCE_SECONDS}s"
+                log "Debounce pending: ${elapsed}s / ${DEBOUNCE_SECONDS}s (total: ${total_wait}s / ${MAX_DEBOUNCE_SECONDS}s)"
                 sleep 5
             fi
         else
@@ -152,7 +165,7 @@ DEBOUNCE_PID=$!
 
 # inotifywait feeds change events; debounce_loop handles the 1-min timer
 inotifywait -m -r \
-    --exclude '(node_modules|\.git|cache|logs|\.hermes_history|\.env|gateway|kanban|sessions|\.config-watcher\.debounce|\.tick\.lock)' \
+    --exclude '(node_modules|\.git|cache|logs|\.hermes_history|\.env|gateway|kanban|sessions|\.config-watcher\.debounce|\.tick\.lock|ticker_heartbeat|ticker_last_success)' \
     -e modify,create,delete,close_write,moved_to \
     "$WATCH_DIR" \
     2>/dev/null \
@@ -163,7 +176,7 @@ inotifywait -m -r \
         # - Temp files (*.tmp.*)
         # - Lock files (*lock*)
         case "$file" in
-            *-shm|*-wal|*-journal|*.cache*|*.tmp*|*lock*)
+            *-shm|*-wal|*-journal|*.cache*|*.tmp*|*lock*|ticker_heartbeat|ticker_last_success)
                 continue
                 ;;
         esac
