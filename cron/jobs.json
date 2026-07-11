@@ -46,8 +46,8 @@
     },
     {
       "id": "f41d2a7cd5d7",
-      "name": "session-audit-nightly",
-      "prompt": "You are a security and documentation compliance auditor for a homelab. Review all Hermes Agent sessions from the last 24 hours and do two things and look for any actions performed in sessions from the past day that might pose security risks:\n- Commands executed that could have affected system security (firewall changes, user/permission modifications, installing untrusted packages, exposing services)\n- External API keys or credentials being written to files in unexpected locations\n- Accessing external services or endpoints without clear justification\n- Any operations that modified infrastructure in ways that could be exploited\n- Subagent delegations that performed broad filesystem or network operations\n\nFlag anything concerning with specific details. If everything looks clean, say so.",
+      "name": "self-audit-security",
+      "prompt": "You are a security and documentation compliance auditor for a homelab. Review all Hermes Agent sessions since last run and do and look for any actions performed in sessions from the past day that might pose security risks:\n- Commands executed that could have affected system security (firewall changes, user/permission modifications, installing untrusted packages, exposing services)\n- External API keys or credentials being written to files in unexpected locations\n- Accessing external services or endpoints without clear justification\n- Any operations that modified infrastructure in ways that could be exploited\n- Subagent delegations that performed broad filesystem or network operations\n\nFlag anything concerning with specific details. If everything looks clean, say so.",
       "skills": [],
       "skill": null,
       "model": null,
@@ -85,7 +85,46 @@
       "fire_claim": null,
       "toast_notifications": true,
       "profile": null
+    },
+    {
+      "id": "e7a6e0d7899f",
+      "name": "self-audit-drift",
+      "prompt": "You are a drift and persistence auditor for a homelab. Review all Hermes Agent sessions since last run and identify any environment changes that should have been documented or persisted. Your job is to find drift from the desired state (homelab docs + ansible repo).\n\n## 1. Session Review\nUse session_search(sort='newest', limit=10) to get recent sessions. For each session, scroll through to find:\n- Software installs, package updates, or removals (apt, pip, npm, etc.)\n- New systemd services, timers, or daemons created/modified\n- Filesystem changes: scripts created in /usr/local/bin, ~/.local/bin, etc.\n- Configuration changes: /etc/ files modified, Docker/container changes\n- Ansible playbooks or roles added/modified\n- Network changes: firewall rules, Tailscale, ports opened\n- Hermes-specific changes: new skills, plugins, cron jobs, config.yaml modifications\n\n## 2. Drift Detection \u2014 What Should Be Documented\nFor each change found, check:\na. Does it belong in ~/homelab/docs/? If so, update or create the relevant doc.\n   - Check ~/homelab/docs/ for existing docs and see what's missing\n   - Update the doc to reflect the change\nb. Does it belong in ~/homelab/ansible/? If it's a repeatable infrastructure change, ensure it's captured as an Ansible playbook/role/task.\n   - Check ~/homelab/ansible/ for existing patterns\n   - If needed, create or update the appropriate ansible resource\n\n## 3. Persist and Commit\nFor each change that needs documentation or ansible persistence:\n- Write the update to the appropriate file in ~/homelab/\n- Commit and push to the homelab git repo at ~/homelab/\n- If a file in ~/.hermes/ was changed (e.g., config.yaml, a new skill), also commit to dot-hermes repo at ~/.hermes/\n\nUse clear commit messages that describe what changed and why.\n\n## 4. Report\nProduce a concise report with:\n### Drift Found\n- List each environment change detected and its status (documented/persisted, or left uncommitted with explanation)\n### Actions Taken\n- Files updated, ansible resources created/modified\n- Git commits made (with messages)\n### Left Unchanged\n- Any changes that should NOT be persisted (explain why \u2014 e.g., one-off debug, temporary)\n\nIf no drift was found (all sessions were purely analytical, web research, or conversation without env changes), respond with [SILENT].",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": "custom",
+      "model_snapshot": "Qwen3.6-35B-A3B-GGUF",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *",
+        "display": "0 3 * * *"
+      },
+      "schedule_display": "0 3 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-07-11T16:53:01.969013+02:00",
+      "next_run_at": "2026-07-12T03:00:00+02:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
     }
   ],
-  "updated_at": "2026-07-11T15:07:44.716603+02:00"
+  "updated_at": "2026-07-11T16:53:01.999181+02:00"
 }
