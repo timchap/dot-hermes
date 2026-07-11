@@ -51,5 +51,7 @@ verification_evidence.db
 cron/ticker_heartbeat
 cron/ticker_last_success
 
-# Cron job output
+# Cron runtime files
 cron/output/
+cron/.jobs.lock
+cron/.tick.lock
