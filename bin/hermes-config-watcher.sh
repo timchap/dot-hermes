@@ -3,8 +3,8 @@
 # Watches ~/.hermes for file changes and auto-commits + pushes.
 # Runs as a systemd service (User=hermes).
 #
-# Debounces: 1-minute cooldown after last change before committing.
-# Stages both modified tracked files and new files in skills/ and cron/.
+# Debounces: waits 1 minute after last change before committing.
+# Stages both modified tracked files AND new untracked files in skills/ and cron/.
 #
 # Uses flock(1) for robust commit locking.
 
@@ -17,7 +17,7 @@ LOCK_FILE="$HERMES_DIR/.config-watcher.lock"
 WATCH_DIR="$HERMES_DIR"
 COMMIT_LOCK="/tmp/.hermes-commit.lock"
 DEBOUNCE_TRIGGER="$HERMES_DIR/.config-watcher.debounce"
-DEBOUNCE_INTERVAL=60  # seconds
+DEBOUNCE_SECONDS=60  # wait this long after last change before committing
 
 log() {
     local msg="[$(date '+%Y-%m-%d %H:%M:%S')] $*"
@@ -54,25 +54,25 @@ echo $$ > "$LOCK_FILE"
 echo $$ > "$PID_FILE"
 log "Config watcher started (PID $$)"
 
-# Mark a change was detected — the debounce loop will pick this up
+# Mark that a change was detected — debounce loop polls this file
 mark_change() {
     touch "$DEBOUNCE_TRIGGER" 2>/dev/null || true
-    log "Change detected: $1"
 }
 
 do_commit() {
     (
-        if ! flock -w 5 200; then
+        if ! flock -w 10 200; then
             log "Could not acquire lock (another commit in progress)"
             return 1
         fi
 
         cd "$HERMES_DIR" || { log "CD FAILED: $HERMES_DIR"; return 1; }
 
+        # Modified tracked files
         local changed_lines
         changed_lines=$(git status --porcelain 2>/dev/null | grep -v '^??' || true)
 
-        # Collect new untracked files in skills/ and cron/
+        # New untracked files in skills/ and cron/ only
         local new_files
         new_files=$(git status --porcelain 2>/dev/null | grep '^??' | grep -E '^?? (skills|cron)/' || true)
 
@@ -93,7 +93,7 @@ do_commit() {
 
         local commit_msg="Auto-commit: ${total_files} file(s) changed"
         if [ -n "$new_files" ]; then
-            log "Staging $total_files file(s) (modified tracked + $new_count new)"
+            log "Staging $total_files file(s) (${total_files}-$(echo "$new_files" | wc -l) new in skills/cron)"
         else
             log "Staging $total_files file(s)"
         fi
@@ -120,7 +120,9 @@ do_commit() {
     ) 200>"$COMMIT_LOCK"
 }
 
-# Debounce loop: wait for DEBOUNCE_INTERVAL seconds after last change, then commit
+# Debounce loop: polls for DEBOUNCE_TRIGGER file.
+# When found, waits DEBOUNCE_SECONDS before committing.
+# If another change arrives during the wait, resets the timer.
 debounce_loop() {
     while true; do
         if [ -f "$DEBOUNCE_TRIGGER" ]; then
@@ -129,12 +131,14 @@ debounce_loop() {
             local now
             now=$(date +%s)
             local elapsed=$((now - last_change))
-            if [ "$elapsed" -ge "$DEBOUNCE_INTERVAL" ]; then
-                log "Debounce triggered (${elapsed}s since last change)"
+            if [ "$elapsed" -ge "$DEBOUNCE_SECONDS" ]; then
+                log "Debounce fired: ${elapsed}s since last change (threshold: ${DEBOUNCE_SECONDS}s)"
                 rm -f "$DEBOUNCE_TRIGGER" 2>/dev/null || true
                 do_commit &
             else
-                log "Debounce pending (${elapsed}s / ${DEBOUNCE_INTERVAL}s)"
+                # Reset timestamp so the 1-minute window starts fresh
+                touch "$DEBOUNCE_TRIGGER" 2>/dev/null || true
+                log "Debounce pending: ${elapsed}s / ${DEBOUNCE_SECONDS}s"
                 sleep 5
             fi
         else
@@ -144,17 +148,18 @@ debounce_loop() {
 }
 
 mkdir -p "$HERMES_DIR/logs"
-log "Starting inotifywait on $WATCH_DIR"
+log "Starting inotifywait on $WATCH_DIR (debounce=${DEBOUNCE_SECONDS}s, tracks new files in skills/ and cron/)"
 
-# Start the debounce loop in background
+# Start debounce loop in background
 debounce_loop &
 DEBOUNCE_PID=$!
 
+# inotifywait feeds change events; debounce_loop handles the 1-min timer
 inotifywait -m -r \
     --exclude '(node_modules|\.git|cache|logs|\.hermes_history|\.env|state\.db|gateway|kanban|sessions)' \
     -e modify,create,delete,close_write,moved_to \
     "$WATCH_DIR" \
     2>/dev/null \
     | while IFS=' ' read -r directory event file; do
-        mark_change "$event $file"
+        mark_change
     done
