@@ -152,7 +152,7 @@ DEBOUNCE_PID=$!
 
 # inotifywait feeds change events; debounce_loop handles the 1-min timer
 inotifywait -m -r \
-    --exclude '(node_modules|\.git|cache|logs|\.hermes_history|\.env|state\.db|gateway|kanban|sessions|\.config-watcher\.debounce)' \
+    --exclude '(node_modules|\.git|cache|logs|\.hermes_history|\.env|state\.db|gateway|kanban|sessions|\.config-watcher\.debounce|cron/ticker_heartbeat$|cron/ticker_last_success$)' \
     -e modify,create,delete,close_write,moved_to \
     "$WATCH_DIR" \
     2>/dev/null \

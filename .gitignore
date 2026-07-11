@@ -46,3 +46,7 @@ skills_prompt_snapshot.json
 
 # Verification
 verification_evidence.db
+
+# Ticker heartbeat files
+cron/ticker_heartbeat
+cron/ticker_last_success
