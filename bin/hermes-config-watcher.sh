@@ -12,8 +12,20 @@ HERMES_DIR="$HOME/.hermes"
 PID_FILE="$HERMES_DIR/.config-watcher.pid"
 LOG_FILE="$HERMES_DIR/logs/config-watcher.log"
 LOCK_FILE="$HERMES_DIR/.config-watcher.lock"
-WATCH_DIR="$HERMES_DIR"
 COMMIT_LOCK="/tmp/.hermes-commit.lock"
+
+# Explicit list of paths to watch. Anything outside these paths (state.db-wal,
+# ticker_heartbeat, processes.json, sessions/, gateway/, etc.) is invisible to
+# inotify entirely — no exclusion rules needed.
+WATCH_PATHS=(
+    "$HERMES_DIR/config.yaml"
+    "$HERMES_DIR/SOUL.md"
+    "$HERMES_DIR/.gitignore"
+    "$HERMES_DIR/bin"
+    "$HERMES_DIR/skills"
+    "$HERMES_DIR/cron/jobs.json"
+    "$HERMES_DIR/cron/output"
+)
 DEBOUNCE_TRIGGER="$HERMES_DIR/.config-watcher.debounce"
 DEBOUNCE_SECONDS=60    # wait this long after last change before committing
 MAX_DEBOUNCE_SECONDS=300  # force commit after this long even if changes keep arriving
@@ -157,31 +169,30 @@ debounce_loop() {
 }
 
 mkdir -p "$HERMES_DIR/logs"
-log "Starting inotifywait on $WATCH_DIR (debounce=${DEBOUNCE_SECONDS}s, tracks new files in skills/ and cron/)"
+
+# Build list of watch paths that currently exist
+existing_watch_paths=()
+for p in "${WATCH_PATHS[@]}"; do
+    [ -e "$p" ] && existing_watch_paths+=("$p")
+done
+
+log "Starting inotifywait on ${#existing_watch_paths[@]} path(s) (debounce=${DEBOUNCE_SECONDS}s, max=${MAX_DEBOUNCE_SECONDS}s)"
 
 # Start debounce loop in background
 debounce_loop &
 DEBOUNCE_PID=$!
 
-# inotifywait feeds change events; debounce_loop handles the 1-min timer
+# inotifywait watches only the explicit config/skill paths; runtime noise
+# (state.db-wal, ticker files, processes.json, etc.) is never in scope.
 inotifywait -m -r \
-    --exclude '(node_modules|\.git|cache|logs|\.hermes_history|\.env|gateway|kanban|sessions|\.config-watcher\.debounce|\.tick\.lock|ticker_heartbeat|ticker_last_success)' \
     -e modify,create,delete,close_write,moved_to \
-    "$WATCH_DIR" \
+    "${existing_watch_paths[@]}" \
     2>/dev/null \
     | while IFS=' ' read -r directory event file; do
-        # Filter out transient/auxiliary files that should not trigger commits:
-        # - SQLite auxiliary files (*.db-shm, *.db-wal, *.db-journal)
-        # - Cache files (*.cache.json, *_cache.json, *.cache.*)
-        # - Temp files (*.tmp.*)
-        # - Lock files (*lock*)
+        # Minimal guard: skip SQLite auxiliary and temp files that could
+        # appear inside skills/ if a skill uses a local database.
         case "$file" in
-            *-shm|*-wal|*-journal|*.cache*|*.tmp*|*lock*|ticker_heartbeat|ticker_last_success)
-                continue
-                ;;
-        esac
-        case "$directory/$file" in
-            kanban/boards/*)
+            *-shm|*-wal|*-journal|*.tmp*)
                 continue
                 ;;
         esac
