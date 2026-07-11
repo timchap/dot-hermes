@@ -13,7 +13,16 @@ metadata:
 
 # Excalidraw Diagram Skill
 
-Create diagrams by writing standard Excalidraw element JSON and saving as `.excalidraw` files. These files can be drag-and-dropped onto [excalidraw.com](https://excalidraw.com) for viewing and editing. No accounts, no API keys, no rendering libraries -- just JSON.
+Create diagrams by writing standard Excalidraw element JSON and saving as `.excalidraw` files. These files can be drag-and-dropped onto excalidraw.com for viewing and editing. No accounts, no API keys, no rendering libraries -- just JSON.
+
+## Overview
+
+Generate `.excalidraw` files for architecture diagrams, flowcharts, sequence diagrams, concept maps, and more. Files can be opened at excalidraw.com or uploaded for shareable links.
+
+## When to Use
+
+Trigger when the user asks for: a diagram, flowchart, architecture diagram, sequence diagram, concept map, or any visual diagram they want to edit at excalidraw.com. Also when they say "draw this" or "make a diagram" and the output should be an interactive diagram file.
+ and saving as `.excalidraw` files. These files can be drag-and-dropped onto [excalidraw.com](https://excalidraw.com) for viewing and editing. No accounts, no API keys, no rendering libraries -- just JSON.
 
 ## When to use
 
@@ -55,6 +64,31 @@ python skills/diagramming/excalidraw/scripts/upload.py ~/diagrams/my_diagram.exc
 This uploads to excalidraw.com (no account needed) and prints a shareable URL. Requires the `cryptography` pip package (`pip install cryptography`).
 
 ---
+
+## Common Pitfalls
+
+1. **Do NOT use `"label": {"text": "..."}` on shapes.** This is not a valid Excalidraw property and produces blank shapes. Always use the container binding approach (boundElements on shape + text element with containerId).
+2. **Arrow bindings need valid elementIds.** `startBinding` and `endBinding` elementIds must match existing shape element ids, not arbitrary strings.
+3. **Text on shapes needs containerId and boundElements.** The shape lists the text id in boundElements, and the text element has containerId pointing to the shape.
+4. **FontFamily must be 1 (Virgil).** Without `fontFamily: 1`, text won't use the hand-drawn font and may render incorrectly.
+5. **Minimum font sizes enforced.** Body text minimum 16, titles 20, annotations 14. Never use fontSize below 14.
+6. **Z-order is array order.** First element = back, last = front. Emit progressively: background -> shape -> text -> arrows -> next shape. Not all shapes then all texts then all arrows.
+7. **Minimum shape size 120x60.** Smaller shapes with text become unreadable.
+8. **Never use emoji in text.** They don't render in Excalidraw's Virgil font.
+
+## Verification Checklist
+
+- [ ] File wraps elements array in standard `.excalidraw` envelope with type, version, source, elements, appState
+- [ ] All elements have required fields: type, id, x, y, width, height
+- [ ] Text labels use container binding (boundElements + containerId), not `"label"` property
+- [ ] Arrow bindings reference valid elementIds
+- [ ] All text elements have `fontFamily: 1` (Virgil)
+- [ ] fontSize >= 14 for all text, >= 16 for body, >= 20 for titles
+- [ ] Shapes are >= 120x60
+- [ ] Z-order is progressive (shape -> text -> arrows -> next shape)
+- [ ] No emoji in text
+- [ ] Color palette used consistently
+- [ ] If uploaded: shareable link obtained via `scripts/upload.py`
 
 ## Element Format Reference
 

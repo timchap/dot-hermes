@@ -13,7 +13,16 @@ metadata:
 
 # ASCII Video Production Pipeline
 
-## When to use
+Production pipeline for ASCII art video -- converting video, audio, images, and generative inputs into colored ASCII character MP4/GIF. Covers: video-to-ASCII, audio-reactive visualizers, generative ASCII animations, hybrid video+audio, text/lyrics overlays, and TTS narration.
+
+## Overview
+
+This skill creates ASCII art animations as MP4 or GIF files using Python 3.10+ with NumPy, SciPy, Pillow, and ffmpeg. No GPU required. Every project follows a 6-stage pipeline: INPUT -> ANALYZE -> SCENE_FN -> TONEMAP -> SHADE -> ENCODE.
+
+## When to Use
+
+Trigger when the user asks for: ASCII video, text art video, terminal-style video, character art animation, retro text visualization, audio visualizer in ASCII, converting video to ASCII art, matrix-style effects, or any animated ASCII output.
+
 
 Use when users request: ASCII video, text art video, terminal-style video, character art animation, retro text visualization, audio visualizer in ASCII, converting video to ASCII art, matrix-style effects, or any animated ASCII output.
 

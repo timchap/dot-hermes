@@ -13,6 +13,14 @@ metadata:
 
 # Humanizer: Remove AI Writing Patterns
 
+## Overview
+
+Identify and remove signs of AI-generated text to make writing sound natural and human. Based on Wikipedia's "Signs of AI writing" guide (maintained by WikiProject AI Cleanup), covering 29 patterns derived from thousands of AI-generated text instances.
+
+## When to Use
+
+Load this skill when the user asks to: "humanize", "de-AI", "de-slop", or "un-ChatGPT" text; rewrite something so it doesn't sound like LLM output; edit a draft (blog post, essay, PR description, docs, memo, email, tweet, resume bullet) to sound more natural; match their voice in writing they're producing; or review text for AI tells before publishing. Also apply to your own output when writing user-facing prose.
+
 Identify and remove signs of AI-generated text to make writing sound natural and human. Based on Wikipedia's "Signs of AI writing" guide (maintained by WikiProject AI Cleanup), derived from observations of thousands of AI-generated text instances.
 
 **Key insight:** LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely completion, which is how the telltale patterns below get baked in.
@@ -503,6 +511,24 @@ Provide:
 3. Final rewrite
 4. A brief summary of changes made (optional, if helpful)
 
+
+## Common Pitfalls
+
+1. **Over-removing personality.** The goal is natural writing, not sterile writing. After removing AI patterns, inject actual personality and voice.
+2. **Not checking for soulless writing.** Clean writing that has no opinions, no rhythm variation, no first-person perspective, no humor is still AI-sounding. Avoid the "every sentence same length" trap.
+3. **Ignoring voice calibration.** If the user provides a writing sample, always analyze and match it. Don't just remove patterns -- replace them with patterns from the sample.
+4. **Preserving the original format when the user wants a rewrite.** Show the rewrite. For file edits, show a diff or changed section.
+5. **The 29 patterns are extensive -- don't try to hit every one mechanically.** Focus on the most egregious violations first, then do a final "what makes this obviously AI generated?" pass.
+
+## Verification Checklist
+
+- [ ] Read input text carefully (file or inline)
+- [ ] Identified AI patterns present in the text
+- [ ] Rewrote problematic sections while preserving meaning
+- [ ] Maintained or matched intended tone (used voice sample if provided)
+- [ ] Added personality/soul (not just removed bad patterns)
+- [ ] Final pass: answered "What makes the below so obviously AI generated?" and revised
+- [ ] Output format: draft rewrite -> AI tells -> final rewrite -> summary of changes
 
 ## Full Example
 

@@ -4,6 +4,7 @@ description: Use when running the daily LLM/Local AI news digest cron job. Searc
 version: 1.1.0
 author: Hermes Agent
 license: MIT
+platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [llm, digest, cron, amd, strix-halo, local-ai, newsletter]

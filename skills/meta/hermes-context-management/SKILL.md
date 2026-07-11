@@ -4,6 +4,7 @@ description: Use when deciding where to persist declarative knowledge in Hermes 
 version: 1.0.0
 author: agent
 license: MIT
+platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [context, placement, organization, soul, memory, skills, metadata]
@@ -13,6 +14,14 @@ metadata:
 # Context Placement Framework
 
 Hermes has multiple context-loading mechanisms. They serve different scopes, lifetimes, and content types. Misplacing context wastes space or leaks it into wrong sessions.
+
+## Overview
+
+This skill provides a decision framework for choosing where to persist declarative knowledge in Hermes: SOUL.md, .hermes.md, AGENTS.md, memory, skills, references, templates, or scripts.
+
+## When to Use
+
+Load this skill when you need to decide where to store a fact, procedure, template, or script. Use the decision process below to choose the right storage mechanism based on scope, lifetime, and content type.
 
 ## The Hierarchy (top to bottom)
 
@@ -72,3 +81,19 @@ When you learn something new that could be persisted:
 - Creating a new skill when an existing umbrella covers the territory
 - Writing negative claims as skill constraints ("X tool doesn't work") instead of capturing the fix
 - Letting a discovered pitfall go unpatched in an existing skill
+
+## Common Pitfalls
+
+1. **Putting operational details in SOUL.md** -- where they'll be in every session unnecessarily. SOUL.md is identity and mandates only.
+2. **Saving task progress or completed-work in memory** -- it'll be stale next week. Use session_search for that.
+3. **Creating a new skill when an existing umbrella covers the territory** -- check existing skills first.
+4. **Writing negative claims as skill constraints** -- capture the fix, not "X tool doesn't work."
+5. **Letting a discovered pitfall go unpatched** -- when you find a new pitfall, patch the existing skill immediately.
+
+## Verification Checklist
+
+- [ ] Chosen storage mechanism matches the content's scope (identity -> SOUL, project -> .hermes.md, fact -> memory, procedure -> skill)
+- [ ] Content fits within the target mechanism's size budget
+- [ ] Fact is declarative (not imperative) if stored in memory
+- [ ] No duplicates created -- checked existing skills/souls/memory first
+- [ ] Pitfall from this skill patched into the relevant existing skill if discovered

@@ -21,6 +21,12 @@ Two dimensions: **layout** (information structure) × **style** (visual aestheti
 
 Trigger this skill when the user asks to create an infographic, visual summary, information graphic, or uses terms like "信息图", "可视化", or "高密度信息大图". The user provides content (text, file path, URL, or topic) and optionally specifies layout, style, aspect ratio, or language.
 
+## Overview
+
+Adapted from [baoyu-infographic](https://github.com/JimLiu/baoyu-skills) for Hermes Agent's tool ecosystem.
+
+Two dimensions: **layout** (information structure) x **style** (visual aesthetics). Freely combine any layout with any style. Uses AI image generation to produce the final infographic.
+
 ## Options
 
 | Option | Values |
@@ -219,6 +225,18 @@ Use the `image_generate` tool with the assembled prompt from Step 5.
 ### Step 7: Output Summary
 
 Report: topic, layout, style, aspect, language, output path, files created.
+
+## Verification Checklist
+
+- [ ] Source content backed up if existing source.md
+- [ ] analysis.md written with topic, data type, complexity, tone, audience
+- [ ] Content stripped of credentials, API keys, tokens, secrets
+- [ ] Layout + style combination recommended with rationale
+- [ ] User confirmed options via clarify tool
+- [ ] Structured content written verbatim (no summarization)
+- [ ] Prompt assembled with layout definition, style definition, base template, structured content
+- [ ] Image generated via image_generate with correct aspect ratio mapping
+- [ ] Output reported: topic, layout, style, aspect, language, output path, files created
 
 ## References
 

@@ -4,6 +4,7 @@ description: Use when controlling smart home devices — lights, switches, senso
 version: 1.0.0
 author: Hermes Agent
 license: MIT
+platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [smart-home, home-assistant, mqtt, iot, automation, lights, sensors, zigbee]
@@ -97,3 +98,13 @@ After making changes:
 1. Confirm the device state changed as expected
 2. Check the automation log for any errors
 3. Verify no unintended side effects on other devices
+
+## Verification Checklist
+
+- [ ] Home Assistant or MQTT backend confirmed running before device control
+- [ ] Auth header included in all Home Assistant API requests
+- [ ] Device state checked for `unavailable` before toggling
+- [ ] No more than one state change per second per entity (rate limiting)
+- [ ] MQTT topics use correct wildcards (+ for single level, # for all levels)
+- [ ] Battery devices given time to respond (Zigbee/Z-Wave sleep cycles)
+- [ ] No unintended side effects on other devices after changes

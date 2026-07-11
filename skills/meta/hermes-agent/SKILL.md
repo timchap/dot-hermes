@@ -14,6 +14,12 @@ metadata:
 
 # Hermes Agent
 
+## Overview
+
+Hermes Agent is an open-source AI agent framework by Nous Research that runs in your terminal, a native desktop app, messaging platforms, and IDEs. This skill is a concise operating guide for setting it up, configuring features, spawning additional instances, troubleshooting issues, and understanding the architecture.
+
+**Scope & Verification:** This skill is a concise operating guide, not the complete source of truth. If a feature is not mentioned here, check the live repository and official docs before giving a negative answer.
+
 Hermes Agent is an open-source AI agent framework by Nous Research that runs in your terminal, a native desktop app, messaging platforms, and IDEs. It's in the same category as Claude Code (Anthropic), Codex (OpenAI), and OpenClaw — autonomous coding and task-execution agents that use tool calling to interact with your system. Hermes works with any LLM provider (OpenRouter, Anthropic, OpenAI, Google, DeepSeek, xAI, local models, and 20+ others) and runs on Linux, macOS, Windows, and WSL.
 
 What makes Hermes different:
@@ -943,6 +949,29 @@ hermes config set auxiliary.vision.model <model_name>
 ```
 
 ---
+
+## Common Pitfalls
+
+1. **Tools/skills changes need a new session.** Tool and skill changes take effect on `/reset` (new session), not mid-conversation (to preserve prompt caching).
+2. **Config changes need restart.** In gateway: `/restart`. In CLI: exit and relaunch.
+3. **Windows config YAML has UTF-8 BOM.** Notepad on Windows adds a BOM that breaks YAML parsing. Re-save as UTF-8 without BOM.
+4. **Gateway dies on SSH logout on WSL2.** WSL2 requires `systemd=true` in `/etc/wsl.conf`. Without it, gateway falls back to nohup and dies when session closes.
+5. **Discord bot silent in channels.** Must enable Message Content Intent in Bot -> Privileged Gateway Intents.
+6. **Slack bot only works in DMs.** Must subscribe to `message.channels` event.
+7. **Copilot 403 from gh auth login.** GitHub CLI tokens do NOT work for Copilot API. Must use Copilot-specific OAuth device code via `hermes model`.
+8. **Auxiliary model failures are silent.** If vision/compression/session_search fail silently, set explicit provider/model: `hermes config set auxiliary.vision.provider <provider>`.
+9. **Session search is not a direct source.** If the user provided a URL, phone, file path, or live system, inspect that source first. session_search is secondary context for past conversation history.
+10. **Project context files walk up to git root.** `.hermes.md` walks parents up to git root. A home-level `.hermes.md` won't leak into every project (git root is the boundary).
+
+## Verification Checklist
+
+- [ ] CLI commands verified against `hermes --help` (not just memory)
+- [ ] Config changes tested via `hermes config check` or `hermes doctor`
+- [ ] Tool changes confirmed on new session (/reset)
+- [ ] Provider credentials verified via `hermes auth list`
+- [ ] Gateway checked via `hermes gateway status` and `journalctl -u hermes-gateway`
+- [ ] Skills confirmed installed via `hermes skills list`
+- [ ] Cross-referenced with live docs at https://hermes-agent.nousresearch.com/docs/ when uncertain
 
 ## Where to Find Things
 

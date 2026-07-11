@@ -13,6 +13,14 @@ metadata:
 
 # TouchDesigner Integration (twozero MCP)
 
+## Overview
+
+Control a running TouchDesigner instance via twozero MCP -- creating operators, setting parameters, wiring connections, executing Python, or building real-time visuals. 36 native tools over Streamable HTTP on localhost:40404.
+
+## When to Use
+
+Load this skill when the user asks for: real-time visuals in TouchDesigner, GLSL shader work, audio-reactive visuals, generative art with TD, operator creation/wiring/parameter tweaking, or TD Python scripting.
+
 ## CRITICAL RULES
 
 1. **NEVER guess parameter names.** Call `td_get_par_info` for the op type FIRST. Your training data is wrong for TD 2025.32.
@@ -322,6 +330,36 @@ See `references/network-patterns.md` for complete build scripts + shader code.
 - `td_execute_python` has unrestricted access to the TD Python environment and filesystem as the TD process user.
 - `setup.sh` downloads twozero.tox from the official 404zero.com URL. Verify the download if concerned.
 - The skill never sends data outside localhost. All MCP communication is local.
+
+## Common Pitfalls
+
+1. **NEVER guess parameter names.** Call `td_get_par_info` for the op type FIRST. Training data is wrong for TD 2025.32.
+2. **Destroying and recreating same-named nodes in one script causes "Invalid OP object" errors.** Split cleanup and creation into separate MCP calls.
+3. **`td_execute_python` has unrestricted access.** It runs as the TD process user with full filesystem access. Never run untrusted workflows.
+4. **Non-commercial TD caps at 1280x1280.** Use `outputresolution = 'custom'` explicitly.
+5. **H.264/H.265/AV1 require Commercial license.** Use prores on macOS or mjpa as fallback.
+6. **TOP.save() captures same GPU texture every time for animation.** Use MovieFileOut instead.
+7. **Audio-reactive: DO NOT use Lag CHOP for spectrum smoothing.** Lag CHOP operates in timeslice mode and expands 256 samples to 2400+, averaging all values to near-zero. Smoothing belongs in the GLSL shader via temporal lerp with a feedback texture.
+8. **DO NOT use Filter CHOP for spectrum data.** Same timeslice expansion problem.
+9. **TimeSlice must stay ON for AudioSpectrum.** OFF = processes entire audio file -> 24000+ samples -> CHOP to TOP overflow.
+10. **Set Output Length manually to 256** via `outputmenu='setmanually'` and `outlength=256`. Default outputs 22050 samples.
+11. **Resolution: Non-commercial caps at 1280x1280.** Always set `outputresolution = 'custom'`.
+12. **Vertex/Point access in TD 2025.32:** use `point.P[0]`, `point.P[1]`, `point.P[2]` -- NOT `.x`, `.y`, `.z`.
+13. **Script callbacks must use relative paths** via `me.parent()` / `scriptOp.parent()`. Never hardcode absolute paths.
+
+## Verification Checklist
+
+- [ ] `nc -z 127.0.0.1 40404` confirms twozero MCP is reachable
+- [ ] `td_get_par_info` called before setting any operator parameters
+- [ ] `td_get_hints` called before building new operator networks
+- [ ] Cleanup and creation split into separate MCP calls (no combined create+destroy)
+- [ ] All paths in script callbacks are relative (me.parent())
+- [ ] For audio-reactive: TimeSlice ON, outputmenu='setmanually', outlength=256
+- [ ] No Lag CHOP or Filter CHOP used for spectrum smoothing
+- [ ] Recording setup: fps > 0, shader output not black, output path set before recording
+- [ ] GLSL time uses expression (absTime.seconds) not uTDCurrentTime
+- [ ] For recording: prores (macOS) or mjpa (fallback), not H.264/H.265
+- [ ] `td_get_errors` called after building to verify no errors
 
 ## References
 

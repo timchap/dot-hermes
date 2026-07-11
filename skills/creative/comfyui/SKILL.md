@@ -17,7 +17,11 @@ Generate images, video, audio, and 3D content through ComfyUI using the
 official `comfy-cli` for setup/lifecycle and direct REST/WebSocket API
 for workflow execution.
 
-## What's in this skill
+## Overview
+
+Two-layer architecture: Layer 1 uses `comfy-cli` (official lifecycle tool) for installation, server management, nodes, and models. Layer 2 uses REST/WebSocket API with skill scripts for workflow execution, parameter injection, monitoring, and output download -- filling the gap where the CLI falls short.
+
+**What's in this skill
 
 **Reference docs (`references/`):**
 

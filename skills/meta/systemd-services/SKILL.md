@@ -13,6 +13,10 @@ metadata:
 
 # Systemd Services
 
+## Overview
+
+Create, manage, and debug systemd services for background daemons on Linux hosts. Covers writing unit files, handling permissions, git safe.directory deadlocks, lock files, journalctl debugging, and interpreter mismatches.
+
 Create, manage, and debug systemd services for background daemons on Linux hosts.
 
 ## When to Use
@@ -180,6 +184,18 @@ Environment=PATH=/home/hermes/.hermes/hermes-agent/venv/bin:/usr/local/bin:/usr/
 ```
 
 Missing this: the service starts but the app silently falls back to defaults or fails to find modules. Verify with `journalctl -u <service> -n 20` — look for `(not found, using defaults)` or `ModuleNotFoundError`.
+
+## Verification Checklist
+
+- [ ] Unit file has `User=<owner>` directive (not running as root)
+- [ ] ExecStart matches the script's interpreter (bash for bash scripts, not python)
+- [ ] Environment=HOME set for tools that depend on it
+- [ ] StandardOutput and StandardError set to journal
+- [ ] Service enabled (`systemctl enable`) and started (`systemctl restart`)
+- [ ] `systemctl status <service>` shows active and running
+- [ ] `journalctl -u <service> -n 20` shows no errors
+- [ ] Lock files (if any) live outside the watched tree (not in the same directory being monitored)
+- [ ] Script changes followed by `daemon-reload && restart`
 
 ## Support Files
 

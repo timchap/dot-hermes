@@ -15,6 +15,46 @@ metadata:
 
 Multiple tools for different ASCII art needs. All tools are local CLI programs or free REST APIs — no API keys required.
 
+## Overview
+
+This skill provides 9 tools for creating ASCII art: text banners (pyfiglet, asciified API), cowsay message art, decorative boxes (boxes), colored text art (toilet), image-to-ASCII conversion (ascii-image-converter, jp2a), pre-made ASCII art search (ascii.co.uk, GitHub Octocat), QR codes, weather art, and LLM-generated custom art as a fallback.
+
+## When to Use
+
+Load this skill when the user asks for: ASCII art, text banners, ASCII message art, decorative borders/boxes, colored terminal text art, image-to-ASCII conversion, pre-made ASCII art, QR codes as ASCII, or weather/moon art.
+
+## Decision Flow
+
+1. **Text as a banner** -> pyfiglet if installed, otherwise asciified API via curl
+2. **Wrap a message in fun character art** -> cowsay
+3. **Add decorative border/frame** -> boxes (can combine with pyfiglet/asciified)
+4. **Art of a specific thing** (cat, rocket, dragon) -> ascii.co.uk via curl + parsing
+5. **Convert an image to ASCII** -> ascii-image-converter or jp2a
+6. **QR code** -> qrenco.de via curl
+7. **Weather/moon art** -> wttr.in via curl
+8. **Something custom/creative** -> LLM generation with Unicode palette
+9. **Any tool not installed** -> install it, or fall back to next option
+
+## Common Pitfalls
+
+1. **toilet outputs ANSI escape codes** -- won't render in plain text files or some chat platforms. Works in terminals.
+2. **Toilet fonts need installing** -- `toilet-fonts` package on Debian/Ubuntu. Without it, only a few built-in fonts are available.
+3. **ascii-image-converter via snap** -- snap requires snapd, may not be available on all systems. Fallback: go install or use jp2a.
+4. **jp2a only works on JPEG** -- not PNG, GIF, or WEBP. Use ascii-image-converter for those formats.
+5. **cowsay characters need `cowsay` installed** -- 50+ characters available via `cowsay -l`. Default character is the cow.
+6. **boxes is a pipe tool** -- `echo "text" | boxes`, not `boxes "text"`. Use shell quoting for special characters.
+
+## Verification Checklist
+
+- [ ] Correct tool chosen based on what the user wants (banner vs message art vs boxes vs image conversion)
+- [ ] Pyfiglet installed if chosen: `pip install pyfiglet --break-system-packages -q`
+- [ ] Cowsay installed if chosen: `sudo apt install cowsay -y`
+- [ ] Boxes installed if chosen: `sudo apt install boxes -y`
+- [ ] Toilet installed if chosen: `sudo apt install toilet toilet-fonts -y`
+- [ ] ASCII output is correctly formatted in monospace
+- [ ] If using ascii.co.uk: preserve artist signatures
+- [ ] If using toilet: ANSI codes are expected (won't render in plain text) All tools are local CLI programs or free REST APIs — no API keys required.
+
 ## Tool 1: Text Banners (pyfiglet — local)
 
 Render text as large ASCII art banners. 571 built-in fonts.

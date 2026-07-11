@@ -13,6 +13,10 @@ metadata:
 
 # OpenCode CLI
 
+## Overview
+
+Use [OpenCode](https://opencode.ai) as an autonomous coding worker orchestrated by Hermes terminal/process tools. OpenCode is a provider-agnostic, open-source AI coding agent with a TUI and CLI. Supports model tier auto-selection via OpenRouter, one-shot bounded tasks, interactive TUI sessions, PR review, and parallel work patterns.
+
 Use [OpenCode](https://opencode.ai) as an autonomous coding worker orchestrated by Hermes terminal/process tools. OpenCode is a provider-agnostic, open-source AI coding agent with a TUI and CLI.
 
 ## When to Use
@@ -217,6 +221,17 @@ Check token usage and costs:
 terminal(command="opencode stats")
 terminal(command="opencode stats --days 7 --models anthropic/claude-sonnet-4")
 ```
+
+## Verification Checklist
+
+- [ ] OpenCode binary verified: `opencode --version` and `opencode auth list`
+- [ ] Model tier auto-selected per Model Selection rules (or user-specified model honored)
+- [ ] For one-shot tasks: `opencode run '...'` executed without pty
+- [ ] For interactive sessions: `opencode` started with background=true, pty=true
+- [ ] Long tasks monitored via process(action="poll"|"log")
+- [ ] Interactive sessions exited with Ctrl+C (\x03) or kill, never `/exit`
+- [ ] File changes, test results, and next steps summarized back to user
+- [ ] Parallel OpenCode sessions use separate workdirs to avoid collisions
 
 ## Pitfalls
 

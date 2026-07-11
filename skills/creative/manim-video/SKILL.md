@@ -13,6 +13,14 @@ metadata:
 
 # Manim Video Production Pipeline
 
+## Overview
+
+Creates animated explainers, math animations, and algorithm walkthroughs in 3Blue1Brown style using Manim Community Edition. Every project follows a 6-stage pipeline: PLAN -> CODE -> RENDER -> STITCH -> AUDIO (optional) -> REVIEW. No browser, no Node.js, no GPU required.
+
+## When to Use
+
+Trigger when the user asks for: animated explanations, math animations, concept visualizations, algorithm walkthroughs, technical explainers, 3Blue1Brown style videos, programmatic animation with geometric/mathematical content, equation derivations, architecture diagrams, or data stories using Manim CE.
+
 ## When to use
 
 Use when users request: animated explanations, math animations, concept visualizations, algorithm walkthroughs, technical explainers, 3Blue1Brown style videos, or any programmatic animation with geometric/mathematical content. Creates 3Blue1Brown-style explainer videos, algorithm visualizations, equation derivations, architecture diagrams, and data stories using Manim Community Edition.

@@ -23,9 +23,16 @@ Tokens give exact values. Prose tells agents *why* those values exist and how to
 apply them. The CLI (`npx @google/design.md`) lints structure + WCAG contrast,
 diffs versions for regressions, and exports to Tailwind or W3C DTCG JSON.
 
-## When to use this skill
+## When to Use
 
 - User asks for a DESIGN.md file, design tokens, or a design system spec
+- User wants consistent UI/brand across multiple projects or tools
+- User pastes an existing DESIGN.md and asks to lint, diff, export, or extend it
+- User wants to port a style guide into a format agents can consume
+- User wants contrast / WCAG accessibility validation on their color palette
+
+For purely visual inspiration or layout examples, use `popular-web-designs` instead. For *process and taste* when designing a one-off HTML artifact from scratch (prototype, deck, landing page, component lab), use `claude-design`. This skill is for the *formal spec file* itself.
+, design tokens, or a design system spec
 - User wants consistent UI/brand across multiple projects or tools
 - User pastes an existing DESIGN.md and asks to lint, diff, export, or extend it
 - User asks to port a style guide into a format agents can consume
@@ -190,6 +197,17 @@ summary — WCAG findings are the most load-bearing reason to use the CLI.
   is marked alpha — watch for breaking changes.
 - **Token references resolve by dotted path.** `{colors.primary}` works;
   `{primary}` does not.
+
+## Verification Checklist
+
+- [ ] DESIGN.md written with name: and colors: fields
+- [ ] Token references use correct dotted path syntax ({colors.primary}, not {primary})
+- [ ] Hex colors are quoted strings in YAML
+- [ ] Negative dimensions (letterSpacing) are quoted strings
+- [ ] Component variants are sibling keys with hyphens (button-primary-hover), not nested
+- [ ] Section order matches canonical list (Overview, Colors, Typography, Layout, Elevation, Shapes, Components, Do's and Don'ts)
+- [ ] Linted with `npx -y @google/design.md lint DESIGN.md` -- no broken references, acceptable WCAG contrast
+- [ ] If applicable: Tailwind or DTCG export generated
 
 ## Spec source of truth
 

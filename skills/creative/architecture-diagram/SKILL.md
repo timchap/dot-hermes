@@ -15,6 +15,21 @@ metadata:
 
 Generate professional, dark-themed technical architecture diagrams as standalone HTML files with inline SVG graphics. No external tools, no API keys, no rendering libraries — just write the HTML file and open it in a browser.
 
+## Overview
+
+This skill creates dark-themed, grid-backed technical architecture diagrams. Based on Cocoon AI's architecture-diagram-generator (MIT).
+
+## When to Use
+
+Trigger when the user wants an architecture diagram, system diagram, cloud infrastructure diagram, or microservice topology drawn as a self-contained HTML file with inline SVG.
+
+**Use for:** software architecture, cloud infra, microservice topology, database/API maps, deployment diagrams with a dark tech aesthetic.
+
+**Use something else for:** physics/chemistry/biology diagrams, physical objects, floor plans, hand-drawn sketches (use excalidraw), animated explainers.
+
+If a more specialized skill fits better, prefer that. Otherwise this skill serves as a general SVG diagram fallback.
+ dark-themed technical architecture diagrams as standalone HTML files with inline SVG graphics. No external tools, no API keys, no rendering libraries — just write the HTML file and open it in a browser.
+
 ## Scope
 
 **Best suited for:**
@@ -135,6 +150,22 @@ The generated HTML file follows a four-part layout:
 - **No External Dependencies:** All CSS and SVG must be inline (except Google Fonts)
 - **No JavaScript:** Use pure CSS for any animations (like pulsing dots)
 - **Compatibility:** Must render correctly in any modern web browser
+
+## Common Pitfalls
+
+1. **Don't use this for non-technical subjects.** Physics, chemistry, biology, anatomy, or floor plans belong in other tools.
+2. **Legend placement is critical.** Must be outside all boundary boxes. Calculate the lowest Y of all boundaries and place the legend 20px below.
+3. **Arrows must render early in z-order.** Draw arrows after the grid but before component boxes so they render behind semi-transparent fills.
+4. **Reference the template for exact CSS.** The `templates/template.html` has working examples of every component type — use it as structural reference, don't reimplement from memory.
+
+## Verification Checklist
+
+- [ ] HTML file saved to user-specified path or `./[project-name]-architecture.html`
+- [ ] Single self-contained HTML file with inline CSS/SVG (no external dependencies except Google Fonts)
+- [ ] Color palette correctly mapped: frontend=cyan, backend=emerald, database=violet, cloud=amber, security=rose, bus=orange, external=slate
+- [ ] Arrow z-order correct (arrows drawn before component boxes)
+- [ ] Legend placed outside all boundary boxes
+- [ ] Opens correctly in a browser with no console errors
 
 ## Template Reference
 

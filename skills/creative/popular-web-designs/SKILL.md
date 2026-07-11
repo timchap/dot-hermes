@@ -13,6 +13,14 @@ metadata:
 
 # Popular Web Designs
 
+## Overview
+
+54 real-world design systems ready for use when generating HTML/CSS. Each template captures a site's complete visual language: color palette, typography hierarchy, component styles, spacing system, shadows, responsive behavior, and practical agent prompts with exact CSS values. Also includes font substitution reference for proprietary fonts unavailable via CDN.
+
+## When to Use
+
+Load this skill when the user wants a page styled after a known brand ("make it look like Stripe/Linear/Vercel/Notion"), a page using a specific design system, or a visual starting point pulled from a real product. Pair with `claude-design` for the design process and taste.
+
 54 real-world design systems ready for use when generating HTML/CSS. Each template captures a
 site's complete visual language: color palette, typography hierarchy, component styles, spacing
 system, shadows, responsive behavior, and practical agent prompts with exact CSS values.
@@ -191,6 +199,23 @@ those carry more visual identity than the specific font face.
 | `spacex.md` | SpaceX | Stark black and white, full-bleed imagery, futuristic |
 | `spotify.md` | Spotify | Vibrant green on dark, bold type, album-art-driven |
 | `uber.md` | Uber | Bold black and white, tight type, urban energy |
+
+## Common Pitfalls
+
+1. **Don't use this for from-scratch design.** Use `claude-design` when the user wants an original design without a specific brand reference. This skill is for *matching* known brands.
+2. **Font substitution mismatch.** Proprietary fonts may not match their Google Fonts substitutes exactly. Follow the template's weight, size, and letter-spacing closely -- those carry more visual identity than the specific font face.
+3. **Missing context for design choices.** The template has design tokens but not rationale. If the user asks "why this font/color", refer to the site's actual design decisions or ask for guidance.
+
+## Verification Checklist
+
+- [ ] Design selected from catalog matches the content type (dev tools -> Linear/Vercel/Supabase, docs -> Mintlify/Notion/Sanity, etc.)
+- [ ] Template loaded via `skill_view(name="popular-web-designs", file_path="templates/<site>.md")`
+- [ ] CDN font substitute identified and `<link>` tag included in HTML head
+- [ ] Color palette applied as CSS custom properties
+- [ ] Typography, components, layout, shadows applied per template sections
+- [ ] HTML is self-contained with inline CSS
+- [ ] Served via cloudflared tunnel with `generative-widgets` workflow (if remote access needed)
+- [ ] Verified visually with `browser_vision` for accuracy
 
 ## Choosing a Design
 

@@ -4,6 +4,7 @@ description: Use when the user wants to see disposable HTML mockup variants (2-3
 version: 1.0.0
 author: Hermes Agent
 license: MIT
+platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [sketch, mockup, design, ui, prototype, html, variants, exploration, wireframe, comparison]
@@ -11,6 +12,14 @@ metadata:
 ---
 
 # Sketch
+
+## Overview
+
+Explore a UI/UX idea as disposable HTML mockups (2-3 variants) before committing to one. Not shippable code — interactive throwaway prototypes for comparison. Follows the method: intake -> variants -> head-to-head -> pick winner (or iterate).
+
+## When to Use
+
+Load this when the user says things like "sketch this screen", "show me what X could look like", "compare layout A vs B", "give me 2-3 takes on this UI", "let me see some variants", "mockup this before I build".
 
 Use this skill when the user wants to **see a design direction before committing** to one — exploring a UI/UX idea as disposable HTML mockups. The point is to generate 2-3 interactive variants so the user can compare visual directions side-by-side, not to produce shippable code.
 
@@ -211,6 +220,28 @@ browser_vision(question="How does this look? Any obvious layout issues?")
 ```
 
 Repeat for each variant, then present the comparison table.
+
+## Common Pitfalls
+
+1. **Don't use for production components.** If the user wants a production component, use `claude-design`. If they want a polished one-off HTML artifact, use `claude-design`.
+2. **Don't use for diagrams.** Use `excalidraw` or `architecture-diagram`.
+3. **Don't create variants that differ only in accent color.** Two variants that differ only in pixel values are wasted effort. Vary density, emphasis, aesthetic, layout, or grounding -- pick one axis and pull apart.
+4. **Don't describe variants -- build them.** The point is comparison, not description.
+5. **Don't skip visual verification.** Write HTML, then use `browser_vision` to load it and check for layout bugs that pure source inspection misses (failed font imports, collapsed flex containers).
+6. **Don't leave sketches as a pile of options forever.** A sketch that you felt the need to preserve should be promoted into real project code, not curated as an asset.
+
+## Verification Checklist
+
+- [ ] Intake: feel, references, and core action identified
+- [ ] 2-3 variants produced (never 1, rarely 4+)
+- [ ] Each variant takes a different design stance, not just different pixel values
+- [ ] Each variant is a single self-contained HTML file with inline styles
+- [ ] Interactive elements present: at least one state transition (open/close, filter, toggle)
+- [ ] Realistic fake content used (not lorem ipsum)
+- [ ] Each variant visually verified with browser_vision
+- [ ] Variant READMEs written with stance, key choices, trade-offs, best for
+- [ ] Head-to-head comparison presented with opinionated ranking
+- [ ] User picked a winner, combined variants, or requested another round
 
 ## Attribution
 

@@ -13,7 +13,14 @@ metadata:
 
 # Claude Design for CLI/API Agents
 
+## Overview
+
 Use this skill when the user asks for design work that would normally fit Claude Design, but the agent is running in a CLI/API environment instead of the hosted Claude Design web UI.
+
+Preserve Claude Design's useful design behavior and taste while removing hosted-tool plumbing that does not exist in normal agent environments. Produce thoughtfully designed local HTML artifacts (landing pages, prototypes, decks, component labs, motion studies) with a surface-first approach, anti-slop diagnostic, and professional design craft.
+
+**Before starting, check for other web-design skills** like `popular-web-designs` (ready-to-paste design systems for Stripe, Linear, Vercel, Notion, etc.) and `design-md` (Google's DESIGN.md token spec format). If the user wants a known brand's look, load `popular-web-designs` alongside this one. If the deliverable is a token spec file rather than a rendered artifact, use `design-md` instead.
+ that would normally fit Claude Design, but the agent is running in a CLI/API environment instead of the hosted Claude Design web UI.
 
 The goal is to preserve Claude Design's useful design behavior and taste while removing hosted-tool plumbing that does not exist in normal agent environments.
 

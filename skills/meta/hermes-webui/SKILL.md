@@ -13,6 +13,10 @@ metadata:
 
 # Hermes WebUI Deployment
 
+## Overview
+
+Install, configure, and maintain the Hermes WebUI on Linux. This is a Python + vanilla JS app -- NOT Node.js. Provides remote/Tailscale access with password auth and systemd service.
+
 Install, configure, and maintain Hermes WebUI on a Linux host. This is a **Python + vanilla JS** app — NOT Node.js (ignore the repo's `package.json`, it's only for ESLint devtooling).
 
 ## When to Use
@@ -123,3 +127,16 @@ After deployment:
 
 - `templates/.env-example` — ready-to-fill .env template
 - `templates/hermes-webui.service` — systemd unit file
+
+## Verification Checklist
+
+- [ ] WebUI cloned to /home/hermes/hermes-webui
+- [ ] Python venv created with pyyaml + cryptography
+- [ ] .env created with HERMES_WEBUI_HOST=0.0.0.0 and password
+- [ ] Systemd service file uses bash (not python) in ExecStart
+- [ ] PATH includes agent venv: /home/hermes/.hermes/hermes-agent/venv/bin
+- [ ] HERMES_HOME set to /home/hermes/.hermes in service file
+- [ ] Service enabled and started
+- [ ] Health endpoint returns {"status": "ok"}
+- [ ] Accessible from remote device with password
+- [ ] Not exposed to public internet (uses Tailscale or SSH tunnel)

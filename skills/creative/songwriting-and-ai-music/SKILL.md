@@ -13,6 +13,14 @@ metadata:
 
 # Songwriting & AI Music Generation
 
+## Overview
+
+Everything here is a GUIDELINE, not a rule. Art breaks rules on purpose. Use what serves the song. Ignore what doesn't.
+
+## When to Use
+
+Load this skill when the user asks for: original song lyrics, adapting/parodying existing songs, or crafting Suno AI music prompts with metatags and style descriptions. Also use for Suno AI workflow: concept -> lyrics -> style description -> metatags -> generation -> iteration.
+
 Everything here is a GUIDELINE, not a rule. Art breaks rules on purpose.
 Use what serves the song. Ignore what doesn't.
 
@@ -283,3 +291,25 @@ Style can drift in extensions — restate genre/mood when extending.
 - Don't be precious about rules. If a line breaks meter but hits
   harder, keep it. The feeling is what matters. Craft serves art,
   not the other way around.
+
+## Common Pitfalls
+
+1. **Artist names and trademarks in style descriptions.** Suno rejects or blocks these. Describe the sound instead: "1960s Cold War spy thriller brass" not "James Bond style".
+2. **Flat structure without metatags.** Without structural tags ([Intro], [Verse], [Chorus], etc.), Suno defaults to flat verse/chorus/verse with no emotional arc.
+3. **Contradictory metatags.** [Calm] + [Aggressive] in the same section confuses the AI. Keep to 5-8 tags per section max.
+4. **Wrong phonetic spelling for AI singers.** AI vocalists don't read -- they pronounce. Proper nouns are the highest failure rate. Spell phonetically: "Nous" -> "Noose". Test early in a short clip.
+5. **Numbers and acronyms not spelled out.** "24/7" -> "twenty four seven", "AI" -> "A I". Always spell these out for AI singers.
+6. **Not generating enough variations.** Expect ~3-5 generations per 1 good result. Treat them like recording takes. Don't be precious about the first draft.
+
+## Verification Checklist
+
+- [ ] Concept/hook identified as emotional core
+- [ ] If adapting: original structure mapped (syllables, rhyme scheme, stress)
+- [ ] Lyrics structured with metatags ([Verse], [Chorus], [Bridge], etc.)
+- [ ] Style description follows formula: Genre + Mood + Era + Instruments + Vocal Style + Production + Dynamics
+- [ ] Style describes the dynamic journey (not just genre labels)
+- [ ] Metatags placed in BOTH style field AND lyrics for reinforcement
+- [ ] Phonetic spelling for proper nouns and unusual words
+- [ ] Numbers spelled out, acronyms spaced
+- [ ] At least 3-5 variations generated
+- [ ] Best take selected and extended/continued if promising
