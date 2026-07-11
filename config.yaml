@@ -23,7 +23,7 @@ mcp_servers:
   gmail-proxy:
     url: "http://framework:8090/mcp/v1"
     headers:
-      Authorization: "Bearer {{GMAIL_PROXY_SHARED_SECRET}}"
+      Authorization: "Bearer ${GMAIL_PROXY_SHARED_SECRET}"
     timeout: 60
 terminal:
   backend: local
