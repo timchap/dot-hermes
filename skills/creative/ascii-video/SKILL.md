@@ -4,6 +4,7 @@ description: Use when creating ASCII video or text art animation — converting 
 version: 1.0.0
 author: Hermes Agent
 license: MIT
+platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [ascii, video, animation, generative-art, terminal, visualizer, mp4, gif]
@@ -220,6 +221,25 @@ For segmented videos (quotes, scenes, chapters), render each as a separate clip 
 | `references/troubleshooting.md` | NumPy broadcasting traps, blend mode pitfalls, multiprocessing/pickling, brightness diagnostics, ffmpeg issues, font problems, common mistakes |
 
 ---
+
+## Common Pitfalls
+
+1. **Never use `canvas * N` linear multipliers** for brightness — use adaptive `tonemap()` instead. Linear clipping makes everything look flat and dark.
+2. **macOS Pillow `textbbox()` height is wrong** — use `font.getmetrics()` (ascent + descent) instead. See `references/troubleshooting.md`.
+3. **ffmpeg pipe deadlocks** — never use `stderr=subprocess.PIPE` with long-running ffmpeg. Redirect stderr to a file.
+4. **Not all Unicode chars render in all fonts** — validate palettes at init by rendering each char and checking for blank output.
+5. **Don't skip the creative concept** — if every frame uses the same effect, it's an aesthetic failure. Vary backgrounds, palettes, shaders, and particles per scene.
+6. **Referencing non-existent reference files** — this skill uses `references/architecture.md`, `references/composition.md`, `references/effects.md`, `references/shaders.md`, `references/scenes.md`, `references/inputs.md`, `references/optimization.md`, and `references/troubleshooting.md`. Ensure they exist in this skill's `references/` directory before following references.
+
+## Verification Checklist
+
+- [ ] Creative concept articulated before coding (mood, color world, character texture, emotional arc)
+- [ ] `tonemap()` used instead of linear multipliers for brightness
+- [ ] Per-scene variation (different background, palette, shader, particles)
+- [ ] At least one project-specific invention (custom palette, effect, transition)
+- [ ] Test frames rendered at key timestamps before full render
+- [ ] Canvas brightness check: `canvas.mean() > 8`
+- [ ] All scenes feel cohesive (shared color temperature, character palette)
 
 ## Creative Divergence (use only when user requests experimental/creative/unique output)
 

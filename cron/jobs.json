@@ -47,7 +47,7 @@
     {
       "id": "f41d2a7cd5d7",
       "name": "Security audit",
-      "prompt": "You are a security auditor for the Hermes environment. Review all Hermes Agent sessions since last run and do and look for any actions performed in sessions from the past day that might pose security risks:\n- Commands executed that could have affected system security (firewall changes, user/permission modifications, installing untrusted packages, exposing services)\n- External API keys or credentials being written to files in unexpected locations\n- Accessing external services or endpoints without clear justification\n- Any operations that modified infrastructure in ways that could be exploited\n- Subagent delegations that performed broad filesystem or network operations\n\nFlag anything concerning with specific details. If everything looks clean, say so.",
+      "prompt": "You are a security auditor for the Hermes environment. Review all Hermes Agent sessions since last run and do and look for any actions performed in sessions from the past day that might pose security risks:\n- Commands executed that could have affected system security (firewall changes, user/permission modifications, installing untrusted packages, exposing services)\n- External API keys or credentials being written to files in unexpected locations\n- Accessing external services or endpoints without clear justification\n- Any operations that modified infrastructure in ways that could be exploited\n- Subagent delegations that performed broad filesystem or network operations\n\nFlag anything concerning with specific details. If the user was actively involved in the decision and made it clear that they accept the risk, you can omit warnings for that decision. If everything looks clean, say so.",
       "skills": [],
       "skill": null,
       "model": null,
@@ -129,7 +129,7 @@
     },
     {
       "id": "02920c979504",
-      "name": "Weekly skill quality review",
+      "name": "Skill quality review",
       "prompt": "You are tasked with a weekly quality review of all Hermes Agent skills installed on this system. Follow this process carefully:\n\n1. **Discover all skills**: List every SKILL.md under `~/.hermes/skills/`. Read each one fully. Also read the higher-level DESCRIPTION.md files.\n\n2. **Apply quality checks**: Review the skill\u2019s compliance with best practices from the hermes-agent-skill-authoring skill. Determine if the skill should be moved to a more suitable location in the hierarchy. Ensure that the DESCRIPTION.md accurately encompasses the child skill sets.\n\n3. **For each skill, report**:\n   - Skill path and name\n   - Status: PASS or needs changes\n   - Any specific issues found with line references\n\n4. **Make changes**: If issues are found, apply them with `patch` or `write_file`. Be surgical \u2014 fix the exact problem. Do NOT rewrite skills that are fine. After patching, read the patched file back to confirm the change applied correctly.\n\n5. **Final summary**: Report how many skills were reviewed, how many needed changes, and what was changed.\n\nIMPORTANT: Read every skill fully before making any changes. Work through them one at a time in category order. If a skill has multiple issues, fix them all in one patch/edit pass.",
       "skills": [
         "hermes-agent-skill-authoring"
@@ -163,7 +163,7 @@
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
-      "deliver": "local",
+      "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
       "workdir": null,
@@ -213,5 +213,5 @@
       "toast_notifications": true
     }
   ],
-  "updated_at": "2026-07-11T17:30:40.221451+02:00"
+  "updated_at": "2026-07-11T17:33:44.265914+02:00"
 }

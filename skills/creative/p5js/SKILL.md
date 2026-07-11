@@ -4,6 +4,7 @@ description: Use when creating interactive creative coding, generative art, data
 version: 1.0.0
 author: Hermes Agent
 license: MIT
+platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [creative-coding, generative-art, p5js, canvas, interactive, visualization, webgl, shaders, animation]
@@ -505,6 +506,32 @@ When building p5.js sketches:
 | Canvas resolution | Up to 3840x2160 (export), 1920x1080 (interactive) |
 | File size (HTML) | < 100KB (excluding CDN libraries) |
 | Load time | < 2s to first frame |
+
+## Common Pitfalls
+
+1. **FES adds up to 10x overhead** — always set `p5.disableFriendlyErrors = true` in production sketches.
+2. **Raw noise() looks like smooth blobs** — use fractal noise (octaved) with domain warping for natural texture.
+3. **Raw white/black backgrounds are boring** — never use plain `background(0)` or `background(255)`. Always textured, gradient, or layered.
+4. **`createCanvas()` in WEBGL mode has inverted Y-axis** — origin is center not top-left, Y goes up not down. Translate by `(-width/2, -height/2)` for P2D-like coords.
+5. **`push()`/`pop()` around every transform** — matrix stack overflows silently otherwise.
+6. **DOM manipulation in draw()** — never manipulate DOM inside `draw()`. Never `console.log()` in `draw()`.
+7. **Missing `_p5Ready` + `noLoop()` for headless export** — without these, screenshots get skipped/duplicate frames.
+8. **Using `Math.random()` instead of p5's `random()`** — for visual elements, always use seeded `random()` for reproducibility. `Math.random()` only for non-visual performance code.
+9. **Hardcoded RGB values** — define a palette object and derive variations procedurally. Raw `fill(255, 0, 0)` is lazy.
+10. **Referencing non-existent reference files** — this skill uses `references/core-api.md`, `references/visual-effects.md`, `references/animation.md`, `references/color-systems.md`, `references/shapes-and-geometry.md`, `references/typography.md`, `references/webgl-and-3d.md`, `references/interaction.md`, `references/export-pipeline.md`, `references/troubleshooting.md`, and `templates/viewer.html`. Ensure they exist.
+
+## Verification Checklist
+
+- [ ] `p5.disableFriendlyErrors = true` set before setup()
+- [ ] Seeded randomness: `randomSeed()` + `noiseSeed()` called in setup()
+- [ ] Color mode set to HSB for intuitive color control
+- [ ] Custom color palette defined (not raw RGB values)
+- [ ] Background is textured/gradient (not plain white/black)
+- [ ] At least one invented element (custom behavior, interaction, or effect)
+- [ ] All parameter names are contextual (not "color1", "size")
+- [ ] Single self-contained HTML file that opens in browser
+- [ ] Key bindings for save (s), GIF (g), randomize (r), pause (space)
+- [ ] Tested locally, no console errors, holds 60fps
 
 ## References
 

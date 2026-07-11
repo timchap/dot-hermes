@@ -4,6 +4,7 @@ description: Use when writing original song lyrics, adapting/parodying existing 
 version: 1.0.0
 author: Hermes Agent
 license: MIT
+platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [songwriting, music, suno, parody, lyrics, creative, ai-music, prompt-engineering]

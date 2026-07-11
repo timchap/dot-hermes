@@ -3,7 +3,20 @@
     "archived_at": null,
     "created_at": "2026-07-11T15:16:15.642980+00:00",
     "created_by": null,
-    "last_patched_at": "2026-07-11T15:16:15.643005+00:00",
+    "last_patched_at": "2026-07-11T15:35:12.969583+00:00",
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 3,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
+  "claude-design": {
+    "archived_at": null,
+    "created_at": "2026-07-11T15:35:33.655538+00:00",
+    "created_by": null,
+    "last_patched_at": "2026-07-11T15:35:33.655563+00:00",
     "last_used_at": null,
     "last_viewed_at": null,
     "patch_count": 1,
@@ -43,12 +56,12 @@
     "created_at": "2026-07-11T11:35:07.744650+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-07-11T15:14:49.266395+00:00",
+    "last_used_at": "2026-07-11T15:33:36.625966+00:00",
     "last_viewed_at": "2026-07-11T15:08:00.866702+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 3,
+    "use_count": 4,
     "view_count": 2
   },
   "hermes-webui": {
@@ -77,6 +90,19 @@
     "use_count": 3,
     "view_count": 2
   },
+  "manim-video": {
+    "archived_at": null,
+    "created_at": "2026-07-11T15:34:51.844927+00:00",
+    "created_by": null,
+    "last_patched_at": "2026-07-11T15:35:18.845212+00:00",
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 2,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
   "opencode": {
     "archived_at": null,
     "created_at": "2026-07-10T23:57:55.994192+00:00",
@@ -89,6 +115,32 @@
     "state": "active",
     "use_count": 8,
     "view_count": 5
+  },
+  "p5js": {
+    "archived_at": null,
+    "created_at": "2026-07-11T15:34:52.875945+00:00",
+    "created_by": null,
+    "last_patched_at": "2026-07-11T15:35:27.012235+00:00",
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 2,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
+  "songwriting-and-ai-music": {
+    "archived_at": null,
+    "created_at": "2026-07-11T15:34:53.908192+00:00",
+    "created_by": null,
+    "last_patched_at": "2026-07-11T15:34:53.908218+00:00",
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 1,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
   },
   "systemd-services": {
     "archived_at": null,

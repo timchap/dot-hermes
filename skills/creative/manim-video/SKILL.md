@@ -4,6 +4,7 @@ description: Use when creating animated explainers, math animations, or algorith
 version: 1.0.0
 author: Hermes Agent
 license: MIT
+platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [manim, animation, math, 3blue1brown, explainer, educational, algorithm, geometry]
@@ -251,6 +252,29 @@ Always iterate at `-ql`. Only render `-qh` for final output.
 | `references/production-quality.md` | Pre-code, pre-render, post-render checklists, spatial layout, color, tempo |
 
 ---
+
+## Common Pitfalls
+
+1. **Always use raw strings for LaTeX** — `MathTex(r"\frac{1}{2}")` not `MathTex("\frac{1}{2}")`. Missing the `r` prefix breaks LaTeX rendering.
+2. **`buff >= 0.5` for edge text** — labels placed at canvas edges need buff ≥ 0.5 or they get clipped.
+3. **FadeOut before replacing text** — use `ReplacementTransform(old, new)` or `FadeOut` first, don't write new text on top.
+4. **Never animate non-added mobjects** — must `self.add()` a mobject before animating it, then animate its properties.
+5. **macOS Pillow `textbbox()` height is wrong** — use `font.getmetrics()` (ascent + descent) instead. See `references/troubleshooting.md`.
+6. **Don't skip the plan** — writing code without a `plan.md` with narrative arc, scene list, and color palette leads to disjointed videos.
+7. **Manim CE font rendering** — use monospace fonts (Menlo, JetBrains Mono) for all text. Proportional fonts produce broken kerning. Minimum `font_size=18`.
+
+## Verification Checklist
+
+- [ ] `plan.md` written with narrative arc, scene list, and color palette before coding
+- [ ] Each scene is an independent class, independently renderable
+- [ ] Shared color constants defined at file top for cross-scene consistency
+- [ ] `self.camera.background_color` set in every scene
+- [ ] Subtitles on every animation via `self.add_subcaption()`
+- [ ] `self.wait()` after key animations (breathing room for viewer)
+- [ ] FadeOut cleanup at scene end
+- [ ] All LaTeX in raw strings (`r"..."`)
+- [ ] Render at `-ql` for draft, `-qh` only for final output
+- [ ] Scenes stitched with ffmpeg concat into `final.mp4`
 
 ## Creative Divergence (use only when user requests experimental/creative/unique output)
 

@@ -631,6 +631,27 @@ Verified: file exists and opened cleanly in browser, no console errors.
 Next: pick the strongest direction and I’ll tighten copy + motion.
 ```
 
+## Common Pitfalls
+
+1. **Don't paste hosted tool schemas into a skill.** They cause fake tool calls. Remove `done()`, `fork_verifier_agent()`, `questions_v2()`, `copy_starter_component()`, `show_to_user()`, `show_html()`, `snip()`, `eval_js_user_view()`, etc.
+2. **Don't point the skill at a giant external prompt as required runtime context.** That creates drift.
+3. **Don't strip the design doctrine while removing tool plumbing.** The value is in the process (surface-first, anti-slop, surface archetypes), not the hosted tools.
+4. **Don't over-ask when the user already gave enough direction.** One or two focused questions, not a questionnaire.
+5. **Don't under-ask for high-fidelity work with no brand context.** If fidelity matters and no source material exists, ask for the essentials (audience, output format, fidelity level).
+6. **Don't produce generic SaaS layouts and call them designed.** The hero-plus-three-cards composition is correct for Decide/Learn surfaces only. Reaching for it elsewhere is the #1 tell.
+7. **Don't claim browser verification unless it actually happened.** Never say "done" if the file was not actually written.
+
+## Verification Checklist
+
+- [ ] Surface archetype committed before touching any visual tokens
+- [ ] All context files read before designing (theme, tokens, global styles, components)
+- [ ] Artifact created with `write_file` (not just described)
+- [ ] File exists at stated path and is complete HTML
+- [ ] No console errors if browser tools are available
+- [ ] Slop diagnostic scored (out of 10); compositional tells (3, 8, 10) resolved
+- [ ] If revisions made: previous version preserved
+- [ ] Final response includes artifact path, what it contains, verification status
+
 ## Portable Opening Prompt Pattern
 
 When adapting a Claude Design style request into CLI/API mode, use this mental translation:
