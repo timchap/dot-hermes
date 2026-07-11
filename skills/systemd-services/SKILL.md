@@ -157,6 +157,33 @@ After creating a service:
 2. Trigger the expected behavior and check `journalctl -u <service>` or the script's own log
 3. `journalctl -u <service> --since "1 hour ago"` — verify no errors in last hour
 
+### ExecStart must match the script's interpreter
+
+If your script is a shell script, **do not** run it through `python`:
+
+```ini
+# WRONG — bash script interpreted as Python → SyntaxError
+ExecStart=/usr/bin/python /opt/app/start.sh
+
+# CORRECT
+ExecStart=/usr/bin/bash /opt/app/start.sh
+# OR
+ExecStart=/bin/bash /opt/app/start.sh
+```
+
+Symptom: systemd reports `exit-code=1/FAILURE`, and the script's first line is `#!/usr/bin/env bash` but the error is a Python `SyntaxError` on line 90+. Always check the shebang, then use that interpreter in ExecStart.
+
+### Python apps may need explicit PATH + environment vars
+
+Python processes launched by systemd do NOT inherit the user's shell PATH. If the app imports a sibling project (e.g. hermes-agent from its own venv), the interpreter in the service PATH must point to the venv with those packages:
+
+```ini
+Environment=HERMES_HOME=/home/hermes/.hermes
+Environment=PATH=/home/hermes/.hermes/hermes-agent/venv/bin:/usr/local/bin:/usr/bin:/bin
+```
+
+Missing this: the service starts but the app silently falls back to defaults or fails to find modules. Verify with `journalctl -u <service> -n 20` — look for `(not found, using defaults)` or `ModuleNotFoundError`.
+
 ## Support Files
 
 - `templates/systemd-service-unit.md` — boilerplate unit file

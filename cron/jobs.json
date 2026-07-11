@@ -3,11 +3,11 @@
     {
       "id": "34c1ca0610de",
       "name": "llm-tools-daily-scout",
-      "prompt": "You are a Local LLM and Hermes Agent community scout. You are running as a scheduled cron job. Your final response will be automatically delivered to the user \u2014 do NOT use send_message. If there is genuinely nothing new to report, respond with exactly \"[SILENT]\" and nothing more.\n\nFollow the llm-digest-cron skill workflow exactly. Key steps:\n1. Read the last 7 days of digest files from ~/homelab/docs/digests/llm-digest-*.md. Note any recommendations already made.\n2. Search the web (Reddit, HuggingFace, GitHub, news) for LLM developments from the last 24-48 hours.\n3. Filter for relevance to this setup: Hermes on Pi, Strix Halo / gfx1151 / 128 GB RAM, Ollama, Lemonade Server, llama.cpp (ROCm/Vulkan), Tailscale.\n4. Write a new digest to ~/homelab/docs/digests/llm-digest-YYYY-MM-DD.md with sections: Digest, Recommendations (Critical / Useful to evaluate / Watch), User Feedback.\n5. Commit and push to ~/homelab/.\n6. Deliver a brief summary of findings.\n\nUser's setup:\n- **Hermes Agent** on Raspberry Pi (agent host, always on)\n- **Framework Desktop** (AMD Ryzen AI MAX+ 395 / Strix Halo / gfx1151 / 128 GB unified RAM / 1 TB + 2 TB NVMe)\n- **Ollama** and **Lemonade Server** with Vulkan/ROCm backends\n- **llama.cpp** via community ROCm toolboxes\n- **Tailscale** for internal networking",
+      "prompt": "You are a Local LLM and Hermes Agent community scout. You are running as a scheduled cron job. Your final response will be automatically delivered to the user \u2014 do NOT use send_message. If there is genuinely nothing new to report, respond with exactly \"[SILENT]\" and nothing more.\n\nFollow the llm-digest skill workflow exactly.",
       "skills": [
-        "llm-digest-cron"
+        "llm-digest"
       ],
-      "skill": "llm-digest-cron",
+      "skill": "llm-digest",
       "model": null,
       "provider": null,
       "provider_snapshot": "custom",
@@ -40,12 +40,14 @@
       "origin": null,
       "enabled_toolsets": null,
       "workdir": null,
-      "fire_claim": null
+      "fire_claim": null,
+      "toast_notifications": true,
+      "profile": null
     },
     {
       "id": "f41d2a7cd5d7",
       "name": "session-audit-nightly",
-      "prompt": "You are a security and documentation compliance auditor for a homelab. Review all Hermes Agent sessions from the last 24 hours and do two things:\n\n## 1. Security Risk Assessment\nLook for any actions performed in sessions from the past day that might pose security risks:\n- Commands executed that could have affected system security (firewall changes, user/permission modifications, installing untrusted packages, exposing services)\n- External API keys or credentials being written to files in unexpected locations\n- Accessing external services or endpoints without clear justification\n- Any operations that modified infrastructure in ways that could be exploited\n- Subagent delegations that performed broad filesystem or network operations\n\nFlag anything concerning with specific details. If everything looks clean, say so.\n\n## 2. Documentation Compliance Check\nRead the homelab documentation at ~/homelab/ (README.md, docs/architecture.md, docs/hermes.md, docs/llm-strix-halo.md, docs/hardware.md, and any other relevant docs). Check if any sessions from the past day involved:\n- New automation scripts or configurations created\n- Software installs, package changes, or dependency updates\n- Environment changes (networking, firewall, services, Docker, Ansible)\n- New skills, plugins, or Hermes configuration changes\n- Hardware changes or BIOS/kernel parameter modifications\n\nFor each such change, verify that:\n- The corresponding doc in ~/homelab/docs/ has been updated to reflect the change\n- The ~/homelab/ git repo has been committed and pushed (check git status at ~/homelab/)\n\nIf documentation is missing or the repo hasn't been committed/pushed, report what's missing. If everything is in order, say so.\n\nBe thorough but concise. Report findings clearly in two sections: \"Security Risks\" and \"Documentation Gaps\".",
+      "prompt": "You are a security and documentation compliance auditor for a homelab. Review all Hermes Agent sessions from the last 24 hours and do two things and look for any actions performed in sessions from the past day that might pose security risks:\n- Commands executed that could have affected system security (firewall changes, user/permission modifications, installing untrusted packages, exposing services)\n- External API keys or credentials being written to files in unexpected locations\n- Accessing external services or endpoints without clear justification\n- Any operations that modified infrastructure in ways that could be exploited\n- Subagent delegations that performed broad filesystem or network operations\n\nFlag anything concerning with specific details. If everything looks clean, say so.",
       "skills": [],
       "skill": null,
       "model": null,
@@ -80,8 +82,10 @@
       "origin": null,
       "enabled_toolsets": null,
       "workdir": null,
-      "fire_claim": null
+      "fire_claim": null,
+      "toast_notifications": true,
+      "profile": null
     }
   ],
-  "updated_at": "2026-07-11T13:39:48.370589+02:00"
+  "updated_at": "2026-07-11T15:07:44.716603+02:00"
 }

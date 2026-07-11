@@ -1,7 +1,7 @@
 ---
 name: opencode
 description: "Delegate coding to OpenCode CLI (features, PR review)."
-version: 1.3.0
+version: 1.2.0
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
@@ -44,37 +44,6 @@ If needed, pin an explicit binary path:
 ```
 terminal(command="$HOME/.opencode/bin/opencode run '...'", workdir="~/project", pty=true)
 ```
-
-## Model Selection (OpenRouter pool)
-
-OpenCode connects to OpenRouter for provider-agnostic model routing. The following pool is pre-selected based on coding capability, reasoning depth, and cost efficiency:
-
-| Tier | When to use | Model | $/1M tokens | Context |
-|------|-------------|-------|-------------|---------|
-| **Low** | Typos, docs, config tweaks, trivial fixes, simple shell scripts | `qwen/qwen3.6-35b-a3b` | $0.14/$1.00 | 262K |
-| **Low** | Code snippets, boilerplate generation, simple scripts | `meta-llama/llama-4-scout` | $0.10/$0.30 | 10M |
-| **Medium** | Feature implementation, multi-file changes, adding tests | `qwen/qwen3-coder-plus` | $0.65/$3.25 | 1M |
-| **Medium** | Debugging, API integration, moderately complex logic | `anthropic/claude-sonnet-4` | $3.00/$15.00 | 1M |
-| **High** | Architecture decisions, complex refactors, security review, multi-service systems | `anthropic/claude-opus-4` | $15.00/$75.00 | 200K |
-| **High** | Deep reasoning, research-level problems, adversarial debugging | `openai/o4-mini-high` | $1.10/$4.40 | 200K |
-
-**Auto-selection rules** (apply if the user does not specify a model):
-
-1. Scan the user's request: how many files/areas are affected? Is it a localized fix or a systemic change?
-2. Classify:
-   - **Low** if: single file, no dependency changes, formatting/docs/config/typo, trivial one-liner
-   - **Medium** if: 2-5 files, new feature in existing architecture, adds tests, moderate logic, API wiring
-   - **High** if: cross-cutting changes, architecture/restructuring, security-sensitive, multi-service, or user says "think carefully" / "complex" / "design"
-3. If the user names a specific model, honor it (override auto-selection).
-4. Prefer Anthropic sonnet-4 for medium and opus-4 for high -- best coding track record. Use Qwen/Llama for low-cost tasks where quality is not the bottleneck.
-
-**Usage:** pass `--model openrouter/<provider>/<model>` when starting opencode:
-```
-opencode run 'Add logging to error handler' --model openrouter/qwen/qwen3.6-35b-a3b
-opencode run 'Refactor auth module across 4 services' --model openrouter/anthropic/claude-opus-4
-```
-
-For interactive TUI sessions, the model is set via Ctrl+X M (command palette) or you can pre-select with `--model` before starting.
 
 ## One-Shot Tasks
 
@@ -120,13 +89,13 @@ process(action="log", session_id="<id>")
 # Send follow-up input
 process(action="submit", session_id="<id>", data="Now add error handling for token expiry")
 
-# Exit cleanly -- Ctrl+C
+# Exit cleanly — Ctrl+C
 process(action="write", session_id="<id>", data="\x03")
 # Or just kill the process
 process(action="kill", session_id="<id>")
 ```
 
-**Important:** Do NOT use `/exit` -- it is not a valid OpenCode command and will open an agent selector dialog instead. Use Ctrl+C (`\x03`) or `process(action="kill")` to exit.
+**Important:** Do NOT use `/exit` — it is not a valid OpenCode command and will open an agent selector dialog instead. Use Ctrl+C (`\x03`) or `process(action="kill")` to exit.
 
 ### TUI Keybindings
 
@@ -171,13 +140,12 @@ terminal(command="opencode -s ses_abc123", workdir="~/project", background=true,
 1. Verify tool readiness:
    - `terminal(command="opencode --version")`
    - `terminal(command="opencode auth list")`
-2. Determine model tier using the Model Selection section above (or honor user's explicit model choice).
-3. For bounded tasks, use `opencode run '...' --model openrouter/<tier-model>` (no pty needed).
-4. For iterative tasks, start `opencode --model openrouter/<tier-model>` with `background=true, pty=true`.
-5. Monitor long tasks with `process(action="poll"|"log")`.
-6. If OpenCode asks for input, respond via `process(action="submit", ...)`.
-7. Exit with `process(action="write", data="\x03")` or `process(action="kill")`.
-8. Summarize file changes, test results, and next steps back to user.
+2. For bounded tasks, use `opencode run '...'` (no pty needed).
+3. For iterative tasks, start `opencode` with `background=true, pty=true`.
+4. Monitor long tasks with `process(action="poll"|"log")`.
+5. If OpenCode asks for input, respond via `process(action="submit", ...)`.
+6. Exit with `process(action="write", data="\x03")` or `process(action="kill")`.
+7. Summarize file changes, test results, and next steps back to user.
 
 ## PR Review Workflow
 
@@ -221,13 +189,12 @@ terminal(command="opencode stats --days 7 --models anthropic/claude-sonnet-4")
 ## Pitfalls
 
 - Interactive `opencode` (TUI) sessions require `pty=true`. The `opencode run` command does NOT need pty.
-- `/exit` is NOT a valid command -- it opens an agent selector. Use Ctrl+C to exit the TUI.
+- `/exit` is NOT a valid command — it opens an agent selector. Use Ctrl+C to exit the TUI.
 - PATH mismatch can select the wrong OpenCode binary/model config.
 - If OpenCode appears stuck, inspect logs before killing:
   - `process(action="log", session_id="<id>")`
 - Avoid sharing one working directory across parallel OpenCode sessions.
 - Enter may need to be pressed twice to submit in the TUI (once to finalize text, once to send).
-- The `--model` flag requires the `openrouter/` prefix when using OpenRouter.
 
 ## Verification
 
@@ -244,12 +211,9 @@ Success criteria:
 
 ## Rules
 
-1. **User invokes this skill = use OpenCode.** If the user asks you to do something *with* this skill loaded, use OpenCode for the task regardless of scope. Do not bypass it because the task feels "too small" -- the user's explicit invocation is a signal to delegate.
-2. If you need to explain why OpenCode isn't suitable (e.g. it's not installed, auth is broken, task is outside a codebase), say so explicitly and ask if the user wants you to proceed anyway or do it directly.
-3. Prefer `opencode run` for one-shot automation -- it's simpler and doesn't need pty.
-4. Use interactive background mode only when iteration is needed.
-5. Always scope OpenCode sessions to a single repo/workdir.
-6. For long tasks, provide progress updates from `process` logs.
-7. Report concrete outcomes (files changed, tests, remaining risks).
-8. Exit interactive sessions with Ctrl+C or kill, never `/exit`.
-9. Always auto-select the model tier per the Model Selection section above; never use a default/unspecified model.
+1. Prefer `opencode run` for one-shot automation — it's simpler and doesn't need pty.
+2. Use interactive background mode only when iteration is needed.
+3. Always scope OpenCode sessions to a single repo/workdir.
+4. For long tasks, provide progress updates from `process` logs.
+5. Report concrete outcomes (files changed, tests, remaining risks).
+6. Exit interactive sessions with Ctrl+C or kill, never `/exit`.
