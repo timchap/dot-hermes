@@ -2,6 +2,11 @@ model:
   default: Qwen3.6-35B-A3B-MTP-GGUF
   provider: custom
   base_url: http://framework:13305/v1
+fallback_providers:
+  - provider: openrouter
+    model: qwen/qwen3.6-35b-a3b
+    base_url: https://openrouter.ai/api/v1
+    api_mode: chat_completions
 agent:
   max_turns: 150
   verbose: false
@@ -80,6 +85,8 @@ compression:
   protect_first_n: 3
   codex_gpt55_autoraise: true
   codex_app_server_auto: native
+kanban:
+  auto_decompose: true
 prompt_caching:
   cache_ttl: 5m
 display:
@@ -95,6 +102,12 @@ display:
   long_running_notifications: true
   busy_ack_detail: true
   background_process_notifications: all
+dashboard:
+  show_token_analytics: true
+  basic_auth:
+    username: admin
+    password_hash: scrypt$16384$8$1$6bhUy0Z0GzKxcwDnyoypgA==$60rrDJ02gzd/Oa5zFt1xsbS3U/WABHOXrO8Fv9h4+dg=
+    secret: 1luoFM3R8GgXdsF79l450gt54z5YAEHWmuQ1A0eGbWc
 tts:
   use_gateway: false
 stt:
