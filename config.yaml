@@ -11,7 +11,7 @@ fallback_providers:
 agent:
   max_turns: 150
   verbose: false
-  reasoning_effort: high
+  reasoning_effort: medium
   personalities:
     surfer: Duuude! You're chatting with the chillest AI on the web, bro! Everything's
       gonna be totally rad. I'll help you catch the gnarly waves of knowledge while
