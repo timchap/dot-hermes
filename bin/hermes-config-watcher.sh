@@ -24,7 +24,6 @@ WATCH_PATHS=(
     "$HERMES_DIR/bin"
     "$HERMES_DIR/skills"
     "$HERMES_DIR/cron/jobs.json"
-    "$HERMES_DIR/cron/output"
 )
 DEBOUNCE_TRIGGER="$HERMES_DIR/.config-watcher.debounce"
 DEBOUNCE_SECONDS=60    # wait this long after last change before committing
