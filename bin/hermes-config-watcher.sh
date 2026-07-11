@@ -1,11 +1,10 @@
 #!/bin/bash
 # hermes-config-watcher.sh
 # Watches tracked files in ~/.hermes for changes and auto-commits + pushes.
-# Runs as a systemd service.
+# Runs as a systemd service (User=hermes).
 #
 # Uses flock(1) for robust locking — the first commit gets exclusive access
 # to /tmp/.hermes-commit.lock. Rapid-fire events are naturally coalesced.
-# Lock files in /tmp won't trigger inotify events on WATCH_DIR.
 
 set -euo pipefail
 
@@ -16,13 +15,11 @@ LOCK_FILE="$HERMES_DIR/.config-watcher.lock"
 WATCH_DIR="$HERMES_DIR"
 COMMIT_LOCK="/tmp/.hermes-commit.lock"
 
-# Logging helper
 log() {
     local msg="[$(date '+%Y-%m-%d %H:%M:%S')] $*"
     echo "$msg" >> "$LOG_FILE"
 }
 
-# Cleanup
 cleanup() {
     log "Shutting down (PID $$)"
     rm -f "$PID_FILE" "$LOCK_FILE"
@@ -39,7 +36,6 @@ cleanup_once() {
 
 trap cleanup_once EXIT INT TERM
 
-# Prevent multiple watcher instances
 if [ -f "$LOCK_FILE" ]; then
     existing_pid=$(cat "$LOCK_FILE" 2>/dev/null || echo "")
     if [ -n "$existing_pid" ] && kill -0 "$existing_pid" 2>/dev/null; then
@@ -54,10 +50,8 @@ echo $$ > "$LOCK_FILE"
 echo $$ > "$PID_FILE"
 log "Config watcher started (PID $$)"
 
-# Commit and push. Uses flock to ensure only one commit runs at a time.
 do_commit() {
     (
-        # flock: try to acquire lock, wait up to 5s, skip if unavailable
         if ! flock -w 5 200; then
             log "Could not acquire lock (another commit in progress)"
             return 1
@@ -65,18 +59,8 @@ do_commit() {
 
         cd "$HERMES_DIR" || { log "CD FAILED: $HERMES_DIR"; return 1; }
 
-        # Debug: verify we're in the right place
-        local git_dir
-        git_dir=$(git rev-parse --show-toplevel 2>/dev/null || echo "NOT_A_REPO")
-        local pwd_dir
-        pwd_dir=$(pwd)
-        local all_status
-        all_status=$(git status --porcelain 2>/dev/null || echo "GIT_STATUS_FAILED")
-
-        log "DEBUG: pwd=$pwd_dir git_toplevel=$git_dir status_lines=[$all_status]"
-
         local changed_lines
-        changed_lines=$(echo "$all_status" | grep -v '^??' || true)
+        changed_lines=$(git status --porcelain 2>/dev/null | grep -v '^??' || true)
 
         if [ -z "$changed_lines" ]; then
             log "No tracked file changes to commit"
@@ -91,7 +75,6 @@ do_commit() {
 
         if git commit -m "Auto-commit: ${file_count} file(s) changed" 2>/dev/null; then
             log "Committed ${file_count} file(s)"
-
             if git push origin main 2>/dev/null; then
                 log "Pushed to origin/main"
             else
@@ -103,7 +86,6 @@ do_commit() {
     ) 200>"$COMMIT_LOCK"
 }
 
-# Start watching
 mkdir -p "$HERMES_DIR/logs"
 log "Starting inotifywait on $WATCH_DIR"
 
