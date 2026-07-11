@@ -170,7 +170,46 @@
       "profile": null,
       "toast_notifications": true,
       "fire_claim": null
+    },
+    {
+      "id": "1c009fda89be",
+      "name": "homelab-weekly-digest",
+      "prompt": "You are producing a weekly Homelab Digest for the user. Run once per week, typically Monday morning. Produce a concise, scannable report covering exactly three sections:\n\n## 1. Resource Trends\nCheck the Raspberry Pi's current resource usage:\n- Storage: df -h for / and /home, note which partitions are growing\n- Memory: free -h, note usage vs available\n- Swap: swapon --show + free -h, note swap activity\n- Load: uptime\n- Check for any journal warnings/errors from the past 7 days: journalctl --since=\"7 days ago\" --priority=warning -q | head -50\n\nCompare against previous weeks if data exists (check /home/hermes/.hermes/data/ for any past digest files). Flag anything trending up by >10% from last week.\n\n## 2. Homelab & Ansible Summary\n- Check git status in the homelab repo: cd /home/hermes/homelab && git status --short\n- Show the last 10 git commits on main: cd /home/hermes/homelab && git log --oneline -10\n- List any playbooks/roles changed recently: cd /home/hermes/homelab && git diff --name-only HEAD~7..HEAD\n- Check if any ansible playbooks would fail with --check mode: cd /home/hermes/homelab && ansible-playbook ansible/site.yml --check --syntax-check 2>&1 | head -20\n- Flag any services listed in services/ that may not be running (check systemctl list-units --type=service --state=failed)\n\n## 3. Hermes Agent Usage\n- Count sessions since last run: find /home/hermes/.hermes/sessions/ -name \"*.json\" -mtime -7 2>/dev/null | wc -l\n- List skills: ls ~/.hermes/skills/ 2>/dev/null\n- List memory entries: cat ~/.hermes/memories/*.md 2>/dev/null | grep -c \"^-\" || echo 0\n- List active cron jobs: cronjob action='list'\n- Note any new skills created or sessions where skills were saved/updated\n\n## Format\nKeep it under 1500 words. Use bullet points. Highlight anything that needs attention with \u26a0\ufe0f. End with \"ACTION ITEMS\" section listing anything that requires user intervention (0+ items).\n\nIf any command fails gracefully \u2014 don't error out on missing data, just note \"N/A\" for that metric.\n\nIMPORTANT: Before running, check if there's a digest file from last week at /home/hermes/.hermes/data/homelab-weekly-digest.md. If it exists, read it first to compare trends. If it doesn't, just report current state.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": "custom",
+      "model_snapshot": "Qwen3.6-35B-A3B-GGUF",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * 1",
+        "display": "0 8 * * 1"
+      },
+      "schedule_display": "0 8 * * 1",
+      "repeat": {
+        "times": 52,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-07-11T17:24:06.499145+02:00",
+      "next_run_at": "2026-07-13T08:00:00+02:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
     }
   ],
-  "updated_at": "2026-07-11T17:19:10.567355+02:00"
+  "updated_at": "2026-07-11T17:24:06.549731+02:00"
 }
