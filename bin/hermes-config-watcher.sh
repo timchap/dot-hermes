@@ -152,10 +152,25 @@ DEBOUNCE_PID=$!
 
 # inotifywait feeds change events; debounce_loop handles the 1-min timer
 inotifywait -m -r \
-    --exclude '(node_modules|\.git|cache|logs|\.hermes_history|\.env|state\.db(-shm|-wal|-journal)?|gateway|kanban|sessions|\.config-watcher\.debounce|cron/ticker_heartbeat$|cron/ticker_last_success$)' \
+    --exclude '(node_modules|\.git|cache|logs|\.hermes_history|\.env|gateway|kanban|sessions|\.config-watcher\.debounce|\.tick\.lock)' \
     -e modify,create,delete,close_write,moved_to \
     "$WATCH_DIR" \
     2>/dev/null \
     | while IFS=' ' read -r directory event file; do
+        # Filter out transient/auxiliary files that should not trigger commits:
+        # - SQLite auxiliary files (*.db-shm, *.db-wal, *.db-journal)
+        # - Cache files (*.cache.json, *_cache.json)
+        # - Temp files (*.tmp.*)
+        # - Lock files (*lock*)
+        case "$file" in
+            *-shm|-wal|-journal|*.cache*|*.tmp*|*lock*)
+                continue
+                ;;
+        esac
+        case "$directory/$file" in
+            kanban/boards/*)
+                continue
+                ;;
+        esac
         mark_change
     done
