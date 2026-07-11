@@ -63,10 +63,20 @@ do_commit() {
             return 1
         fi
 
-        cd "$HERMES_DIR"
+        cd "$HERMES_DIR" || { log "CD FAILED: $HERMES_DIR"; return 1; }
+
+        # Debug: verify we're in the right place
+        local git_dir
+        git_dir=$(git rev-parse --show-toplevel 2>/dev/null || echo "NOT_A_REPO")
+        local pwd_dir
+        pwd_dir=$(pwd)
+        local all_status
+        all_status=$(git status --porcelain 2>/dev/null || echo "GIT_STATUS_FAILED")
+
+        log "DEBUG: pwd=$pwd_dir git_toplevel=$git_dir status_lines=[$all_status]"
 
         local changed_lines
-        changed_lines=$(git status --porcelain 2>/dev/null | grep -v '^??' || true)
+        changed_lines=$(echo "$all_status" | grep -v '^??' || true)
 
         if [ -z "$changed_lines" ]; then
             log "No tracked file changes to commit"
