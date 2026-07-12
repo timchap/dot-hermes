@@ -185,6 +185,17 @@ Environment=PATH=/home/hermes/.hermes/hermes-agent/venv/bin:/usr/local/bin:/usr/
 
 Missing this: the service starts but the app silently falls back to defaults or fails to find modules. Verify with `journalctl -u <service> -n 20` — look for `(not found, using defaults)` or `ModuleNotFoundError`.
 
+## Homelab Service Pattern (Docker Compose)
+
+When creating a **new Docker Compose service** in the homelab (`~/homelab/`), the convention is:
+
+```
+services/<name>/              # Docker Compose files (compose.yaml, .env.example, etc.)
+ansible/roles/<name>/tasks/   # Ansible role for idempotent deployment
+```
+
+**Both are required.** Never ship only the Docker Compose files without the matching Ansible role — the role ensures idempotent deployment on target hosts. See `templates/ansible-docker-role.md` for the role skeleton.
+
 ## Verification Checklist
 
 - [ ] Unit file has `User=<owner>` directive (not running as root)
