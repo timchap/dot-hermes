@@ -174,7 +174,7 @@
     },
     {
       "id": "1c009fda89be",
-      "name": "Weekly Smart Suggestion",
+      "name": "Smart Suggestion",
       "prompt": "You are a \"Smart Suggestion Scout\" running weekly. Each run, produce ONE high-quality suggestion for something that could make the user's life easier. Be discerning \u2014 only suggest things that truly fit their patterns. Follow these steps:\n\n## Step 1: Gather Context\n1. Search past sessions for all previous \"suggestion\" conversations. Look at what you've suggested before and whether the user responded positively, negatively, or with \"tell me more.\" This is critical \u2014 learn from their reactions.\n2. Search sessions for what the user has been working on recently (last 4 weeks). What projects, infra work, Hermes usage patterns, interests, preferences?\n3. Read the user's memory entries: cat /home/hermes/.hermes/memories/*.md 2>/dev/null\n4. Read SOUL.md: cat /home/hermes/.hermes/SOUL.md\n5. List current cron jobs: cronjob action='list'\n6. List skills: ls /home/hermes/.hermes/skills/ 2>/dev/null\n7. Check homelab activity: cd /home/hermes/homelab && git log --oneline -20 2>/dev/null\n\n## Step 2: Web Research\nSearch the web for what people are doing with agentic AI, AI assistants, and automation that would appeal to someone with the user's profile. Look for:\n- New tools or techniques in the AI agent space (2025-2026)\n- Productivity workflows involving AI agents\n- Homelab/IoT automation ideas\n- Smart home integrations\n- Self-hosted AI applications\n- Any relevant new capabilities in the Hermes Agent ecosystem\n\nUse web_search with queries like \"agentic AI productivity 2025 2026\", \"AI assistant automation ideas\", \"local AI homelab projects\".\n\n## Step 3: Generate Suggestion\nBased on ALL of the above, suggest ONE specific thing. The suggestion must be:\n- **Tailored** to the user's actual usage patterns and stated interests\n- **Actionable** \u2014 something they could implement (not just a vague idea)\n- **Novel** \u2014 NOT something already in their cron jobs, skills, or memory\n- **Interesting enough** that they'd say \"tell me more\" \u2014 avoid the boring/basic stuff\n- Within scope: productivity, homelab, personal assistant, automation, or their expressed interests\n\n## Step 4: Format the Output\n```\n## \ud83c\udfaf Weekly Suggestion #[NNN]\n\n**What:** [One-line description]\n\n**Why you:** [2-3 sentences explaining why this fits THEM specifically, referencing their actual patterns]\n\n**How it works:** [Brief explanation of what it is and how they'd use it]\n\n**Effort to set up:** [Low / Medium / High] + rough estimate\n\n**What you'd need:** [Specific tools, services, or changes required]\n\n---\nNote: This replaces suggestion #[NNN-1]. Previous suggestions considered: [brief list of recent ideas that didn't make the cut, so we avoid repetition]\n```\n\nBe honest. If nothing genuinely interesting comes up this week, say so rather than forcing something.",
       "skills": [],
       "skill": null,
@@ -194,7 +194,7 @@
       "schedule_display": "0 8 * * 1",
       "repeat": {
         "times": 52,
-        "completed": 0
+        "completed": 1
       },
       "enabled": true,
       "state": "scheduled",
@@ -202,8 +202,8 @@
       "paused_reason": null,
       "created_at": "2026-07-11T17:24:06.499145+02:00",
       "next_run_at": "2026-07-13T08:00:00+02:00",
-      "last_run_at": null,
-      "last_status": null,
+      "last_run_at": "2026-07-12T12:57:13.615755+02:00",
+      "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
       "deliver": "origin",
@@ -211,8 +211,9 @@
       "enabled_toolsets": null,
       "workdir": null,
       "profile": null,
-      "toast_notifications": true
+      "toast_notifications": true,
+      "fire_claim": null
     }
   ],
-  "updated_at": "2026-07-12T12:54:09.731245+02:00"
+  "updated_at": "2026-07-12T12:57:13.616224+02:00"
 }
