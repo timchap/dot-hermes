@@ -213,7 +213,48 @@
       "profile": null,
       "toast_notifications": true,
       "fire_claim": null
+    },
+    {
+      "id": "5a2433cc87e5",
+      "name": "Gmail MCP GA monitoring",
+      "prompt": "Check the Gmail MCP server status at https://developers.google.com/workspace/gmail/api/guides/configure-mcp-server and https://developers.google.com/workspace/gmail/api/overview for \"Developer Preview\" status. Use browser tools to load both pages and check if the \"Developer Preview\" disclaimer is still present on the configure page. If the Developer Preview notice is GONE (meaning the feature is now GA or generally available), send a notification to Tim saying: \"The Gmail MCP server is now GA/general availability \u2014 it's no longer in Developer Preview. You can proceed with the integration.\" If it's still in Developer Preview, say nothing (silent). Deliver to origin.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": "openrouter",
+      "model_snapshot": "qwen/qwen3.6-35b-a3b",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "interval",
+        "minutes": 720,
+        "display": "every 720m"
+      },
+      "schedule_display": "every 720m",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-07-12T17:48:52.823611+02:00",
+      "next_run_at": "2026-07-13T05:49:45.350081+02:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "profile": null,
+      "toast_notifications": true
     }
   ],
-  "updated_at": "2026-07-12T12:57:13.616224+02:00"
+  "updated_at": "2026-07-12T17:49:45.350301+02:00"
 }
