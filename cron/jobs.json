@@ -24,7 +24,7 @@
       "schedule_display": "0 6 * * *",
       "repeat": {
         "times": null,
-        "completed": 3
+        "completed": 4
       },
       "enabled": true,
       "state": "scheduled",
@@ -32,9 +32,9 @@
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:36.238620+02:00",
       "next_run_at": "2026-07-13T06:00:00+02:00",
-      "last_run_at": "2026-07-12T06:01:00.666382+02:00",
-      "last_status": "error",
-      "last_error": "RuntimeError: Skipped to prevent unintended spend: global inference config drifted since this job was created (model 'qwen3.6-35b-a3b-mtp-gguf' -> 'qwen3.6-35b-a3b-gguf'), and this job is unpinned. No inference call was made. To run on the new config, pin it explicitly: `cronjob action=update job_id=34c1ca0610de provider=<provider> model=<model>` (or pin the original values to keep them). See #44585.",
+      "last_run_at": "2026-07-12T12:54:09.730782+02:00",
+      "last_status": "ok",
+      "last_error": null,
       "last_delivery_error": null,
       "deliver": "origin",
       "origin": null,
@@ -214,5 +214,5 @@
       "toast_notifications": true
     }
   ],
-  "updated_at": "2026-07-12T12:51:39.751398+02:00"
+  "updated_at": "2026-07-12T12:54:09.731245+02:00"
 }
