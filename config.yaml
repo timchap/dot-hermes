@@ -1,13 +1,13 @@
 model:
-  default: Qwen3.6-35B-A3B-GGUF
+  default: Qwen3.6-35B-A3B-MTP-GGUF
   provider: custom:framework
-  base_url: https://openrouter.ai/api/v1
+  base_url: http://framework:13305/v1
   api_mode: chat_completions
 fallback_providers:
-- provider: openrouter
-  model: qwen/qwen3.6-35b-a3b
-  base_url: https://openrouter.ai/api/v1
-  api_mode: chat_completions
+  - provider: openrouter
+    model: qwen/qwen3.6-35b-a3b
+    base_url: https://openrouter.ai/api/v1
+    api_mode: chat_completions
 agent:
   max_turns: 150
   verbose: false
@@ -19,12 +19,6 @@ agent:
     hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every question
       is AMAZING and we're gonna CRUSH IT together! This is gonna be LEGENDARY! ARE
       YOU READY?! LET'S DO THIS! 💪😤🚀
-mcp_servers:
-  gmail-proxy:
-    url: "http://framework:8090/mcp/v1"
-    headers:
-      Authorization: "Bearer ${GMAIL_PROXY_SHARED_SECRET}"
-    timeout: 60
 terminal:
   backend: local
   cwd: .
@@ -104,6 +98,8 @@ delegation:
   max_iterations: 50
 skills:
   creation_nudge_interval: 5
+command_allowlist:
+  - tirith:plain_http_to_sink
 code_execution:
   timeout: 300
   max_tool_calls: 50
@@ -124,11 +120,17 @@ secrets:
       DISCORD_BOT_TOKEN: op://Hermes Readable/Hermes Discord Token/password
       GMAIL_PROXY_SHARED_SECRET: op://Hermes Readable/Hermes Gmail Proxy Shared Secret/password
 _config_version: 33
+mcp_servers:
+  gmail-proxy:
+    url: http://framework:8090/mcp/v1
+    headers:
+      Authorization: Bearer ${GMAIL_PROXY_SHARED_SECRET}
+    timeout: 60
 provider_routing:
   only:
-  - parasail
-  - anthropic
-  - mistral
+    - parasail
+    - anthropic
+    - mistral
 session_reset:
   mode: none
   idle_minutes: 1440
@@ -136,63 +138,63 @@ session_reset:
 group_sessions_per_user: true
 platform_toolsets:
   cli:
-  - browser
-  - clarify
-  - code_execution
-  - computer_use
-  - cronjob
-  - delegation
-  - file
-  - image_gen
-  - memory
-  - session_search
-  - skills
-  - terminal
-  - todo
-  - tts
-  - vision
-  - web
+    - browser
+    - clarify
+    - code_execution
+    - computer_use
+    - cronjob
+    - delegation
+    - file
+    - image_gen
+    - memory
+    - session_search
+    - skills
+    - terminal
+    - todo
+    - tts
+    - vision
+    - web
   telegram:
-  - hermes-telegram
+    - hermes-telegram
   discord:
-  - browser
-  - clarify
-  - code_execution
-  - computer_use
-  - cronjob
-  - delegation
-  - file
-  - image_gen
-  - memory
-  - session_search
-  - skills
-  - terminal
-  - todo
-  - tts
-  - vision
-  - web
+    - browser
+    - clarify
+    - code_execution
+    - computer_use
+    - cronjob
+    - delegation
+    - file
+    - image_gen
+    - memory
+    - session_search
+    - skills
+    - terminal
+    - todo
+    - tts
+    - vision
+    - web
   whatsapp:
-  - hermes-whatsapp
+    - hermes-whatsapp
   slack:
-  - hermes-slack
+    - hermes-slack
   signal:
-  - hermes-signal
+    - hermes-signal
   homeassistant:
-  - hermes-homeassistant
+    - hermes-homeassistant
   qqbot:
-  - hermes-qqbot
+    - hermes-qqbot
   yuanbao:
-  - hermes-yuanbao
+    - hermes-yuanbao
   teams:
-  - hermes-teams
+    - hermes-teams
   google_chat:
-  - hermes-google_chat
+    - hermes-google_chat
 custom_providers:
-- name: Framework
-  base_url: http://framework:13305/v1
-  model: Qwen3.6-35B-A3B-MTP-GGUF
+  - name: Framework
+    base_url: http://framework:13305/v1
+    model: Qwen3.6-35B-A3B-MTP-GGUF
 known_plugin_toolsets:
   cli:
-  - spotify
+    - spotify
   discord:
-  - spotify
+    - spotify
