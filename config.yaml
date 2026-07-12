@@ -119,6 +119,7 @@ secrets:
       OPENROUTER_API_KEY: op://Hermes Readable/Openrouter API key/password
       DISCORD_BOT_TOKEN: op://Hermes Readable/Hermes Discord Token/password
       GMAIL_PROXY_SHARED_SECRET: op://Hermes Readable/Hermes Gmail Proxy Shared Secret/password
+      CALENDAR_PROXY_SHARED_SECRET: op://Hermes Readable/Hermes Calendar Proxy Shared Secret/password
 _config_version: 33
 mcp_servers:
   gmail-proxy:
@@ -127,9 +128,10 @@ mcp_servers:
       Authorization: Bearer ${GMAIL_PROXY_SHARED_SECRET}
     timeout: 60
   calendar-proxy:
-    url: http://framework:8091/mcp
+    url: http://framework:8091/mcp/v1
     headers:
-      Authorization: Bearer ${MCP_CALENDAR_PROXY_API_KEY}
+      Authorization: Bearer ${CALENDAR_PROXY_SHARED_SECRET}
+    timeout: 60
 provider_routing:
   only:
     - parasail
