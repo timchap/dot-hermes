@@ -157,6 +157,34 @@ hermes mcp configure NAME       # Toggle tool selection
 | Connection dropping | Client retries 5× with backoff (1s→60s). Check server health. |
 | Timeout → 405 → 401 auth mismatch | See "Debugging HTTP proxy auth" below |
 
+### 1Password secret resolution silently fails → 401s on MCP requests
+
+When the `op` CLI has no accounts configured (missing `OP_SERVICE_ACCOUNT_TOKEN` or app integration), Hermes silently drops `${VAR}` resolution and sends the literal placeholder or empty string as the auth header. The proxy returns 401 on every request.
+
+**Symptoms:**
+- `hermes mcp test <name>` shows green (it only hits `/health` — no auth required)
+- Proxy logs show repeated 401 Unauthorized on POST `/mcp/v1` (keepalive probes)
+- `GMAIL_PROXY_SHARED_SECRET` (or relevant env var) is not set in the Hermes process
+
+**Diagnosis:**
+```bash
+# Check if the secret resolved
+echo "GMAIL_PROXY_SHARED_SECRET=$GMAIL_PROXY_SHARED_SECRET"
+# If empty/NOT SET, check op CLI auth
+op account list
+# If it says "No accounts configured", the secret never resolves
+```
+
+**Fix:**
+```bash
+# Set the service account token in the environment where Hermes runs
+export OP_SERVICE_ACCOUNT_TOKEN="opsv_..."
+# Or add to ~/.hermes/.env for persistence, then restart Hermes
+```
+
+**Why the disconnect between test-green and runtime-401:**
+`hermes mcp test` probes the proxy's `/health` endpoint (GET, no auth). The actual MCP handshake sends a JSON-RPC `initialize` POST to `/mcp/v1` which requires the Authorization header. If the secret didn't resolve, the header is empty/broken → 401 on every handshake call and every subsequent keepalive probe.
+
 ### Debugging HTTP proxy auth failures
 
 When an HTTP MCP server times out (especially proxies like `gmail-proxy`), use raw `curl` to diagnose the actual failure:
@@ -173,19 +201,20 @@ When an HTTP MCP server times out (especially proxies like `gmail-proxy`), use r
      -d '{"jsonrpc":"2.0","id":1,"method":"ping"}' \
      -w "\n%{http_code}"
    ```
-   - `401` with `{"detail":"Invalid proxy shared secret"}` → proxy is alive but the `{{SECRET_REF}}` in config doesn't match
+   - `401` with `{"detail":"Invalid proxy shared secret"}` → proxy is alive but the `${VAR}` in config doesn't match
    - `401` with no JSON body → auth header format wrong or missing
    - `403` → IP/network authorization denied
    - `404` → endpoint path wrong (check URL in config vs actual)
 
 3. **Test with correct auth:** Add `-H "Authorization: Bearer <secret>"` to reproduce what Hermes sends.
 
-4. **Check 1Password secret resolution:** If using `{{VAR}}` syntax, verify the secret is actually resolving (the `1Password: applied N secrets` output on test confirms injection).
+4. **Check 1Password secret resolution:** If using `${VAR}` syntax, verify the secret is actually resolving (the `1Password: applied N secrets` output on test confirms injection).
 
 **Common root causes:**
 - Tailscale ACLs missing port in `dst` rules (the proxy is unreachable until the ACL is applied and syncs)
 - Shared secret rotated on the proxy side but not updated in 1Password (or vice versa)
 - Wrong URL path (e.g., `/mcp` vs `/mcp/v1` — MCP servers often require the version suffix)
+- `op` CLI not authenticated → `${VAR}` resolves to empty → 401 on all MCP requests (including keepalives)
 
 ### Config placeholder syntax pitfall (CRITICAL)
 
