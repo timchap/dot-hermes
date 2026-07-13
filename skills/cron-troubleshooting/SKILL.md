@@ -10,13 +10,20 @@ Diagnose why cron jobs didn't run, didn't deliver, or ran unexpectedly. Covers t
 
 ## How Cron Actually Works (Critical)
 
-**Hermes cron jobs execute within the conversation loop, NOT as a background daemon.** The scheduler checks for due jobs only when the agent is in an active conversation turn. When the agent is idle (no user session), cron never fires.
+**The cron ticker runs inside the Hermes gateway process (or desktop dashboard backend), NOT the agent conversation process.** It is a background thread that ticks every ~60 seconds and fires due jobs.
+
+The tick thread starts via:
+- `gateway/run.py::GatewayRunner._start_cron_ticker` when running `hermes gateway run`
+- `hermes_cli/web_server.py::_start_desktop_cron_ticker` when running `hermes dashboard` in desktop mode
+
+**Key implication:** If the gateway process is not running, cron does not fire regardless of whether the agent conversation process is active. The gateway process and the agent conversation process are separate things.
 
 This means:
-- If you're using the Web UI for a session and close it, cron stops ticking
-- If no one interacts with Hermes for hours, overnight cron jobs (3 AM, 4 AM, 6 AM, etc.) will be skipped
-- Cron jobs fire when the NEXT conversation turn starts after their scheduled time
-- There is no separate `hermes-scheduler` systemd service — it lives inside the agent process
+- If the gateway is down (e.g., not installed as a systemd service), overnight cron jobs will be skipped
+- If you close the Web UI but the gateway is running as a daemon, cron continues to fire
+- Cron jobs fire based on wall-clock time via the tick loop, not when the next conversation turn starts
+- There is no separate `hermes-scheduler` systemd service — the tick lives inside the gateway/dashboard process
+- Installing the gateway as a persistent service (`sudo hermes gateway install --system`) is the fix for reliable overnight cron execution
 
 ## Diagnosing Missed Cron Runs
 
@@ -52,10 +59,25 @@ The agent was idle. Fix: ensure a persistent session is running, or acknowledge 
 The job delivered to a session that was no longer open. Check `cronjob action='list'` for `last_run_at` and `last_status`. Search past sessions via `session_search` to find the result.
 
 ### Cron job using wrong model/provider
-Check `cronjob action='list'` for `model` and `provider` fields. Update with:
+**Symptom:** Job fails with `"global inference config drifted since this job was created (provider 'X' -> 'Y')"` or similar drift error. This happens when a job was created without pinning provider/model, then the user's default config changes.
+
+**Fix:** The `hermes cron edit` CLI does NOT have provider/model flags. Pin the job by directly editing `~/.hermes/cron/jobs.json`:
+
+```python
+import json
+with open('/home/hermes/.hermes/cron/jobs.json', 'r') as f:
+    data = json.load(f)
+for job in data['jobs']:
+    if job['id'] == 'JOB_ID_HERE':
+        job['provider'] = 'openrouter'  # or desired provider
+        job['model'] = 'qwen/qwen3.6-35b-a3b'  # or desired model
+        break
+with open('/home/hermes/.hermes/cron/jobs.json', 'w') as f:
+    json.dump(data, f, indent=2)
+    f.write('\n')
 ```
-cronjob action='update' job_id='...' model='{model: "...", provider: "..."}'
-```
+
+Then verify: `cronjob action='list'` to confirm the job is fixed.
 
 ### Cron job running way late
 This happens when the agent was down/idle and the job fires on the next turn. Not a scheduling bug — expected behavior of conversation-loop scheduling.

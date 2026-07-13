@@ -68,14 +68,14 @@
     "archived_at": null,
     "created_at": "2026-07-13T08:19:29.172208+00:00",
     "created_by": "agent",
-    "last_patched_at": "2026-07-13T09:47:25.153572+00:00",
-    "last_used_at": "2026-07-13T09:47:22.265032+00:00",
-    "last_viewed_at": "2026-07-13T09:47:22.250520+00:00",
-    "patch_count": 1,
+    "last_patched_at": "2026-07-13T09:50:36.425548+00:00",
+    "last_used_at": "2026-07-13T09:50:04.111382+00:00",
+    "last_viewed_at": "2026-07-13T09:50:04.095875+00:00",
+    "patch_count": 4,
     "pinned": false,
     "state": "active",
-    "use_count": 2,
-    "view_count": 2
+    "use_count": 3,
+    "view_count": 3
   },
   "hermes-agent": {
     "archived_at": null,
