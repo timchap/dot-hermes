@@ -31,7 +31,7 @@
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:36.238620+02:00",
-      "next_run_at": "2026-07-13T06:00:00+02:00",
+      "next_run_at": "2026-07-14T06:00:00+02:00",
       "last_run_at": "2026-07-12T12:54:09.730782+02:00",
       "last_status": "ok",
       "last_error": null,
@@ -66,15 +66,15 @@
       "schedule_display": "0 4 * * *",
       "repeat": {
         "times": null,
-        "completed": 4
+        "completed": 5
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:37.305589+02:00",
-      "next_run_at": "2026-07-13T04:00:00+02:00",
-      "last_run_at": "2026-07-12T12:51:39.750893+02:00",
+      "next_run_at": "2026-07-14T04:00:00+02:00",
+      "last_run_at": "2026-07-13T11:46:52.811895+02:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -115,7 +115,7 @@
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T16:53:01.969013+02:00",
-      "next_run_at": "2026-07-13T03:00:00+02:00",
+      "next_run_at": "2026-07-14T03:00:00+02:00",
       "last_run_at": "2026-07-12T03:13:28.235763+02:00",
       "last_status": "ok",
       "last_error": null,
@@ -131,7 +131,7 @@
     {
       "id": "02920c979504",
       "name": "Skill quality review",
-      "prompt": "You are tasked with a weekly quality review of all Hermes Agent skills installed on this system. Follow this process carefully:\n\n1. **Discover all skills**: List every SKILL.md under `~/.hermes/skills/`. Read each one fully. Also read the higher-level DESCRIPTION.md files.\n\n2. **Apply quality checks**: Review the skill\u2019s compliance with best practices from the hermes-agent-skill-authoring skill. Determine if the skill should be moved to a more suitable location in the hierarchy. Ensure that the DESCRIPTION.md accurately encompasses the child skill sets.\n\n3. **For each skill, report**:\n   - Skill path and name\n   - Status: PASS or needs changes\n   - Any specific issues found with line references\n\n4. **Make changes**: If issues are found, apply them with `patch` or `write_file`. Be surgical \u2014 fix the exact problem. Do NOT rewrite skills that are fine. After patching, read the patched file back to confirm the change applied correctly.\n\n5. **Final summary**: Report how many skills were reviewed, how many needed changes, and what was changed.\n\nIMPORTANT: Read every skill fully before making any changes. Work through them one at a time in category order. If a skill has multiple issues, fix them all in one patch/edit pass.",
+      "prompt": "You are tasked with a weekly quality review of all Hermes Agent skills installed on this system. Follow this process carefully:\n\n1. **Discover all skills**: List every SKILL.md under `~/.hermes/skills/`. Read each one fully. Also read the higher-level DESCRIPTION.md files.\n\n2. **Apply quality checks**: Review the skill\u2019s compliance with best practices from the hermes-agent-skill-authoring skill. Determine if the skill should be moved to a more suitable location in the hierarchy. Ensure that the DESCRIPTION.md accurately encompasses the child skill sets. Also, check skill content for accuracy. Some skills may have been added by models with lower intelligence, so they may include hallucinated information. If a skill contains verifiable information, verify it (e.g. with a web search, through source code inspection, etc.)\n\n3. **For each skill, report**:\n   - Skill path and name\n   - Status: PASS or needs changes\n   - Any specific issues found with line references\n\n4. **Make changes**: If issues are found, apply them with `patch` or `write_file`. Be surgical \u2014 fix the exact problem. Do NOT rewrite skills that are fine. After patching, read the patched file back to confirm the change applied correctly.\n\n5. **Final summary**: Report how many skills were reviewed, how many needed changes, and what was changed.\n\nIMPORTANT: Read every skill fully before making any changes. Work through them one at a time in category order. If a skill has multiple issues, fix them all in one patch/edit pass.",
       "skills": [
         "hermes-agent-skill-authoring"
       ],
@@ -159,7 +159,7 @@
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T17:09:20.248156+02:00",
-      "next_run_at": "2026-07-13T09:00:00+02:00",
+      "next_run_at": "2026-07-20T09:00:00+02:00",
       "last_run_at": "2026-07-11T17:40:08.022875+02:00",
       "last_status": "ok",
       "last_error": null,
@@ -201,7 +201,7 @@
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T17:24:06.499145+02:00",
-      "next_run_at": "2026-07-13T08:00:00+02:00",
+      "next_run_at": "2026-07-20T08:00:00+02:00",
       "last_run_at": "2026-07-12T12:57:13.615755+02:00",
       "last_status": "ok",
       "last_error": null,
@@ -236,25 +236,26 @@
       "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 0
+        "completed": 1
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-12T17:48:52.823611+02:00",
-      "next_run_at": "2026-07-13T05:49:45.350081+02:00",
-      "last_run_at": null,
-      "last_status": null,
-      "last_error": null,
+      "next_run_at": "2026-07-13T23:45:37.981813+02:00",
+      "last_run_at": "2026-07-13T11:45:37.981813+02:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Skipped to prevent unintended spend: global inference config drifted since this job was created (provider 'openrouter' -> 'custom'; model 'qwen/qwen3.6-35b-a3b' -> 'qwen3.6-35b-a3b-mtp-gguf'), and this job is unpinned. No inference call was made. To run on the new config, pin it explicitly: `cronjob action=update job_id=5a2433cc87e5 provider=<provider> model=<model>` (or pin the original values to keep them). See #44585.",
       "last_delivery_error": null,
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
       "workdir": null,
       "profile": null,
-      "toast_notifications": true
+      "toast_notifications": true,
+      "fire_claim": null
     }
   ],
-  "updated_at": "2026-07-12T17:49:45.350301+02:00"
+  "updated_at": "2026-07-13T11:46:52.812374+02:00"
 }
