@@ -88,7 +88,19 @@ mkdir -p ~/homelab/docs/digests
    > — [Date you acted on it]
    ```
 
-5. **Commit and push to the homelab repo**
+5. **Preflight check the homelab repo**
+   Before committing, verify the repo is properly configured:
+   ```bash
+   cd ~/homelab
+   # Check it is a git repo with a remote
+   [ -d .git ] && git remote -v | grep -q 'origin' || {
+     echo "WARN: ~/homelab is not a git repo or has no remote configured — commit locally only"
+     NEEDS_REMOTE_SETUP=1
+   }
+   ```
+   If `NEEDS_REMOTE_SETUP=1`, commit locally but skip the push. Notify the user that the repo needs a remote configured.
+
+6. **Commit and push to the homelab repo**
    ```bash
    cd ~/homelab
    git add docs/digests/llm-digest-YYYY-MM-DD.md
@@ -97,6 +109,7 @@ mkdir -p ~/homelab/docs/digests
    git push
    ```
    If the push is rejected (remote has changes), do `git pull --rebase` first, then push again.
+   If no remote is configured (from step 5 preflight), skip push — the commit is still saved locally.
 
 6. **Produce a concise summary for delivery**
    Return a brief summary of the digest (digest items + recommendations) as the final response. Do NOT output the full file content — just the highlights. If nothing notable was found, return `[SILENT]`.

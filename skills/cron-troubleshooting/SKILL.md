@@ -82,5 +82,4 @@ If the user needs reliable overnight delivery:
 
 ## Support Files
 
-- `references/log-diagnostic-patterns.md` — concrete log analysis patterns for cron issues
-- `references/delivery-model-explainer.md` — explainer on deliver modes for user-facing use
+- None currently — the skill previously referenced two support files that were never created.

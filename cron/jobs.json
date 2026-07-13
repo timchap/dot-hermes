@@ -24,7 +24,7 @@
       "schedule_display": "0 6 * * *",
       "repeat": {
         "times": null,
-        "completed": 4
+        "completed": 5
       },
       "enabled": true,
       "state": "scheduled",
@@ -32,7 +32,7 @@
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:36.238620+02:00",
       "next_run_at": "2026-07-14T06:00:00+02:00",
-      "last_run_at": "2026-07-12T12:54:09.730782+02:00",
+      "last_run_at": "2026-07-13T11:47:31.391946+02:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -194,7 +194,7 @@
       "schedule_display": "0 8 * * 1",
       "repeat": {
         "times": 52,
-        "completed": 1
+        "completed": 2
       },
       "enabled": true,
       "state": "scheduled",
@@ -202,7 +202,7 @@
       "paused_reason": null,
       "created_at": "2026-07-11T17:24:06.499145+02:00",
       "next_run_at": "2026-07-20T08:00:00+02:00",
-      "last_run_at": "2026-07-12T12:57:13.615755+02:00",
+      "last_run_at": "2026-07-13T11:47:12.741532+02:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -220,8 +220,8 @@
       "prompt": "Check the Gmail MCP server status at https://developers.google.com/workspace/gmail/api/guides/configure-mcp-server and https://developers.google.com/workspace/gmail/api/overview for \"Developer Preview\" status. Use browser tools to load both pages and check if the \"Developer Preview\" disclaimer is still present on the configure page. If the Developer Preview notice is GONE (meaning the feature is now GA or generally available), send a notification to Tim saying: \"The Gmail MCP server is now GA/general availability \u2014 it's no longer in Developer Preview. You can proceed with the integration.\" If it's still in Developer Preview, say nothing (silent). Deliver to origin.",
       "skills": [],
       "skill": null,
-      "model": null,
-      "provider": null,
+      "model": "qwen/qwen3.6-35b-a3b",
+      "provider": "openrouter",
       "provider_snapshot": "openrouter",
       "model_snapshot": "qwen/qwen3.6-35b-a3b",
       "base_url": null,
@@ -257,5 +257,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-07-13T11:46:52.812374+02:00"
+  "updated_at": "2026-07-13T11:47:31.392597+02:00"
 }
