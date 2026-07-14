@@ -66,15 +66,15 @@
       "schedule_display": "0 4 * * *",
       "repeat": {
         "times": null,
-        "completed": 5
+        "completed": 6
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:37.305589+02:00",
-      "next_run_at": "2026-07-14T04:00:00+02:00",
-      "last_run_at": "2026-07-13T11:46:52.811895+02:00",
+      "next_run_at": "2026-07-15T04:00:00+02:00",
+      "last_run_at": "2026-07-14T04:01:21.170006+02:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -108,15 +108,15 @@
       "schedule_display": "0 3 * * *",
       "repeat": {
         "times": null,
-        "completed": 2
+        "completed": 3
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T16:53:01.969013+02:00",
-      "next_run_at": "2026-07-14T03:00:00+02:00",
-      "last_run_at": "2026-07-13T11:49:52.622806+02:00",
+      "next_run_at": "2026-07-15T03:00:00+02:00",
+      "last_run_at": "2026-07-14T03:02:07.359403+02:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -236,17 +236,17 @@
       "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 1
+        "completed": 2
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-12T17:48:52.823611+02:00",
-      "next_run_at": "2026-07-13T23:45:37.981813+02:00",
-      "last_run_at": "2026-07-13T11:45:37.981813+02:00",
-      "last_status": "error",
-      "last_error": "RuntimeError: Skipped to prevent unintended spend: global inference config drifted since this job was created (provider 'openrouter' -> 'custom'; model 'qwen/qwen3.6-35b-a3b' -> 'qwen3.6-35b-a3b-mtp-gguf'), and this job is unpinned. No inference call was made. To run on the new config, pin it explicitly: `cronjob action=update job_id=5a2433cc87e5 provider=<provider> model=<model>` (or pin the original values to keep them). See #44585.",
+      "next_run_at": "2026-07-14T11:47:13.164748+02:00",
+      "last_run_at": "2026-07-13T23:47:13.164748+02:00",
+      "last_status": "ok",
+      "last_error": null,
       "last_delivery_error": null,
       "deliver": "origin",
       "origin": null,
@@ -257,5 +257,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-07-13T11:49:52.623297+02:00"
+  "updated_at": "2026-07-14T04:01:21.170478+02:00"
 }

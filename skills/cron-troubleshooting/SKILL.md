@@ -25,6 +25,10 @@ This means:
 - There is no separate `hermes-scheduler` systemd service — the tick lives inside the gateway/dashboard process
 - Installing the gateway as a persistent service (`sudo hermes gateway install --system`) is the fix for reliable overnight cron execution
 
+**User expectation mismatch:** Users often assume cron jobs are independent daemons (like a traditional crontab). They are not. The gateway must be running 24/7 for jobs to fire at their scheduled times. If the user objects to this model, the alternatives are:
+- Run the gateway as a systemd service (recommended)
+- Use `no_agent: true` with a shell script that uses an external scheduler (e.g., systemd timers, cron) to trigger Hermes via CLI
+
 ## Diagnosing Missed Cron Runs
 
 1. **Check `cronjob action='list'`** — look at `last_run_at` vs `next_run_at` for all jobs
@@ -78,6 +82,8 @@ with open('/home/hermes/.hermes/cron/jobs.json', 'w') as f:
 ```
 
 Then verify: `cronjob action='list'` to confirm the job is fixed.
+
+**Workflow pitfall:** When updating provider/model for multiple jobs, ALWAYS confirm the desired provider with the user first — they may change their mind mid-session (e.g., start wanting openrouter then switch to custom:framework). Making batch updates before confirmation has happened leads to rework. Better flow: list jobs, ask "which provider/model for all of these?", get explicit confirmation, then batch-update.
 
 ### Cron job running way late
 This happens when the agent was down/idle and the job fires on the next turn. Not a scheduling bug — expected behavior of conversation-loop scheduling.
