@@ -150,6 +150,37 @@ sudo systemctl status <service>       # quick status + recent log lines
 
 Some services write PID files (e.g. `~/.hermes/.service.pid`). systemd already tracks PIDs via `Type=simple`, so PID files are only useful for cross-service coordination (e.g. "is watcher already running?"). Use a lock file pattern in the script for that purpose.
 
+### User services (per-user, no sudo)
+
+User services live in `~/.config/systemd/user/` and are managed with `systemctl --user` (no sudo). Unit file path: `~/.config/systemd/user/<service>.service`.
+
+Enable/stop/restart:
+```bash
+systemctl --user daemon-reload
+systemctl --user enable  <service>    # start on login
+systemctl --user start   <service>    # start now
+systemctl --user restart <service>
+systemctl --user disable <service>    # stop on boot
+```
+
+Status and logs:
+```bash
+systemctl --user status <service>
+journalctl --user -u <service> -f
+```
+
+The `[Install]` section uses `WantedBy=default.target` (user equivalent of `multi-user.target`):
+```ini
+[Install]
+WantedBy=default.target
+```
+
+Symlink created at: `~/.config/systemd/user/default.target.wants/<service>.service`
+
+### When to use user vs system services
+- **User service** — processes that belong to a logged-in user, no root needed (e.g. Hermes gateway, desktop daemons)
+- **System service** — system-wide daemons, need root, run before login (e.g. Docker, nginx)
+
 ## Verification
 
 After creating a service:

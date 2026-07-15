@@ -82,13 +82,13 @@
     "created_at": "2026-07-10T21:02:04.151208+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-07-14T02:01:28.161595+00:00",
-    "last_viewed_at": "2026-07-14T02:01:28.148464+00:00",
+    "last_used_at": "2026-07-14T20:10:50.167836+00:00",
+    "last_viewed_at": "2026-07-14T20:10:50.158979+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 28,
-    "view_count": 28
+    "use_count": 29,
+    "view_count": 29
   },
   "hermes-agent-skill-authoring": {
     "archived_at": null,
@@ -108,13 +108,13 @@
     "created_at": "2026-07-11T16:17:16.006977+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-07-13T09:44:57.176574+00:00",
-    "last_viewed_at": "2026-07-13T09:44:57.156299+00:00",
+    "last_used_at": "2026-07-14T20:46:11.165910+00:00",
+    "last_viewed_at": "2026-07-14T20:46:11.160306+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 5,
-    "view_count": 5
+    "use_count": 6,
+    "view_count": 6
   },
   "hermes-webui": {
     "archived_at": null,
@@ -263,13 +263,26 @@
     "archived_at": null,
     "created_at": "2026-07-11T00:32:51.238297+00:00",
     "created_by": null,
-    "last_patched_at": "2026-07-12T01:16:05.487233+00:00",
-    "last_used_at": "2026-07-13T09:47:02.940297+00:00",
-    "last_viewed_at": "2026-07-13T09:47:02.926376+00:00",
-    "patch_count": 8,
+    "last_patched_at": "2026-07-14T21:46:10.905222+00:00",
+    "last_used_at": "2026-07-14T21:45:09.694222+00:00",
+    "last_viewed_at": "2026-07-14T21:45:09.682028+00:00",
+    "patch_count": 9,
     "pinned": false,
     "state": "active",
-    "use_count": 9,
-    "view_count": 9
+    "use_count": 10,
+    "view_count": 10
+  },
+  "time-filtered-queries": {
+    "archived_at": null,
+    "created_at": "2026-07-14T20:12:29.312360+00:00",
+    "created_by": "agent",
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
   }
 }

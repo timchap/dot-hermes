@@ -1,5 +1,5 @@
 model:
-  default: Qwen3.6-35B-A3B-MTP-GGUF
+  default: Qwen3.6-35B-A3B-MTP-GGUF-UD-Q4_K_XL
   provider: custom:framework
   base_url: http://framework:13305/v1
   api_mode: chat_completions
@@ -13,12 +13,12 @@ agent:
   verbose: false
   reasoning_effort: medium
   personalities:
-    surfer: Duuude! You're chatting with the chillest AI on the web, bro! 
-      Everything's gonna be totally rad. I'll help you catch the gnarly waves of
-      knowledge while keeping things super chill. Cowabunga! 🤙
-    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every 
-      question is AMAZING and we're gonna CRUSH IT together! This is gonna be 
-      LEGENDARY! ARE YOU READY?! LET'S DO THIS! 💪😤🚀
+    surfer: Duuude! You're chatting with the chillest AI on the web, bro! Everything's
+      gonna be totally rad. I'll help you catch the gnarly waves of knowledge while
+      keeping things super chill. Cowabunga! 🤙
+    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every question
+      is AMAZING and we're gonna CRUSH IT together! This is gonna be LEGENDARY! ARE
+      YOU READY?! LET'S DO THIS! 💪😤🚀
 terminal:
   backend: local
   cwd: .
@@ -77,8 +77,7 @@ dashboard:
   show_token_analytics: true
   basic_auth:
     username: admin
-    password_hash: 
-      scrypt$16384$8$1$6bhUy0Z0GzKxcwDnyoypgA==$60rrDJ02gzd/Oa5zFt1xsbS3U/WABHOXrO8Fv9h4+dg=
+    password_hash: scrypt$16384$8$1$6bhUy0Z0GzKxcwDnyoypgA==$60rrDJ02gzd/Oa5zFt1xsbS3U/WABHOXrO8Fv9h4+dg=
     secret: 1luoFM3R8GgXdsF79l450gt54z5YAEHWmuQ1A0eGbWc
 tts:
   use_gateway: false
@@ -93,6 +92,7 @@ memory:
   user_profile_enabled: true
   memory_char_limit: 2200
   user_char_limit: 1375
+  provider: hindsight
   nudge_interval: 5
   flush_min_turns: 6
 delegation:
@@ -120,22 +120,23 @@ secrets:
       OPENROUTER_API_KEY: op://Hermes Readable/Openrouter API key/password
       DISCORD_BOT_TOKEN: op://Hermes Readable/Hermes Discord Token/password
       GMAIL_PROXY_SHARED_SECRET: op://Hermes Readable/Hermes Gmail Proxy Shared Secret/password
-      CALENDAR_PROXY_SHARED_SECRET: op://Hermes Readable/Hermes Calendar Proxy Shared Secret/password
+      CALENDAR_PROXY_SHARED_SECRET: op://Hermes Readable/Hermes Calendar Proxy Shared
+        Secret/password
       TASKS_PROXY_SHARED_SECRET: op://Hermes Readable/Hermes Tasks Proxy Shared Secret/password
 _config_version: 33
 mcp_servers:
-  gmail-proxy:
-    url: http://framework:8090/mcp/v1
+  gmail-mcp:
+    url: http://pi-services-0:8090/mcp/v1
     headers:
       Authorization: Bearer ${GMAIL_PROXY_SHARED_SECRET}
     timeout: 60
-  calendar-proxy:
-    url: http://framework:8091/mcp/v1
+  calendar-mcp:
+    url: http://pi-services-0:8091/mcp/v1
     headers:
       Authorization: Bearer ${CALENDAR_PROXY_SHARED_SECRET}
     timeout: 60
-  tasks-proxy:
-    url: http://framework:8092/mcp/v1
+  tasks-mcp:
+    url: http://pi-services-0:8092/mcp/v1
     headers:
       Authorization: Bearer ${TASKS_PROXY_SHARED_SECRET}
     timeout: 60
@@ -159,7 +160,7 @@ platform_toolsets:
     - delegation
     - file
     - image_gen
-    - memory
+    - kanban
     - session_search
     - skills
     - terminal
