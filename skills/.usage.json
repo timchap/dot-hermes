@@ -1,4 +1,30 @@
 {
+  "architecture-diagram": {
+    "archived_at": null,
+    "created_at": "2026-07-17T21:16:09.277027+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
+  "ascii-art": {
+    "archived_at": null,
+    "created_at": "2026-07-17T21:16:09.286124+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
   "ascii-video": {
     "archived_at": null,
     "created_at": "2026-07-11T15:16:15.642980+00:00",
@@ -7,6 +33,19 @@
     "last_used_at": null,
     "last_viewed_at": null,
     "patch_count": 3,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
+  "baoyu-infographic": {
+    "archived_at": null,
+    "created_at": "2026-07-17T21:16:09.294699+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
     "pinned": false,
     "state": "active",
     "use_count": 0,
@@ -33,6 +72,19 @@
     "last_used_at": null,
     "last_viewed_at": null,
     "patch_count": 1,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
+  "comfyui": {
+    "archived_at": null,
+    "created_at": "2026-07-17T21:16:09.302204+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
     "pinned": false,
     "state": "active",
     "use_count": 0,
@@ -77,6 +129,19 @@
     "use_count": 7,
     "view_count": 7
   },
+  "design-md": {
+    "archived_at": null,
+    "created_at": "2026-07-17T21:16:09.311965+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
   "drift-audit": {
     "archived_at": null,
     "created_at": "2026-07-15T01:03:13.036922+00:00",
@@ -89,6 +154,19 @@
     "state": "active",
     "use_count": 3,
     "view_count": 3
+  },
+  "excalidraw": {
+    "archived_at": null,
+    "created_at": "2026-07-17T21:16:09.322941+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
   },
   "hermes-agent": {
     "archived_at": null,
@@ -141,6 +219,19 @@
     "state": "active",
     "use_count": 1,
     "view_count": 1
+  },
+  "humanizer": {
+    "archived_at": null,
+    "created_at": "2026-07-17T21:16:09.332475+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
   },
   "lemonade-server": {
     "archived_at": null,
@@ -228,6 +319,32 @@
     "last_used_at": null,
     "last_viewed_at": null,
     "patch_count": 3,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
+  "popular-web-designs": {
+    "archived_at": null,
+    "created_at": "2026-07-17T21:16:09.341669+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
+  "pretext": {
+    "archived_at": null,
+    "created_at": "2026-07-17T21:16:09.355387+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
     "pinned": false,
     "state": "active",
     "use_count": 0,
@@ -323,5 +440,18 @@
     "state": "active",
     "use_count": 1,
     "view_count": 1
+  },
+  "touchdesigner-mcp": {
+    "archived_at": null,
+    "created_at": "2026-07-17T21:16:09.365544+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
   }
 }

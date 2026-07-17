@@ -17,5 +17,6 @@
   },
   "api_url": "http://pi-services-0:8888",
   "bank_id": "hermes",
-  "recall_budget": "mid"
+  "recall_budget": "mid",
+  "recall_max_tokens": 1024
 }
