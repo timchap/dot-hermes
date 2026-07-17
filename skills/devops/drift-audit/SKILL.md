@@ -93,6 +93,32 @@ Produce a concise report:
 
 If no drift found (all sessions were purely analytical, web research, or conversation without env changes), respond with `[SILERT]`.
 
+## Session Review — How to Scroll Through Sessions
+
+**The `session_search` read-dump only returns first 20 + last 10 messages** for large sessions. Mid-session file changes (patch, write_file, git commit) will be missed.
+
+**Concrete scroll pattern for large sessions:**
+
+```
+1. session_search(session_id='...') → dump full session, note message_count
+2. If message_count > 30, find a mid-point message id (e.g., id 30 from dump)
+3. session_search(around_message_id=30, window=10) → scroll middle
+4. To continue forward, use messages[-1].id as next around_message_id
+5. To go backward, use messages[0].id as next around_message_id
+6. Stop when you reach the boundaries (messages_before/after < window)
+```
+
+**Critical: `around_message_id` must be a real message ID from the session.**
+Do NOT use `around_message_id=1` as a default — many sessions start at different IDs, and `around_message_id=1` will error with "not in session_id". Always get a real ID from the dump first.
+
+**When searching for file changes within a session**, look for:
+- `patch` calls (returns `diff` and `files_modified`)
+- `write_file` calls (returns byte count)
+- `terminal` calls with `git add`, `git commit`, `git push`, `apt install`, `pip install`, `systemctl`, `cp`, `mv`
+- `skill_manage` calls with `action=create` or `action=patch`
+- `mcp__gmail_mcp__apply_sensitive_message_label` / `apply_sensitive_thread_label` / `label_message` / `label_thread` (Gmail changes)
+- `mcp__calendar_mcp__create_event`, `update_event`, `delete_event` (calendar changes)
+
 ## Common Pitfalls
 
 1. **Write-then-forget-commit** — A session may write a file to disk but never commit it (e.g., the LLM digest cron writes the file but the session output only includes the delivery summary, not the commit). Always check `git status` for untracked files before concluding the job succeeded.
