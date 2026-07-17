@@ -179,5 +179,7 @@ lemonade config set llamacpp.backend=vulkan
 ## References
 
 - [Speculative decoding status and benchmarks](references/speculative-decoding-status.md) — detailed tracking of PR #1638 status, all spec decoding methods, architecture rationale
+- [Observability and telemetry](references/observability.md) — OTLP telemetry, full Prometheus metric list (10.9.0+), Phoenix retention, APM tooling setup
+- [cAdvisor + Docker compatibility](references/cadvisor-docker-compat.md) — Docker 29 containerd-snapshotter breaks cAdvisor container metrics; fix and Ansible pattern
 - [Lemonade Server docs](https://lemonade-server.ai/docs/guide/configuration/llamacpp/)
 - [llama.cpp speculative decoding docs](https://github.com/ggml-org/llama.cpp/blob/master/docs/speculative.md)

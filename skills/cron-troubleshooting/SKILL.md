@@ -95,6 +95,24 @@ Check:
 3. Agent was in an active conversation turn when the job should have fired
 4. No errors in `~/.hermes/logs/errors.log`
 
+## Setting One-Shot Reminders from CLI/TUI
+
+**CRITICAL PATTERN:** When creating a one-shot reminder cron job from a CLI/TUI session, the default `deliver='local'` means the output is saved but **never delivered** — CLI/TUI sessions have no live-delivery channel. The user will never see the reminder.
+
+**Always set `deliver='origin'` (or a specific gateway like `deliver='discord'`)** when creating reminder jobs from CLI/TUI:
+
+```
+cronjob action='create' schedule='2026-07-16T17:30:00+02:00' deliver='origin' prompt='Remind the user to ...'
+```
+
+- `deliver='origin'` → routes through connected gateway platforms (Discord, Telegram, etc.). Works when the user has a gateway configured.
+- `deliver='all'` → fans out to ALL connected platforms. Use when the user checks multiple platforms.
+- `deliver='local'` (default) → saves to disk only. **Never use this for reminders from CLI/TUI.**
+
+If you are unsure which gateways are connected, check `~/.hermes/config.yaml` for gateway entries (e.g. `discord:`, `telegram:`). If Discord is listed, `deliver='origin'` will route there.
+
+**Always inform the user** that the reminder will arrive via a specific platform, not in the current terminal.
+
 ## Fixing Delivery Gaps
 
 If the user needs reliable overnight delivery:

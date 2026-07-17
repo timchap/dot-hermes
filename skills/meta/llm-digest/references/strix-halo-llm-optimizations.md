@@ -40,15 +40,15 @@ Quick-reference for llama.cpp optimization opportunities on gfx1151 / Ryzen AI M
 - **DeepSeek V4-Flash (284B):** IQ2XXS selective quantization → ~81 GB. Fits in 128 GB. Use with ROCm backend.
 - **Qwen3.6 35B-A3B MoE:** AWQ variants available (~24 GB for coding variant). MTP supported.
 
-## Key Version Reference (as of 2026-07-11)
+## Key Version Reference (as of 2026-07-15)
 
 | Tool | Latest | Notes |
 |------|--------|-------|
-| Hermes Agent | v0.18.2 | v2026.7.7.2, ships ~biweekly |
-| Ollama | v0.31.1 | Native agent harness, dropped legacy ROCm GPUs |
-| llama.cpp | b9967 | DFlash, MTP, ROCm/Vulkan hardening |
-| Lemonade SDK | ~10.x | NPU backend (FastFlowLM v0.9.35 Linux) |
-| ROCm | 7.2.0 | Strix Halo system optimization docs available |
+| Hermes Agent | v0.18.1 | v2026.7.7, ~660 PRs since v0.18.0 (July 1) |
+| Ollama | v0.32.0 | Stable release (July 14). Qwen3.5, Kimi-K2.6, GLM-5.1, MiniMax, DeepSeek, gpt-oss, Gemma. Updated MLX + llama.cpp (build 9840). |
+| llama.cpp | b9999 | Daily release cadence. b9990-b9993: Hy3 arch, MTP timeline, EAGLE3 speculative decoding. b9994-b9999: offline llama-bench param init. Pin to b9993+ for stability. |
+| Lemonade SDK | v10.10.0 | Released July 8. Audio generation. vLLM ROCm backend. |
+| ROCm | 7.12 + firmware | ~40% Vulkan llama.cpp speedup on Strix Halo (Qwen 3.5 35B). gfx1151 still unofficial; Vulkan primary GPU path. |
 
 ## Sources
 

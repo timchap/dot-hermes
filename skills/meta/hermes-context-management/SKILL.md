@@ -53,6 +53,7 @@ Load this skill when you need to decide where to store a fact, procedure, templa
 **Scope:** Loaded when the skill that owns them is loaded.  
 **Content:** API docs excerpts, research notes, domain notes. Not for session-specific ephemera.  
 **Use:** Condensed, for the value of the task — not a full mirror of upstream docs.
+**Linked files:** `references/hindsight-backend.md` — Hindsight external memory backend integration guide (tools, configuration, connectivity checks, model dependency pitfalls).
 
 ### templates/ — Starter files
 **Scope:** Loaded when the skill that owns them is loaded.  
@@ -89,6 +90,7 @@ When you learn something new that could be persisted:
 3. **Creating a new skill when an existing umbrella covers the territory** -- check existing skills first.
 4. **Writing negative claims as skill constraints** -- capture the fix, not "X tool doesn't work."
 5. **Letting a discovered pitfall go unpatched** -- when you find a new pitfall, patch the existing skill immediately.
+6. **Bulk-storing to external memory backends without verifying connectivity first** -- Hindsight's `hindsight_retain` uses a local LLM for fact extraction; if the configured model is removed/renamed, bulk-stores fail with HTTP 500. Always `hindsight_recall("any")` first to confirm the API is reachable and the extraction model is available before attempting a batch transfer.
 
 ## Verification Checklist
 

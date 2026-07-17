@@ -185,6 +185,41 @@ export OP_SERVICE_ACCOUNT_TOKEN="opsv_..."
 **Why the disconnect between test-green and runtime-401:**
 `hermes mcp test` probes the proxy's `/health` endpoint (GET, no auth). The actual MCP handshake sends a JSON-RPC `initialize` POST to `/mcp/v1` which requires the Authorization header. If the secret didn't resolve, the header is empty/broken → 401 on every handshake call and every subsequent keepalive probe.
 
+### Debugging "tool call has no effect" — isolate caller vs. server
+
+If an MCP tool call (e.g. `update_task`, `create_task`) returns HTTP 200 / no error but the
+change never actually applies (field stays blank, status doesn't change, repeated identical
+calls produce identical no-op results), don't assume the MCP server or proxy is broken.
+**First rule out that your own tool-call arguments are empty or malformed** — this is a common
+agent-side bug, especially with object-typed parameters (`patch_body`, `task_body`, etc.) whose
+JSON schema declares `{"properties": {}}` — an empty object literally validates, so a client can
+silently send `{}` instead of the intended `{"title": "..."}` and get a "successful" response
+that did nothing.
+
+**Diagnosis — hit the MCP endpoint directly with curl, bypassing the tool-call layer:**
+```bash
+# find the proxy URL + auth env var from config.yaml
+grep -A5 '<server-name>:' ~/.hermes/config.yaml
+
+curl -s <proxy-url> -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${PROXY_SHARED_SECRET_ENV_VAR}" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{
+        "name":"update_task",
+        "arguments":{"task_id":"<real-id>","patch_body":{"title":"hello"}}
+      }}' -w "\nHTTP:%{http_code}\n"
+```
+- If curl with a **populated** body succeeds (or fails only on a bad id/permissions, not on the
+  argument shape) → the server/proxy is fine. The bug is in your own tool-call parameters —
+  re-check that you're actually including field data and not passing `{}` out of habit or
+  because a code path resolved an empty default.
+- If curl with a populated body fails the same way as the tool call → now investigate the
+  server/proxy (auth, schema mismatch, etc.) using the sections below.
+
+**Verification step to bake into the workflow:** after any create/update against a
+tasks/calendar/similar MCP tool, immediately re-fetch the item (`get_task`, `get_event`, ...)
+and confirm the field you set actually landed, before telling the user the operation succeeded.
+
 ### Debugging HTTP proxy auth failures
 
 When an HTTP MCP server times out (especially proxies like `gmail-proxy`), use raw `curl` to diagnose the actual failure:

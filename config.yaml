@@ -13,12 +13,12 @@ agent:
   verbose: false
   reasoning_effort: medium
   personalities:
-    surfer: Duuude! You're chatting with the chillest AI on the web, bro! Everything's
-      gonna be totally rad. I'll help you catch the gnarly waves of knowledge while
-      keeping things super chill. Cowabunga! 🤙
-    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every question
-      is AMAZING and we're gonna CRUSH IT together! This is gonna be LEGENDARY! ARE
-      YOU READY?! LET'S DO THIS! 💪😤🚀
+    surfer: Duuude! You're chatting with the chillest AI on the web, bro! 
+      Everything's gonna be totally rad. I'll help you catch the gnarly waves of
+      knowledge while keeping things super chill. Cowabunga! 🤙
+    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every 
+      question is AMAZING and we're gonna CRUSH IT together! This is gonna be 
+      LEGENDARY! ARE YOU READY?! LET'S DO THIS! 💪😤🚀
 terminal:
   backend: local
   cwd: .
@@ -77,7 +77,8 @@ dashboard:
   show_token_analytics: true
   basic_auth:
     username: admin
-    password_hash: scrypt$16384$8$1$6bhUy0Z0GzKxcwDnyoypgA==$60rrDJ02gzd/Oa5zFt1xsbS3U/WABHOXrO8Fv9h4+dg=
+    password_hash: 
+      scrypt$16384$8$1$6bhUy0Z0GzKxcwDnyoypgA==$60rrDJ02gzd/Oa5zFt1xsbS3U/WABHOXrO8Fv9h4+dg=
     secret: 1luoFM3R8GgXdsF79l450gt54z5YAEHWmuQ1A0eGbWc
 tts:
   use_gateway: false
@@ -119,10 +120,12 @@ secrets:
     env:
       OPENROUTER_API_KEY: op://Hermes Readable/Openrouter API key/password
       DISCORD_BOT_TOKEN: op://Hermes Readable/Hermes Discord Token/password
-      GMAIL_PROXY_SHARED_SECRET: op://Hermes Readable/Hermes Gmail Proxy Shared Secret/password
-      CALENDAR_PROXY_SHARED_SECRET: op://Hermes Readable/Hermes Calendar Proxy Shared
+      GMAIL_PROXY_SHARED_SECRET: op://Hermes Readable/Hermes Gmail Proxy Shared 
         Secret/password
-      TASKS_PROXY_SHARED_SECRET: op://Hermes Readable/Hermes Tasks Proxy Shared Secret/password
+      CALENDAR_PROXY_SHARED_SECRET: op://Hermes Readable/Hermes Calendar Proxy 
+        Shared Secret/password
+      TASKS_PROXY_SHARED_SECRET: op://Hermes Readable/Hermes Tasks Proxy Shared 
+        Secret/password
 _config_version: 33
 mcp_servers:
   gmail-mcp:
