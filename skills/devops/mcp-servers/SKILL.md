@@ -74,7 +74,7 @@ To add or modify MCP servers:
 ### CLI Pitfall
 
 `hermes mcp add NAME --url <endpoint> --auth header` prompts for the API key interactively and may fail to persist the header in non-TTY sessions.
-If the interactive prompt hangs or the connection test fails mid-way, **do not force-save** — instead use `hermes config edit` or the `{{VAR}}` pattern shown above.
+If the interactive prompt hangs or the connection test fails mid-way, **do not force-save** — instead use `hermes config edit` or the `${VAR}` pattern shown above.
 
 Tools appear as `mcp_{server_name}_{tool_name}` (hyphens/dots → underscores).
 

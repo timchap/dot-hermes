@@ -21,10 +21,6 @@ metadata:
 
 Load this skill when the user wants a page styled after a known brand ("make it look like Stripe/Linear/Vercel/Notion"), a page using a specific design system, or a visual starting point pulled from a real product. Pair with `claude-design` for the design process and taste.
 
-54 real-world design systems ready for use when generating HTML/CSS. Each template captures a
-site's complete visual language: color palette, typography hierarchy, component styles, spacing
-system, shadows, responsive behavior, and practical agent prompts with exact CSS values.
-
 ## Related design skills
 
 - **`claude-design`** — use for the design *process and taste* (scoping a brief,

@@ -1,7 +1,7 @@
 ---
 name: hermes-agent-skill-authoring
 description: Use when authoring in-repo SKILL.md files for Hermes Agent — writing frontmatter, following validator rules, structuring skills, and applying writing-quality principles.
-version: 1.1.0
+version: 2.3.0
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]

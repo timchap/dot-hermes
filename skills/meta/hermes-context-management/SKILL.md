@@ -63,6 +63,36 @@ Load this skill when you need to decide where to store a fact, procedure, templa
 **Scope:** Loaded when the skill that owns them is loaded.  
 **Content:** Static, re-runnable actions the agent should run rather than hand-type. Verification scripts, fixture generators, deterministic probes.
 
+## Systematic Skill Library Quality Review
+
+When conducting comprehensive quality reviews of skill libraries (weekly audits, compliance checks):
+
+### Discovery and Assessment Process
+1. **Complete inventory**: `search_files(pattern="SKILL.md", path="~/.hermes/skills")` for all skills
+2. **Category mapping**: Read all `DESCRIPTION.md` files to understand intended scope
+3. **Systematic review**: Work through skills by category for logical grouping
+4. **Standards application**: Check frontmatter, size limits, content quality, factual accuracy
+
+### Common Quality Issues to Fix
+- **Content duplication**: Identical "When to Use" sections, redundant descriptions
+- **Version drift**: Skills referencing outdated versions or incorrect syntax patterns  
+- **Format violations**: Missing required fields, oversized descriptions, malformed YAML
+- **Stale information**: Commands, paths, or procedures that are no longer accurate
+
+### Review Standards (from hermes-agent-skill-authoring)
+- Frontmatter: Starts with `---`, includes `name` and `description` fields
+- Size limits: Description ≤ 1024 chars, name ≤ 64 chars, total file ≤ 100k chars  
+- Content quality: Clear trigger conditions, actionable procedures, no duplication
+- Accuracy: Fact-check verifiable information against current state
+
+### Fixing Strategy
+- Use `patch` tool for surgical fixes rather than full rewrites
+- Batch multiple related issues in single skill into one edit pass
+- Prioritize content accuracy and removal of duplication
+- Document what was fixed and why in review summary
+
+This systematic approach ensures the skill library maintains high quality and consistency while capturing institutional knowledge effectively.
+
 ## Decision Process
 
 When you learn something new that could be persisted:
