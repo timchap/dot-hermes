@@ -121,6 +121,7 @@ When you learn something new that could be persisted:
 4. **Writing negative claims as skill constraints** -- capture the fix, not "X tool doesn't work."
 5. **Letting a discovered pitfall go unpatched** -- when you find a new pitfall, patch the existing skill immediately.
 6. **Bulk-storing to external memory backends without verifying connectivity first** -- Hindsight's `hindsight_retain` uses a local LLM for fact extraction; if the configured model is removed/renamed, bulk-stores fail with HTTP 500. Always `hindsight_recall("any")` first to confirm the API is reachable and the extraction model is available before attempting a batch transfer.
+7. **Flat-file and directory-form skills silently collide on the same name** -- e.g. `~/.hermes/skills/foo.md` and `~/.hermes/skills/foo/SKILL.md` both exist. `skill_view(name='foo')` then fails with "Ambiguous skill name ... 2 skills match" and blocks normal loading. Fix: read both candidates (`skill_view` with the disambiguated path from the error's `matches` list, or `read_file` directly), merge any unique content into the directory-form `SKILL.md` (preferred, since it supports `references/`/`templates/`/`scripts/`), then delete the stray flat `.md` file with `terminal`/`rm` (skill_manage requires a unique name so it can't target an ambiguous one directly). Re-run `skill_view(name=...)` to confirm it now resolves to a single file before considering it fixed.
 
 ## Verification Checklist
 

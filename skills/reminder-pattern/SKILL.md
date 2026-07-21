@@ -26,6 +26,15 @@ The Tasks MCP tool schemas show `task_body` and `patch_body` as empty objects `{
 
 This avoids nagging (user completes task → no reminder message) and provides a visible task list for tracking.
 
+## Choosing the reminder time
+
+When the user gives a vague reminder request with no time specified:
+- Default: schedule the reminder for **18:00 today** (end of workday). If it's already past 18:00, schedule for **tomorrow morning** instead (use judgment on exact time, e.g. 08:00-09:00).
+- Override the default using contextual/task-type judgment:
+  - **Computer/online tasks** (e.g. cancel a subscription, reply to an email, fill a form) can be reminded **during working hours** since the user can act on them at their desk.
+  - **Out-and-about / errand tasks** (e.g. pick something up, visit an office) are better reminded **as the user leaves work (~18:00) or on the weekend**, since they require being physically somewhere.
+- Once Home Assistant location access is available, factor in the user's real-time location to refine timing and enable location-based reminders (e.g. remind when arriving near a relevant place).
+
 ## User Preferences (Style & Format)
 
 - **Be direct** — give the answer or result first, don't over-explain before delivering.

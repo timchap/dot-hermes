@@ -255,7 +255,54 @@
       "profile": null,
       "toast_notifications": true,
       "fire_claim": null
+    },
+    {
+      "id": "f191057f2731",
+      "name": "Reminder: Cancel Eurosport sub",
+      "prompt": "Check the Google Task with id \"bWJYYURfcmxWeEQ1LW9CWQ\" (title \"Cancel Eurosport subscription\") on the default task list. Use mcp__tasks_mcp__get_task to check its status. If status is \"needsAction\" (not completed), send a reminder message to the user: \"Reminder: don't forget to cancel your Eurosport subscription.\" If the task is already \"completed\", do not send any message \u2014 stay silent.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": "custom",
+      "model_snapshot": "Qwen3.6-35B-A3B-MTP-GGUF-UD-Q8_K_XL",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2026-07-21T18:00:00+02:00",
+        "display": "once at 2026-07-21 18:00"
+      },
+      "schedule_display": "once at 2026-07-21 18:00",
+      "repeat": {
+        "times": 1,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-07-21T15:45:20.926692+02:00",
+      "next_run_at": "2026-07-21T18:00:00+02:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "webui",
+        "chat_id": "e3a5f0ccc103",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": null
+      },
+      "enabled_toolsets": [
+        "tasks"
+      ],
+      "workdir": null
     }
   ],
-  "updated_at": "2026-07-21T11:58:35.169672+02:00"
+  "updated_at": "2026-07-21T15:45:20.950760+02:00"
 }
