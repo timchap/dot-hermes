@@ -66,17 +66,17 @@
       "schedule_display": "0 4 * * *",
       "repeat": {
         "times": null,
-        "completed": 13
+        "completed": 14
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:37.305589+02:00",
-      "next_run_at": "2026-07-22T04:00:00+02:00",
-      "last_run_at": "2026-07-21T04:00:44.149560+02:00",
-      "last_status": "ok",
-      "last_error": null,
+      "next_run_at": "2026-07-23T04:00:00+02:00",
+      "last_run_at": "2026-07-22T04:02:39.040237+02:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: HTTP 429: Provider returned error",
       "last_delivery_error": null,
       "deliver": "origin",
       "origin": null,
@@ -236,15 +236,15 @@
       "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 17
+        "completed": 18
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-12T17:48:52.823611+02:00",
-      "next_run_at": "2026-07-22T11:59:54.929961+02:00",
-      "last_run_at": "2026-07-21T23:59:54.929961+02:00",
+      "next_run_at": "2026-07-23T00:01:05.677481+02:00",
+      "last_run_at": "2026-07-22T12:01:05.677481+02:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -255,7 +255,52 @@
       "profile": null,
       "toast_notifications": true,
       "fire_claim": null
+    },
+    {
+      "id": "d9b4543a8c53",
+      "name": "Merz b. Schwanen t-shirt stock check",
+      "prompt": "Search the web for current availability of Merz b. Schwanen t-shirts, focusing on retailers that ship to France. Check the official site (merzbschwanen.com) and any known stockists (Redcast Heritage, Withered Fig, Old House Provisions). Report what's in stock, prices, sizes available, and whether they ship to France. If anything is on sale, out of stock, or restocked compared to recent weeks, call that out.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": "custom",
+      "model_snapshot": "Qwen3.6-35B-A3B-MTP-GGUF-UD-Q8_K_XL",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "interval",
+        "minutes": 10080,
+        "display": "every 10080m"
+      },
+      "schedule_display": "every 10080m",
+      "repeat": {
+        "times": 30,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-07-22T20:12:18.984392+02:00",
+      "next_run_at": "2026-07-29T20:12:19.006950+02:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "webui",
+        "chat_id": "cbcd535c9412",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": null
     }
   ],
-  "updated_at": "2026-07-22T03:03:31.165263+02:00"
+  "updated_at": "2026-07-22T20:12:19.007465+02:00"
 }
