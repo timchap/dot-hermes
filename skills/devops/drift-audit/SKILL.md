@@ -127,7 +127,7 @@ Do NOT use `around_message_id=1` as a default — many sessions start at differe
 
 3. **Assuming success from tool output** — A tool call returning success (e.g., write_file returns byte count) doesn't mean the result was committed or pushed. Always verify with `git status` and `git log`.
 
-4. **Confusing ephemeral with persistent** — Cron job state updates (next_run_at, completed counts) are already auto-committed by the cron system. Don't treat these as drift — they are transient scheduling state.
+4. **Cron state may not be committed** — The cron system attempts to auto-commit `cron/jobs.json` after each run, but it can be delayed or miss runs. Always check `git status` for uncommitted cron changes and commit them explicitly. Don't assume the auto-commit handled it.
 
 5. **Over-documenting** — One-off debug sessions, web research, and conversations without env changes are NOT drift. Only document actual infrastructure/config changes.
 
