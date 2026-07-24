@@ -62,6 +62,21 @@ The agent was idle. Fix: ensure a persistent session is running, or acknowledge 
 ### Cron fired but you got no message
 The job delivered to a session that was no longer open. Check `cronjob action='list'` for `last_run_at` and `last_status`. Search past sessions via `session_search` to find the result.
 
+### Cron job ran successfully but output never reached me (WebUI delivery mismatch)
+**Symptom:** The user sees that a cron job has `last_status: "ok"` and `last_delivery_error` like `"unknown platform 'webui'"`, or simply asks "why did the most recent cron job fail to deliver output?" even though the job clearly ran.
+
+**Root cause:** `deliver: origin` routes output to the **active session's platform type** (Discord, Telegram, Slack, etc.). The WebUI is NOT a recognized delivery platform. If the job ran while the user was on the WebUI, the output was generated but there was no gateway-connected platform to route it through. The result IS saved to `~/.hermes/cron/output/` but is invisible unless the user explicitly checks there.
+
+**Fix:**
+1. **Check `cronjob action='list'`** — look at `last_status` and `last_delivery_error`. If `last_status` is `"ok"` but `last_delivery_error` mentions `"webui"` or `"unknown platform"`, this is the issue.
+2. **Change deliver target** — set `deliver` to a connected gateway platform or `all`:
+   ```
+   cronjob action='update' job_id='...' deliver='all'
+   ```
+3. **Tell the user where to find results** — outputs always land in `~/.hermes/cron/output/` regardless of delivery target. Show them the path if they want to check manually.
+
+See `references/webui-delivery-mismatch.md` for the full diagnostic flow.
+
 ### Cron job using wrong model/provider
 **Symptom:** Job fails with `"global inference config drifted since this job was created (provider 'X' -> 'Y')"` or similar drift error. This happens when a job was created without pinning provider/model, then the user's default config changes.
 
@@ -128,4 +143,5 @@ If the user needs reliable overnight delivery:
 
 ## Support Files
 
-- None currently — the skill previously referenced two support files that were never created.
+- `references/webui-delivery-mismatch.md` — Full diagnostic flow for WebUI delivery failures
+- `references/provider-drift-diagnostic.md` — Provider/model drift diagnostics
