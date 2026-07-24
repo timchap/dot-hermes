@@ -1,9 +1,9 @@
 {
-  "last_report_path": "/home/hermes/.hermes/logs/curator/20260717-211609",
-  "last_run_at": "2026-07-17T21:16:09.018870+00:00",
-  "last_run_duration_seconds": 0.372482,
+  "last_report_path": "/home/hermes/.hermes/logs/curator/20260724-211611",
+  "last_run_at": "2026-07-24T21:16:11.022728+00:00",
+  "last_run_duration_seconds": 0.244194,
   "last_run_summary": "auto: no changes; llm: skipped (consolidation off)",
   "last_run_summary_shown_at": null,
   "paused": false,
-  "run_count": 1
+  "run_count": 2
 }
