@@ -30,6 +30,13 @@ Ensure the directory exists:
 mkdir -p ~/homelab/docs/digests
 ```
 
+## Reference Materials
+
+The `references/` directory contains domain knowledge useful for digest research and filtering:
+
+- `references/strix-halo-llm-optimizations.md` — GPU backends, memory allocation, quantization guides for gfx1151
+- `references/strix-halo-speculative-decoding-2026.md` — Speculative decoding methods (MTP, DFlash, ngram) benchmarked on Strix Halo; useful for evaluating performance claims in the news
+
 ## Workflow (numbered steps)
 
 1. **Read recent digests for dedup**
