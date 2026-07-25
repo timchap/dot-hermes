@@ -91,7 +91,7 @@ Produce a concise report:
 - Any changes that should NOT be persisted (explain why)
 ```
 
-If no drift found (all sessions were purely analytical, web research, or conversation without env changes), respond with `[SILERT]`.
+If no drift found (all sessions were purely analytical, web research, or conversation without env changes), respond with `[SILENT]`.
 
 ## Session Review — How to Scroll Through Sessions
 
