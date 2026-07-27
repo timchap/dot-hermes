@@ -19,7 +19,8 @@ Track which suggestions have been made to avoid repeating ideas.
 |---|------|------|--------|
 | #1 | Jul 12 | Custom homelab-mcp server (wrapping HA, Ollama, docker, gmail-mcp as MCP tools) | Superseded — HA's official MCP integration changes the approach |
 | #2 | Jul 13 | Deploy Home Assistant's official MCP Server integration | Awaiting user feedback |
-| #3 | Jul 20 | [pending] | — |
+| #3 | Jul 20 | Deploy theonlytruebigmac/homelab-mcp ready-made MCP server | Awaiting user feedback |
+| #4 | Jul 27 | [pending] | — |
 
 ## Pattern Rules
 - Never repeat a suggestion that was already fully presented in a weekly round

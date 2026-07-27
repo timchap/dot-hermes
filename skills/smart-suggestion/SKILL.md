@@ -27,7 +27,7 @@ Run these in parallel:
 4. **SOUL.md**: `cat /home/hermes/.hermes/SOUL.md`
 5. **Cron jobs**: `cronjob action='list'` (or inspect `/home/hermes/.hermes/cron/jobs.json`)
 6. **Skills**: `ls /home/hermes/.hermes/skills/ 2>/dev/null`
-7. **Homelab activity**: `cd /home/hermes/repositories/homelab && git log --oneline -20 2>/dev/null` (homelab repo lives under `repositories/`, not a top-level directory)
+7. **Homelab activity**: `cd /home/hermes/homelab && git log --oneline -20 2>/dev/null` (try top-level first; if not found, check `repositories/` subdirectory)
 
 Also check for **new trends** since last suggestion — especially any ecosystem changes that shift the landscape (e.g., new integrations, protocol updates).
 
@@ -82,7 +82,7 @@ Read and update `/home/hermes/.hermes/data/smart-suggestions.md`:
 
 ## Pitfalls
 
-- **Homelab repo location**: The repo is at `/home/hermes/repositories/homelab/`, NOT `/home/hermes/homelab/`. Always check the former.
+- **Homelab repo location**: The repo is at `/home/hermes/homelab/` (top-level). Do NOT check `repositories/` first — that path does not exist in the current layout.
 - **Don't repeat**: Check the tracker and previous suggestions to avoid re-proposing the same idea.
 - **Cross-reference with cron jobs**: A suggestion is not novel if it's already automated.
 - **Superseded suggestions**: If the landscape changed (new official integration, protocol update), note it and pivot away from the old approach.
