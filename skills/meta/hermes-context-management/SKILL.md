@@ -53,7 +53,9 @@ Load this skill when you need to decide where to store a fact, procedure, templa
 **Scope:** Loaded when the skill that owns them is loaded.  
 **Content:** API docs excerpts, research notes, domain notes. Not for session-specific ephemera.  
 **Use:** Condensed, for the value of the task — not a full mirror of upstream docs.
-**Linked files:** `references/hindsight-backend.md` — Hindsight external memory backend integration guide (tools, configuration, connectivity checks, model dependency pitfalls).
+**Linked files:** 
+- `references/hindsight-backend.md` — Hindsight external memory backend integration guide (tools, configuration, connectivity checks, model dependency pitfalls)
+- `references/skill-duplication-patterns.md` — Common content duplication patterns in skills and surgical fix techniques
 
 ### templates/ — Starter files
 **Scope:** Loaded when the skill that owns them is loaded.  
@@ -74,10 +76,12 @@ When conducting comprehensive quality reviews of skill libraries (weekly audits,
 4. **Standards application**: Check frontmatter, size limits, content quality, factual accuracy
 
 ### Common Quality Issues to Fix
-- **Content duplication**: Identical "When to Use" sections, redundant descriptions
+- **Content duplication**: Identical "When to Use" sections, redundant descriptions, orphaned text fragments from copy-paste editing
 - **Version drift**: Skills referencing outdated versions or incorrect syntax patterns  
 - **Format violations**: Missing required fields, oversized descriptions, malformed YAML
 - **Stale information**: Commands, paths, or procedures that are no longer accurate
+- **Fragmented content**: Incomplete sentences or orphaned text from editing sessions
+- **Duplicate headers**: Repeated section titles that create confusing structure
 
 ### Review Standards (from hermes-agent-skill-authoring)
 - Frontmatter: Starts with `---`, includes `name` and `description` fields

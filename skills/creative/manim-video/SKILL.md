@@ -21,10 +21,6 @@ Creates animated explainers, math animations, and algorithm walkthroughs in 3Blu
 
 Trigger when the user asks for: animated explanations, math animations, concept visualizations, algorithm walkthroughs, technical explainers, 3Blue1Brown style videos, programmatic animation with geometric/mathematical content, equation derivations, architecture diagrams, or data stories using Manim CE.
 
-## When to use
-
-Use when users request: animated explanations, math animations, concept visualizations, algorithm walkthroughs, technical explainers, 3Blue1Brown style videos, or any programmatic animation with geometric/mathematical content. Creates 3Blue1Brown-style explainer videos, algorithm visualizations, equation derivations, architecture diagrams, and data stories using Manim Community Edition.
-
 ## Creative Standard
 
 This is educational cinema. Every frame teaches. Every animation reveals structure.

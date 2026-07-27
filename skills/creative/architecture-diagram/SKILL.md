@@ -28,7 +28,6 @@ Trigger when the user wants an architecture diagram, system diagram, cloud infra
 **Use something else for:** physics/chemistry/biology diagrams, physical objects, floor plans, hand-drawn sketches (use excalidraw), animated explainers.
 
 If a more specialized skill fits better, prefer that. Otherwise this skill serves as a general SVG diagram fallback.
- dark-themed technical architecture diagrams as standalone HTML files with inline SVG graphics. No external tools, no API keys, no rendering libraries — just write the HTML file and open it in a browser.
 
 ## Scope
 

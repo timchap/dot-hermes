@@ -15,8 +15,6 @@ metadata:
 
 ## Overview
 
-Install, configure, and maintain the Hermes WebUI on Linux. This is a Python + vanilla JS app -- NOT Node.js. Provides remote/Tailscale access with password auth and systemd service.
-
 Install, configure, and maintain Hermes WebUI on a Linux host. This is a **Python + vanilla JS** app — NOT Node.js (ignore the repo's `package.json`, it's only for ESLint devtooling).
 
 ## When to Use

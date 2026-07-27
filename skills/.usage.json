@@ -198,14 +198,14 @@
     "archived_at": null,
     "created_at": "2026-07-11T16:17:16.006977+00:00",
     "created_by": null,
-    "last_patched_at": "2026-07-21T13:46:54.982774+00:00",
-    "last_used_at": "2026-07-23T01:02:06.154304+00:00",
-    "last_viewed_at": "2026-07-23T01:02:06.131125+00:00",
-    "patch_count": 5,
+    "last_patched_at": "2026-07-27T07:06:57.693842+00:00",
+    "last_used_at": "2026-07-27T07:06:28.093483+00:00",
+    "last_viewed_at": "2026-07-27T07:06:28.082038+00:00",
+    "patch_count": 8,
     "pinned": false,
     "state": "active",
-    "use_count": 11,
-    "view_count": 11
+    "use_count": 12,
+    "view_count": 12
   },
   "hermes-webui": {
     "archived_at": null,

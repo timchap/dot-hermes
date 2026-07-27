@@ -17,8 +17,6 @@ metadata:
 
 Create, manage, and debug systemd services for background daemons on Linux hosts. Covers writing unit files, handling permissions, git safe.directory deadlocks, lock files, journalctl debugging, and interpreter mismatches.
 
-Create, manage, and debug systemd services for background daemons on Linux hosts.
-
 ## When to Use
 
 - User asks to "run this in the background permanently" or "start this on boot"

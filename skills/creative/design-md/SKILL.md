@@ -32,16 +32,6 @@ diffs versions for regressions, and exports to Tailwind or W3C DTCG JSON.
 - User wants contrast / WCAG accessibility validation on their color palette
 
 For purely visual inspiration or layout examples, use `popular-web-designs` instead. For *process and taste* when designing a one-off HTML artifact from scratch (prototype, deck, landing page, component lab), use `claude-design`. This skill is for the *formal spec file* itself.
-, design tokens, or a design system spec
-- User wants consistent UI/brand across multiple projects or tools
-- User pastes an existing DESIGN.md and asks to lint, diff, export, or extend it
-- User asks to port a style guide into a format agents can consume
-- User wants contrast / WCAG accessibility validation on their color palette
-
-For purely visual inspiration or layout examples, use `popular-web-designs`
-instead. For *process and taste* when designing a one-off HTML artifact
-from scratch (prototype, deck, landing page, component lab), use
-`claude-design`. This skill is for the *formal spec file* itself.
 
 ## File anatomy
 

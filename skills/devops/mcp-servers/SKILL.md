@@ -35,7 +35,6 @@ mcp_servers:
 ```
 
 ### Injecting 1Password Secrets into MCP Headers
-### Injecting 1Password Secrets into MCP Headers
 
 Use the `${VAR}` substitution syntax in `mcp_servers.<name>.headers.*` values.
 The variable must be injected via the `secrets.onepassword.env` section:
@@ -61,7 +60,6 @@ This keeps secrets out of config.yaml (though the config file itself still has t
 **CRITICAL:** Hermes uses shell-style `${VAR}` syntax, NOT `{{VAR}}` syntax (Jinja/Cursor-style).
 The regex pattern is `r"\$\{([^}]+)\}"` — if you use `{{VAR}}` instead, it will NOT be resolved
 and will be sent literally as the header value, causing 401 auth failures.
-This keeps secrets out of config.yaml (though the config file itself still has the `${VAR}` placeholder).
 
 ### Writing to config.yaml
 

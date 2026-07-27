@@ -21,9 +21,6 @@ Everything here is a GUIDELINE, not a rule. Art breaks rules on purpose. Use wha
 
 Load this skill when the user asks for: original song lyrics, adapting/parodying existing songs, or crafting Suno AI music prompts with metatags and style descriptions. Also use for Suno AI workflow: concept -> lyrics -> style description -> metatags -> generation -> iteration.
 
-Everything here is a GUIDELINE, not a rule. Art breaks rules on purpose.
-Use what serves the song. Ignore what doesn't.
-
 ---
 
 ## 1. Song Structure (Pick One or Invent Your Own)
