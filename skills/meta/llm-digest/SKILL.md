@@ -36,6 +36,7 @@ The `references/` directory contains domain knowledge useful for digest research
 
 - `references/strix-halo-llm-optimizations.md` — GPU backends, memory allocation, quantization guides for gfx1151
 - `references/strix-halo-speculative-decoding-2026.md` — Speculative decoding methods (MTP, DFlash, ngram) benchmarked on Strix Halo; useful for evaluating performance claims in the news
+- `references/digest-search-sources.md` — Curated list of search sources (HuggingFace, Reddit, GitHub, ROCm blog, etc.) and dedup patterns for digest research
 
 ## Workflow (numbered steps)
 
