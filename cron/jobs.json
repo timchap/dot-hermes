@@ -66,15 +66,15 @@
       "schedule_display": "0 4 * * *",
       "repeat": {
         "times": null,
-        "completed": 33
+        "completed": 34
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:37.305589+02:00",
-      "next_run_at": "2026-08-11T04:00:00+02:00",
-      "last_run_at": "2026-08-10T04:02:16.515847+02:00",
+      "next_run_at": "2026-08-12T04:00:00+02:00",
+      "last_run_at": "2026-08-11T04:02:45.094345+02:00",
       "last_status": "error",
       "last_error": "RuntimeError: Connection error.",
       "last_delivery_error": "delivery error: Discord send failed: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]",
@@ -108,18 +108,18 @@
       "schedule_display": "0 3 * * *",
       "repeat": {
         "times": null,
-        "completed": 30
+        "completed": 32
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T16:53:01.969013+02:00",
-      "next_run_at": "2026-08-11T03:00:00+02:00",
-      "last_run_at": "2026-08-10T03:02:16.507157+02:00",
-      "last_status": "error",
-      "last_error": "RuntimeError: Connection error.",
-      "last_delivery_error": "delivery error: Discord send failed: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]",
+      "next_run_at": "2026-08-13T03:00:00+02:00",
+      "last_run_at": "2026-08-12T03:01:19.799190+02:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
@@ -236,18 +236,18 @@
       "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 55
+        "completed": 59
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-12T17:48:52.823611+02:00",
-      "next_run_at": "2026-08-10T12:24:28.947614+02:00",
-      "last_run_at": "2026-08-10T00:24:28.947614+02:00",
-      "last_status": "error",
-      "last_error": "RuntimeError: Connection error.",
-      "last_delivery_error": "delivery error: Discord send failed: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]",
+      "next_run_at": "2026-08-12T12:26:47.579741+02:00",
+      "last_run_at": "2026-08-12T00:26:47.579741+02:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
@@ -303,5 +303,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-08-10T09:00:39.980051+02:00"
+  "updated_at": "2026-08-12T03:01:19.799696+02:00"
 }
