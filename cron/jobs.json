@@ -66,18 +66,18 @@
       "schedule_display": "0 4 * * *",
       "repeat": {
         "times": null,
-        "completed": 34
+        "completed": 36
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:37.305589+02:00",
-      "next_run_at": "2026-08-12T04:00:00+02:00",
-      "last_run_at": "2026-08-11T04:02:45.094345+02:00",
-      "last_status": "error",
-      "last_error": "RuntimeError: Connection error.",
-      "last_delivery_error": "delivery error: Discord send failed: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]",
+      "next_run_at": "2026-08-14T04:00:00+02:00",
+      "last_run_at": "2026-08-13T04:01:44.229339+02:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
@@ -108,15 +108,15 @@
       "schedule_display": "0 3 * * *",
       "repeat": {
         "times": null,
-        "completed": 32
+        "completed": 33
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T16:53:01.969013+02:00",
-      "next_run_at": "2026-08-13T03:00:00+02:00",
-      "last_run_at": "2026-08-12T03:01:19.799190+02:00",
+      "next_run_at": "2026-08-14T03:00:00+02:00",
+      "last_run_at": "2026-08-13T03:04:02.901883+02:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -236,17 +236,17 @@
       "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 59
+        "completed": 61
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-12T17:48:52.823611+02:00",
-      "next_run_at": "2026-08-12T12:26:47.579741+02:00",
-      "last_run_at": "2026-08-12T00:26:47.579741+02:00",
-      "last_status": "ok",
-      "last_error": null,
+      "next_run_at": "2026-08-13T12:29:12.564579+02:00",
+      "last_run_at": "2026-08-13T00:29:12.564579+02:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: HTTP 429: Provider returned error",
       "last_delivery_error": null,
       "deliver": "origin",
       "origin": null,
@@ -303,5 +303,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-08-12T03:01:19.799696+02:00"
+  "updated_at": "2026-08-13T04:01:44.231012+02:00"
 }
