@@ -24,18 +24,18 @@
       "schedule_display": "0 6 * * 5",
       "repeat": {
         "times": null,
-        "completed": 12
+        "completed": 13
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:36.238620+02:00",
-      "next_run_at": "2026-08-14T06:00:00+02:00",
-      "last_run_at": "2026-08-07T06:01:55.661303+02:00",
+      "next_run_at": "2026-08-21T06:00:00+02:00",
+      "last_run_at": "2026-08-14T06:01:05.529782+02:00",
       "last_status": "error",
-      "last_error": "RuntimeError: Connection error.",
-      "last_delivery_error": "delivery error: Discord send failed: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]",
+      "last_error": "RuntimeError: HTTP 429: Provider returned error",
+      "last_delivery_error": null,
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
@@ -66,15 +66,15 @@
       "schedule_display": "0 4 * * *",
       "repeat": {
         "times": null,
-        "completed": 36
+        "completed": 37
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:37.305589+02:00",
-      "next_run_at": "2026-08-14T04:00:00+02:00",
-      "last_run_at": "2026-08-13T04:01:44.229339+02:00",
+      "next_run_at": "2026-08-15T04:00:00+02:00",
+      "last_run_at": "2026-08-14T04:00:53.601227+02:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -303,5 +303,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-08-14T03:03:09.404033+02:00"
+  "updated_at": "2026-08-14T06:01:05.530290+02:00"
 }
