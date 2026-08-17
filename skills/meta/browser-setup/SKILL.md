@@ -2,7 +2,7 @@
 name: browser-setup
 description: Setup and configure browser automation tools for Hermes — agent-browser CLI, Camoufox anti-detection, Chromium/Camoufox binary paths, and headless environment.
 version: 1.0.0
-author: agent
+author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
 metadata:

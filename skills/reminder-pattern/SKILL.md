@@ -1,7 +1,9 @@
 ---
 name: reminder-pattern
 description: General rule for handling reminders, tasks, and cron jobs together
-created: 2026-07-16
+version: 1.0.0
+author: Hermes Agent
+license: MIT
 ---
 # Reminder Pattern
 

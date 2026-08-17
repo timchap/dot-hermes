@@ -1,6 +1,13 @@
 ---
 name: time-filtered-queries
 description: Handle any query that involves time filtering — calendar, email, tasks, or other MCP tools. Establishes the correct date range before constructing the query.
+version: 1.0.0
+author: Hermes Agent
+license: MIT
+platforms: [linux, macos, windows]
+metadata:
+  hermes:
+    tags: [time, date, calendar, email, tasks, mcp, filtering]
 ---
 
 # Time-Filtered Queries

@@ -2,7 +2,7 @@
 name: web-research
 description: Conduct web research with a fallback pipeline — when web_extract fails (Shopify stores, bot-detected pages), use web_search + browser tools systematically. Covers product availability checks, pricing comparisons, retailer stock audits, and shipping policy lookups.
 version: 1.0.0
-author: agent
+author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
 metadata:

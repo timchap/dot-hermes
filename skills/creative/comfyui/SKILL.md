@@ -21,7 +21,7 @@ for workflow execution.
 
 Two-layer architecture: Layer 1 uses `comfy-cli` (official lifecycle tool) for installation, server management, nodes, and models. Layer 2 uses REST/WebSocket API with skill scripts for workflow execution, parameter injection, monitoring, and output download -- filling the gap where the CLI falls short.
 
-**What's in this skill
+**What's in this skill:**
 
 **Reference docs (`references/`):**
 
