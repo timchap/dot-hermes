@@ -66,15 +66,15 @@
       "schedule_display": "0 4 * * *",
       "repeat": {
         "times": null,
-        "completed": 38
+        "completed": 40
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:37.305589+02:00",
-      "next_run_at": "2026-08-16T04:00:00+02:00",
-      "last_run_at": "2026-08-15T04:01:23.271065+02:00",
+      "next_run_at": "2026-08-18T04:00:00+02:00",
+      "last_run_at": "2026-08-17T04:01:32.718652+02:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -108,15 +108,15 @@
       "schedule_display": "0 3 * * *",
       "repeat": {
         "times": null,
-        "completed": 36
+        "completed": 37
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T16:53:01.969013+02:00",
-      "next_run_at": "2026-08-17T03:00:00+02:00",
-      "last_run_at": "2026-08-16T03:01:42.351216+02:00",
+      "next_run_at": "2026-08-18T03:00:00+02:00",
+      "last_run_at": "2026-08-17T03:01:16.656398+02:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -194,18 +194,18 @@
       "schedule_display": "0 8 * * 1",
       "repeat": {
         "times": 52,
-        "completed": 6
+        "completed": 7
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T17:24:06.499145+02:00",
-      "next_run_at": "2026-08-17T08:00:00+02:00",
-      "last_run_at": "2026-08-10T08:02:20.760202+02:00",
-      "last_status": "error",
-      "last_error": "RuntimeError: Connection error.",
-      "last_delivery_error": "delivery error: Discord send failed: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]",
+      "next_run_at": "2026-08-24T08:00:00+02:00",
+      "last_run_at": "2026-08-17T08:03:13.591875+02:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
@@ -236,15 +236,15 @@
       "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 67
+        "completed": 69
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-12T17:48:52.823611+02:00",
-      "next_run_at": "2026-08-16T12:37:04.425342+02:00",
-      "last_run_at": "2026-08-16T00:37:04.425342+02:00",
+      "next_run_at": "2026-08-17T12:39:09.365508+02:00",
+      "last_run_at": "2026-08-17T00:39:09.365508+02:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -303,5 +303,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-08-16T03:01:42.351865+02:00"
+  "updated_at": "2026-08-17T08:03:13.592452+02:00"
 }

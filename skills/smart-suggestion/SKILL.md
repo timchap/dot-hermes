@@ -85,9 +85,12 @@ Read and update `/home/hermes/.hermes/data/smart-suggestions.md`:
 - **Homelab repo location**: The repo is at `/home/hermes/homelab/` (top-level). Do NOT check `repositories/` first — that path does not exist in the current layout.
 - **Don't repeat**: Check the tracker and previous suggestions to avoid re-proposing the same idea.
 - **Cross-reference with cron jobs**: A suggestion is not novel if it's already automated.
-- **Superseded suggestions**: If the landscape changed (new official integration, protocol update), note it and pivot away from the old approach.
+- **Superseded suggestions**: If the landscape changed (new official integration, protocol update), note it and pivot away from the old approach. The MCP ecosystem moves fast — n8n now has native MCP Server/Client nodes, HA has first-party MCP integration, and the protocol spec updated to streamable HTTP in 2026-07-28. See `references/mcp-ecosystem-2026.md` for current landscape.
 - **Track ALL considered ideas**: Even ideas you rejected — future runs need to know what was passed on.
+- **User feedback is thin**: Past 5+ suggestions have all been "awaiting user feedback" — do not assume rejection or acceptance. When the user says nothing, treat it as neutral, not as a signal to avoid similar ideas.
+- **Avoid over-indexing on MCP**: The user has received 4+ MCP-related suggestions. If the user hasn't acted on them, pivot to a different angle (e.g., orchestration layer, workflow automation, monitoring → action) rather than proposing another MCP wrapper.
 
 ## Support Files
 
 - `references/ha-mcp-integration.md` — Home Assistant MCP Server integration guide for Hermes
+- `references/mcp-ecosystem-2026.md` — MCP ecosystem landscape (protocol updates, native tools, notable projects) for superseded-aware suggestion filtering
