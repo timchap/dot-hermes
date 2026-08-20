@@ -72,6 +72,18 @@ Cache structured results to `~/.hermes/cache/web/` for cross-session reference.
 - `oldhouseprovisions.com` (Shopify)
 - Any `*.myshopify.com` storefront
 
+## Multi-Retailer Product Availability Audit
+
+For tasks like "check availability of PRODUCT across RETAILERS, focusing on FR shipping":
+
+1. **Parallel initial sweep**: `web_search` on each retailer + brand name simultaneously.
+2. **Official site first**: Always check the brand's own store — usually has the freshest stock data and best shipping terms for EU customers.
+3. **Extract policy pages** with `web_extract` (works on most, rarely Shopify-blocked).
+4. **Browser navigation** for product listings that need size/stock detail.
+5. **Verify each retailer's shipping scope** — not all boutiques ship internationally even if they appear to (e.g., Old House Provisions is US-only; no visible warning banner).
+6. **Flag "sale price" mislabels** — some retailers (Redcast Heritage) display "Sale price" on items at their regular price. Note this distinction in the report.
+7. **Output format**: Use structured tables per retailer with columns: Style, Price, Size/Stock, Shipping to target country, Notable flags.
+
 ## When web_extract Works
 
 - Non-Shopify domains
