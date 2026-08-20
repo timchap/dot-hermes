@@ -102,4 +102,5 @@ For tasks like "check availability of PRODUCT across RETAILERS, focusing on FR s
 
 ## Reference Files
 
-See `references/web-extraction.md` for detailed fallback pipeline, blocked domains list, and working search query patterns.
+- `references/web-extraction.md` — Detailed fallback pipeline, blocked domains list, working search query patterns.
+- `references/multi-retailer-audit.md` — Multi-retailer audit patterns, URL patterns per retailer, shipping summaries, "sale price" labeling caveat, US-only retailer gotcha, product line quick reference.
