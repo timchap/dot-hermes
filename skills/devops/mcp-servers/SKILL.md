@@ -1,6 +1,6 @@
 ---
 name: mcp-servers
-description: "Set up, configure, and troubleshoot MCP servers in Hermes — stdio and HTTP transports, OAuth flows, env var security, credential sourcing."
+description: Use when setting up, configuring, or troubleshooting MCP servers in Hermes — stdio and HTTP transports, OAuth flows, env var security, credential sourcing, and 1Password secret injection.
 version: 1.0.0
 author: Hermes Agent
 license: MIT
@@ -8,6 +8,7 @@ platforms: [linux, macos]
 metadata:
   hermes:
     tags: [mcp, mcp-server, stdio, http, model-context-protocol, integration]
+    related_skills: [hermes-agent, gmail-mcp]
 ---
 
 # MCP Servers
@@ -201,7 +202,7 @@ grep -A5 '<server-name>:' ~/.hermes/config.yaml
 
 curl -s <proxy-url> -X POST \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer ${PROXY_SHARED_SECRET_ENV_VAR}" \
+  -H "Authorization: Bearer ${PROX...VAR}" \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{
         "name":"update_task",
         "arguments":{"task_id":"<real-id>","patch_body":{"title":"hello"}}
@@ -239,7 +240,7 @@ When an HTTP MCP server times out (especially proxies like `gmail-proxy`), use r
    - `403` → IP/network authorization denied
    - `404` → endpoint path wrong (check URL in config vs actual)
 
-3. **Test with correct auth:** Add `-H "Authorization: Bearer <secret>"` to reproduce what Hermes sends.
+3. **Test with correct auth:** Add `-H "Authorization: Bearer ***"` to reproduce what Hermes sends.
 
 4. **Check 1Password secret resolution:** If using `${VAR}` syntax, verify the secret is actually resolving (the `1Password: applied N secrets` output on test confirms injection).
 
@@ -286,17 +287,16 @@ compromise should not be able to exfiltrate it), don't put the credential direct
    endpoint, cached in memory, refreshed before expiry).
 3. The proxy exposes the **exact same MCP JSON-RPC API shape** as the real upstream server —
    forward `initialize`, `ping`, `tools/list`, `tools/call` etc. verbatim, attaching
-   `Authorization: Bearer <access_token>` to the upstream call. Zero protocol translation needed
+   `Authorization: Bearer ***` to the upstream call. Zero protocol translation needed
    on the Hermes side — point `mcp_servers.<name>.url` at the proxy instead of the real endpoint.
-4. Optionally require its own inbound shared-secret (`Authorization: Bearer <proxy_secret>`)
+4. Optionally require its own inbound shared-secret (`Authorization: Bearer ***`
    distinct from the upstream OAuth secret — Hermes can safely hold this since compromising it
    only grants API access, not the ability to mint fresh OAuth tokens or read the refresh token.
 5. Network-isolate the proxy: bind only where the agent host can reach it (Tailscale/LAN), never
    expose it publicly.
 
 This pattern generalizes beyond Gmail to any MCP integration with sensitive long-lived credentials
-(Google Workspace APIs, other OAuth-gated SaaS MCP servers). See `references/google-gmail-mcp.md`
-for the Gmail-specific endpoint/scope details this pattern was first applied to.
+(Google Workspace APIs, other OAuth-gated SaaS MCP servers).
 
 ## References
 

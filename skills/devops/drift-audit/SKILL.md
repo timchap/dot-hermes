@@ -1,6 +1,6 @@
 ---
 name: drift-audit
-description: Periodically audit Hermes environment sessions for undocumented or uncommitted environment changes — software installs, config changes, systemd units, network changes, Hermes-specific changes (skills, plugins, cron jobs, config.yaml).
+description: Use when periodically auditing Hermes environment sessions for undocumented or uncommitted environment changes — software installs, config changes, systemd units, network changes, and Hermes-specific changes (skills, plugins, cron jobs, config.yaml).
 version: 1.0.0
 author: Hermes Agent
 license: MIT

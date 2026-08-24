@@ -1,7 +1,13 @@
 ---
 name: cron-troubleshooting
-description: Diagnose, troubleshoot, and fix Hermes Agent cron job issues — missed runs, delivery failures, model/provider misconfigurations, and scheduling behavior.
-category: meta
+description: Use when diagnosing, troubleshooting, or fixing Hermes Agent cron job issues — missed runs, delivery failures, model/provider misconfigurations, and scheduling behavior.
+version: 1.0.0
+author: Hermes Agent
+license: MIT
+metadata:
+  hermes:
+    tags: [cron, troubleshooting, scheduling, delivery, missed-runs]
+    related_skills: [hermes-agent, reminder-pattern, systemd-services]
 ---
 
 # Cron Troubleshooting
