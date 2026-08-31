@@ -36,7 +36,7 @@ Load this skill when the user wants a page styled after a known brand ("make it 
 1. Pick a design from the catalog below
 2. Load it: `skill_view(name="popular-web-designs", file_path="templates/<site>.md")`
 3. Use the design tokens and component specs when generating HTML
-4. Pair with the `generative-widgets` skill to serve the result via cloudflared tunnel
+4. Pair with the `claude-design` skill for the design process and taste
 
 Each template includes a **Hermes Implementation Notes** block at the top with:
 - CDN font substitute and Google Fonts `<link>` tag (ready to paste)

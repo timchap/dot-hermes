@@ -1,9 +1,14 @@
 ---
 name: reminder-pattern
-description: General rule for handling reminders, tasks, and cron jobs together
+description: General rule for handling reminders, tasks, and cron jobs together — Google Tasks MCP, scheduling, delivery routing, and time estimation.
 version: 1.0.0
 author: Hermes Agent
 license: MIT
+platforms: [linux, macos, windows]
+metadata:
+  hermes:
+    tags: [reminder, tasks, cron, google-tasks, scheduling, delivery]
+    related_skills: [hermes-agent, cron-troubleshooting]
 ---
 # Reminder Pattern
 

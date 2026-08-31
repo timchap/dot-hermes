@@ -8,6 +8,7 @@ platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [browser, automation, agent-browser, camoufox, chromium, headless]
+    related_skills: [hermes-agent]
 ---
 
 # Browser Automation Setup

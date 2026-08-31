@@ -22,7 +22,6 @@ Identify and remove signs of AI-generated text to make writing sound natural and
 Load this skill when the user asks to: "humanize", "de-AI", "de-slop", or "un-ChatGPT" text; rewrite something so it doesn't sound like LLM output; edit a draft (blog post, essay, PR description, docs, memo, email, tweet, resume bullet) to sound more natural; match their voice in writing they're producing; or review text for AI tells before publishing. Also apply to your own output when writing user-facing prose.
 
 **Key insight:** LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely completion, which is how the telltale patterns below get baked in.
-- review text for AI tells before publishing
 
 Also apply this skill to **your own** output when writing user-facing prose — release notes, PR descriptions, documentation, long-form explanations, summaries. Hermes's baseline voice already strips most of these, but a focused pass catches what slips through.
 

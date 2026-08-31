@@ -2,7 +2,7 @@
 name: hermes-context-management
 description: Use when deciding where to persist declarative knowledge in Hermes — SOUL.md, .hermes.md, AGENTS.md, memory, skills, references, templates, or scripts.
 version: 1.0.0
-author: agent
+author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
 metadata:

@@ -8,6 +8,7 @@ platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [time, date, calendar, email, tasks, mcp, filtering]
+    related_skills: [hermes-agent]
 ---
 
 # Time-Filtered Queries

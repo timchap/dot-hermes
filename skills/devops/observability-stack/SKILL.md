@@ -8,6 +8,7 @@ platforms: [linux]
 metadata:
   hermes:
     tags: [observability, prometheus, grafana, cadvisor, phoenix, monitoring, homelab]
+    related_skills: [hermes-agent, drift-audit, lemonade-server]
 ---
 
 # Observability Stack

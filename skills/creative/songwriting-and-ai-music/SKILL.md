@@ -8,7 +8,7 @@ platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [songwriting, music, suno, parody, lyrics, creative, ai-music, prompt-engineering]
-    related_skills: [humanizer]
+    related_skills: [humanizer, p5js]
 ---
 
 # Songwriting & AI Music Generation

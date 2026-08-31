@@ -4,6 +4,7 @@ description: Use when diagnosing, troubleshooting, or fixing Hermes Agent cron j
 version: 1.0.0
 author: Hermes Agent
 license: MIT
+platforms: [linux]
 metadata:
   hermes:
     tags: [cron, troubleshooting, scheduling, delivery, missed-runs]

@@ -1,13 +1,14 @@
 ---
 name: smart-suggestion
-description: Use when generating weekly smart suggestions — tailored ideas based on user patterns, homelab activity, and web research.
+description: Use when generating weekly smart suggestions — tailored ideas based on user patterns, homelab activity, web research, and past suggestion outcomes.
 version: 1.0.0
 author: Hermes Agent
 license: MIT
+platforms: [linux]
 metadata:
   hermes:
-    tags: [suggestion, weekly, smart, scouting]
-    related_skills: [hermes-agent]
+    tags: [suggestion, weekly, smart, scouting, automation, homelab]
+    related_skills: [hermes-agent, llm-digest]
 ---
 # Smart Suggestion Scout
 

@@ -9,6 +9,7 @@ metadata:
   hermes:
     tags: [smart-home, home-assistant, mqtt, iot, automation, lights, sensors, zigbee]
     related_skills: [hermes-agent, systemd-services]
+    homepage: https://www.home-assistant.io
 ---
 
 # Smart Home Control
