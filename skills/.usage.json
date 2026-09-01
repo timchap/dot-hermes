@@ -186,13 +186,13 @@
     "created_at": "2026-07-11T11:35:07.744650+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-08-31T07:00:38.187514+00:00",
-    "last_viewed_at": "2026-07-22T01:03:53.000582+00:00",
+    "last_used_at": "2026-09-01T01:02:54.648174+00:00",
+    "last_viewed_at": "2026-09-01T01:02:54.636591+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 18,
-    "view_count": 9
+    "use_count": 20,
+    "view_count": 11
   },
   "hermes-context-management": {
     "archived_at": null,
@@ -251,13 +251,13 @@
     "created_at": "2026-07-11T11:36:36.713746+00:00",
     "created_by": null,
     "last_patched_at": "2026-07-31T04:08:48.457866+00:00",
-    "last_used_at": "2026-08-28T04:00:07.421976+00:00",
-    "last_viewed_at": "2026-08-21T04:00:53.583959+00:00",
+    "last_used_at": "2026-09-01T01:02:38.920664+00:00",
+    "last_viewed_at": "2026-09-01T01:02:38.907872+00:00",
     "patch_count": 9,
     "pinned": false,
     "state": "active",
-    "use_count": 26,
-    "view_count": 12
+    "use_count": 27,
+    "view_count": 13
   },
   "manim-video": {
     "archived_at": null,
@@ -376,6 +376,19 @@
     "use_count": 0,
     "view_count": 0
   },
+  "skill-maintenance": {
+    "archived_at": null,
+    "created_at": "2026-09-01T01:03:32.791775+00:00",
+    "created_by": "agent",
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
   "smart-home": {
     "archived_at": null,
     "created_at": "2026-07-11T17:30:12.913091+00:00",
@@ -394,13 +407,13 @@
     "created_at": "2026-07-13T09:47:47.811847+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-08-31T07:02:43.820583+00:00",
-    "last_used_at": "2026-08-17T06:03:54.849214+00:00",
-    "last_viewed_at": "2026-08-17T06:03:54.836558+00:00",
+    "last_used_at": "2026-09-01T01:02:49.702800+00:00",
+    "last_viewed_at": "2026-09-01T01:02:49.685912+00:00",
     "patch_count": 7,
     "pinned": false,
     "state": "active",
-    "use_count": 3,
-    "view_count": 3
+    "use_count": 6,
+    "view_count": 6
   },
   "songwriting-and-ai-music": {
     "archived_at": null,
