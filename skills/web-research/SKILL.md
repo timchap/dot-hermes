@@ -72,6 +72,12 @@ Cache structured results to `~/.hermes/cache/web/` for cross-session reference.
 - `oldhouseprovisions.com` (Shopify)
 - Any `*.myshopify.com` storefront
 
+## Detecting Inventory Changes
+
+Shopify storefronts mark product cards with **RESTOCK** or **NEW** badges in their collection pages. These appear in `web_search` snippets and `web_extract` output. Use them to flag inventory shifts compared to prior weeks. "RESTOCK" means a previously unavailable item is back; "NEW" signals a new variant, color, or product.
+
+When a retailer uses a country/region selector (e.g., merzbschwanen.com), **switch currency to EUR** before checking prices — US prices are misleading for EU buyers. The site typically shows EUR pricing once the country is selected.
+
 ## Multi-Retailer Product Availability Audit
 
 For tasks like "check availability of PRODUCT across RETAILERS, focusing on FR shipping":

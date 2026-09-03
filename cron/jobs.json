@@ -66,18 +66,18 @@
       "schedule_display": "0 4 * * *",
       "repeat": {
         "times": null,
-        "completed": 54
+        "completed": 57
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:37.305589+02:00",
-      "next_run_at": "2026-09-01T04:00:00+02:00",
-      "last_run_at": "2026-08-31T04:01:06.265703+02:00",
-      "last_status": "ok",
-      "last_error": null,
-      "last_delivery_error": null,
+      "next_run_at": "2026-09-04T04:00:00+02:00",
+      "last_run_at": "2026-09-03T04:01:51.941014+02:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Connection error.",
+      "last_delivery_error": "delivery error: Discord send failed: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]",
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
@@ -108,18 +108,18 @@
       "schedule_display": "0 3 * * *",
       "repeat": {
         "times": null,
-        "completed": 52
+        "completed": 54
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T16:53:01.969013+02:00",
-      "next_run_at": "2026-09-02T03:00:00+02:00",
-      "last_run_at": "2026-09-01T03:02:30.242780+02:00",
-      "last_status": "ok",
-      "last_error": null,
-      "last_delivery_error": null,
+      "next_run_at": "2026-09-04T03:00:00+02:00",
+      "last_run_at": "2026-09-03T03:02:51.531082+02:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Connection error.",
+      "last_delivery_error": "delivery error: Discord send failed: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]",
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
@@ -236,18 +236,18 @@
       "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 99
+        "completed": 103
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-12T17:48:52.823611+02:00",
-      "next_run_at": "2026-09-01T13:14:26.735249+02:00",
-      "last_run_at": "2026-09-01T01:14:26.735249+02:00",
-      "last_status": "ok",
-      "last_error": null,
-      "last_delivery_error": null,
+      "next_run_at": "2026-09-03T13:19:05.172948+02:00",
+      "last_run_at": "2026-09-03T01:19:05.172948+02:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Connection error.",
+      "last_delivery_error": "delivery error: Discord send failed: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]",
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
@@ -278,15 +278,15 @@
       "schedule_display": "every 10080m",
       "repeat": {
         "times": 30,
-        "completed": 6
+        "completed": 7
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-22T20:12:18.984392+02:00",
-      "next_run_at": "2026-09-03T09:31:18.840361+02:00",
-      "last_run_at": "2026-08-27T09:31:18.840361+02:00",
+      "next_run_at": "2026-09-10T09:37:31.204523+02:00",
+      "last_run_at": "2026-09-03T09:37:31.204523+02:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": "unknown platform 'webui'",
@@ -303,5 +303,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-09-01T03:02:30.243320+02:00"
+  "updated_at": "2026-09-03T09:37:31.204735+02:00"
 }
