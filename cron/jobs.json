@@ -24,18 +24,18 @@
       "schedule_display": "0 6 * * 5",
       "repeat": {
         "times": null,
-        "completed": 15
+        "completed": 16
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:36.238620+02:00",
-      "next_run_at": "2026-09-04T06:00:00+02:00",
-      "last_run_at": "2026-08-28T06:04:19.972915+02:00",
-      "last_status": "ok",
-      "last_error": null,
-      "last_delivery_error": null,
+      "next_run_at": "2026-09-11T06:00:00+02:00",
+      "last_run_at": "2026-09-04T09:29:27.318347+02:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: HTTP 404: Model 'qwen/qwen3.6-35b-a3b' was not found. Available models include: 'Bonsai-1.7B-gguf', 'Bonsai-4B-gguf', 'Bonsai-8B-gguf', and 121 more. Use 'lemonade list' or GET /api/v1/models?show_all=true to see all available models.",
+      "last_delivery_error": "platform 'discord' not configured/enabled",
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
@@ -66,18 +66,18 @@
       "schedule_display": "0 4 * * *",
       "repeat": {
         "times": null,
-        "completed": 57
+        "completed": 58
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:37.305589+02:00",
-      "next_run_at": "2026-09-04T04:00:00+02:00",
-      "last_run_at": "2026-09-03T04:01:51.941014+02:00",
+      "next_run_at": "2026-09-05T04:00:00+02:00",
+      "last_run_at": "2026-09-04T09:29:26.350937+02:00",
       "last_status": "error",
-      "last_error": "RuntimeError: Connection error.",
-      "last_delivery_error": "delivery error: Discord send failed: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]",
+      "last_error": "RuntimeError: HTTP 404: Model 'qwen/qwen3.6-35b-a3b' was not found. Available models include: 'Bonsai-1.7B-gguf', 'Bonsai-4B-gguf', 'Bonsai-8B-gguf', and 121 more. Use 'lemonade list' or GET /api/v1/models?show_all=true to see all available models.",
+      "last_delivery_error": "platform 'discord' not configured/enabled",
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
@@ -108,18 +108,18 @@
       "schedule_display": "0 3 * * *",
       "repeat": {
         "times": null,
-        "completed": 54
+        "completed": 55
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T16:53:01.969013+02:00",
-      "next_run_at": "2026-09-04T03:00:00+02:00",
-      "last_run_at": "2026-09-03T03:02:51.531082+02:00",
+      "next_run_at": "2026-09-05T03:00:00+02:00",
+      "last_run_at": "2026-09-04T09:29:27.393801+02:00",
       "last_status": "error",
-      "last_error": "RuntimeError: Connection error.",
-      "last_delivery_error": "delivery error: Discord send failed: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]",
+      "last_error": "RuntimeError: HTTP 404: Model 'qwen/qwen3.6-35b-a3b' was not found. Available models include: 'Bonsai-1.7B-gguf', 'Bonsai-4B-gguf', 'Bonsai-8B-gguf', and 121 more. Use 'lemonade list' or GET /api/v1/models?show_all=true to see all available models.",
+      "last_delivery_error": "platform 'discord' not configured/enabled",
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
@@ -236,18 +236,18 @@
       "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 103
+        "completed": 105
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-12T17:48:52.823611+02:00",
-      "next_run_at": "2026-09-03T13:19:05.172948+02:00",
-      "last_run_at": "2026-09-03T01:19:05.172948+02:00",
+      "next_run_at": "2026-09-04T21:29:23.681858+02:00",
+      "last_run_at": "2026-09-04T09:29:23.681858+02:00",
       "last_status": "error",
-      "last_error": "RuntimeError: Connection error.",
-      "last_delivery_error": "delivery error: Discord send failed: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]",
+      "last_error": "RuntimeError: No LLM provider configured. Run `hermes model` to select a provider, or run `hermes setup` for first-time configuration.",
+      "last_delivery_error": "platform 'discord' not configured/enabled",
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
@@ -303,5 +303,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-09-03T09:37:31.204735+02:00"
+  "updated_at": "2026-09-04T09:29:27.394252+02:00"
 }
