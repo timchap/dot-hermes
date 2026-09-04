@@ -236,15 +236,15 @@
       "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 105
+        "completed": 106
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-12T17:48:52.823611+02:00",
-      "next_run_at": "2026-09-04T21:29:23.681858+02:00",
-      "last_run_at": "2026-09-04T09:29:23.681858+02:00",
+      "next_run_at": "2026-09-05T09:29:39.417938+02:00",
+      "last_run_at": "2026-09-04T21:29:39.417938+02:00",
       "last_status": "error",
       "last_error": "RuntimeError: No LLM provider configured. Run `hermes model` to select a provider, or run `hermes setup` for first-time configuration.",
       "last_delivery_error": "platform 'discord' not configured/enabled",
@@ -303,5 +303,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-09-04T09:29:27.394252+02:00"
+  "updated_at": "2026-09-04T21:29:39.418121+02:00"
 }
