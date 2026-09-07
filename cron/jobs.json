@@ -66,15 +66,15 @@
       "schedule_display": "0 4 * * *",
       "repeat": {
         "times": null,
-        "completed": 58
+        "completed": 61
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T02:59:37.305589+02:00",
-      "next_run_at": "2026-09-05T04:00:00+02:00",
-      "last_run_at": "2026-09-04T09:29:26.350937+02:00",
+      "next_run_at": "2026-09-08T04:00:00+02:00",
+      "last_run_at": "2026-09-07T04:00:45.807882+02:00",
       "last_status": "error",
       "last_error": "RuntimeError: HTTP 404: Model 'qwen/qwen3.6-35b-a3b' was not found. Available models include: 'Bonsai-1.7B-gguf', 'Bonsai-4B-gguf', 'Bonsai-8B-gguf', and 121 more. Use 'lemonade list' or GET /api/v1/models?show_all=true to see all available models.",
       "last_delivery_error": "platform 'discord' not configured/enabled",
@@ -108,15 +108,15 @@
       "schedule_display": "0 3 * * *",
       "repeat": {
         "times": null,
-        "completed": 55
+        "completed": 58
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T16:53:01.969013+02:00",
-      "next_run_at": "2026-09-05T03:00:00+02:00",
-      "last_run_at": "2026-09-04T09:29:27.393801+02:00",
+      "next_run_at": "2026-09-08T03:00:00+02:00",
+      "last_run_at": "2026-09-07T03:00:44.689209+02:00",
       "last_status": "error",
       "last_error": "RuntimeError: HTTP 404: Model 'qwen/qwen3.6-35b-a3b' was not found. Available models include: 'Bonsai-1.7B-gguf', 'Bonsai-4B-gguf', 'Bonsai-8B-gguf', and 121 more. Use 'lemonade list' or GET /api/v1/models?show_all=true to see all available models.",
       "last_delivery_error": "platform 'discord' not configured/enabled",
@@ -152,18 +152,18 @@
       "schedule_display": "0 9 * * 1",
       "repeat": {
         "times": null,
-        "completed": 9
+        "completed": 10
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T17:09:20.248156+02:00",
-      "next_run_at": "2026-09-07T09:00:00+02:00",
-      "last_run_at": "2026-08-31T09:03:09.926303+02:00",
-      "last_status": "ok",
-      "last_error": null,
-      "last_delivery_error": null,
+      "next_run_at": "2026-09-14T09:00:00+02:00",
+      "last_run_at": "2026-09-07T09:00:52.363629+02:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: No LLM provider configured. Run `hermes model` to select a provider, or run `hermes setup` for first-time configuration.",
+      "last_delivery_error": "platform 'discord' not configured/enabled",
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
@@ -194,18 +194,18 @@
       "schedule_display": "0 8 * * 1",
       "repeat": {
         "times": 52,
-        "completed": 9
+        "completed": 10
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-11T17:24:06.499145+02:00",
-      "next_run_at": "2026-09-07T08:00:00+02:00",
-      "last_run_at": "2026-08-31T08:02:03.913657+02:00",
-      "last_status": "ok",
-      "last_error": null,
-      "last_delivery_error": null,
+      "next_run_at": "2026-09-14T08:00:00+02:00",
+      "last_run_at": "2026-09-07T08:00:52.225960+02:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: HTTP 404: Model 'qwen/qwen3.6-35b-a3b' was not found. Available models include: 'Bonsai-1.7B-gguf', 'Bonsai-4B-gguf', 'Bonsai-8B-gguf', and 121 more. Use 'lemonade list' or GET /api/v1/models?show_all=true to see all available models.",
+      "last_delivery_error": "platform 'discord' not configured/enabled",
       "deliver": "origin",
       "origin": null,
       "enabled_toolsets": null,
@@ -236,15 +236,15 @@
       "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 106
+        "completed": 110
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-07-12T17:48:52.823611+02:00",
-      "next_run_at": "2026-09-05T09:29:39.417938+02:00",
-      "last_run_at": "2026-09-04T21:29:39.417938+02:00",
+      "next_run_at": "2026-09-07T09:30:37.130086+02:00",
+      "last_run_at": "2026-09-06T21:30:37.130086+02:00",
       "last_status": "error",
       "last_error": "RuntimeError: No LLM provider configured. Run `hermes model` to select a provider, or run `hermes setup` for first-time configuration.",
       "last_delivery_error": "platform 'discord' not configured/enabled",
@@ -303,5 +303,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-09-04T21:29:39.418121+02:00"
+  "updated_at": "2026-09-07T09:00:52.364111+02:00"
 }
