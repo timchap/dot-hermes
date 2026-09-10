@@ -114,7 +114,7 @@ For tasks like "check availability of PRODUCT across RETAILERS, focusing on FR s
 
 1. **Batch independent searches** — run 3-5 site queries in parallel.
 2. **Always check shipping early** — international buyers need this before comparing prices.
-3. **Capture size/stock data** — `web_search` snippets rarely show sizes; use `browser_snapshot` for product pages.
+3. **Capture size/stock data** — `web_search` snippets rarely show sizes (EXCEPTION: merzbschwanen.com collection pages include full variant JSON in Google-indexed snippets, see Step 1b). Use `browser_snapshot` for other product pages.
 4. **Note "Sale price" vs list price** — Shopify sites often label current pricing as "Sale price" even during normal operations.
 5. **Verify retailer shipping scope** — many boutique stores (e.g., Old House Provisions) ship US-only despite having no obvious "US only" banner.
 

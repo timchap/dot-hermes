@@ -31,6 +31,17 @@ site:oldhouseprovisions.com shipping international
 
 Use date-stamped queries (`2026`) to filter stale results.
 
+#### merzbschwanen.com Exception: Full Variant JSON in Google Snippets
+
+merzbschwanen.com embeds Shopify's JSON-LD structured data on collection pages, and Google indexes it in search snippets. A single `web_search("site:merzbschwanen.com /collections/mens-t-shirts")` returns the full `"products"` array with every variant's SKU, price (cents), size label, and `available` boolean — no browser needed for stock checks.
+
+**Example snippet data:**
+```json
+{"title": "5/M", "sku": "TEE03.100.5", "price": 8500, "available": true}
+```
+
+**Workflow:** Try `web_search` on merzbschwanen.com FIRST for any product stock query. Only fall back to `browser_navigate` for image URLs, descriptions, or page-level badges (RESTOCK/NEW).
+
 ### Step 2: Extract Policy Pages
 
 Policy pages load fine with `web_extract` — they're rarely Shopify-blocked:
