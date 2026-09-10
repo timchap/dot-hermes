@@ -40,6 +40,18 @@ site:DOMAIN shipping France international
 
 Use date-stamped queries (`2026`) to filter stale results.
 
+### Step 1b: Shopify Collection JSON-in-Snippet (merzbschwanen.com)
+
+**Critical shortcut**: `web_search` results for `merzbschwanen.com` now include the **full product JSON** in the snippet — including every variant's SKU, price, size label, and `available: true/false`. This comes from Google indexing Shopify's embedded `application/ld+json` / JSON-LD structured data on collection pages.
+
+**When this works**: `web_search("site:merzbschwanen.com ...")` for any collection URL (e.g., `/collections/mens-t-shirts`). The response contains a `"products"` array with variant objects like:
+```json
+{"title": "5/M", "sku": "TEE03.100.5", "price": 8500, "available": true}
+```
+Prices are in cents. Use `browser_navigate` only if you need image URLs, descriptions, or page-level badges (RESTOCK/NEW).
+
+**Action**: Always try `web_search` for merzbschwanen.com FIRST — it often gives you the complete stock matrix without any browser interaction.
+
 ### Step 2: Extract Policy/Info Pages
 
 Policy pages (shipping, returns, FAQ) typically load fine with `web_extract` — they're rarely on Shopify cart blocks:
